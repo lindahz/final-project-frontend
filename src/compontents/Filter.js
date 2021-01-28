@@ -1,10 +1,106 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import styled from 'styled-components/macro'
+
+import { clinics } from '../reducers/clinics'
+import { fetchClinics } from '../reducers/reusable'
+
+export const Filter = () => {
+  const [toggleFilter, setToggleFilter] = useState(false)
+  const [toggleSort, setToggleSort] = useState(false)
+  const handleToggleFilter = () => setToggleFilter(!toggleFilter)
+  const handleToggleSort = () => setToggleSort(!toggleSort)
+
+  return (
+    <Section>
+      <Container>
+        <Btn onClick={() => handleToggleFilter()}>Filtrera</Btn>
+        <Btn onClick={() => handleToggleSort()}>Sortera</Btn>
+      </Container>
+      {toggleSort && (
+        <SortContainer>
+          <p>Sortera efter</p>
+          <ul>
+            <Btn>
+              <li>Kliniknamn A - Z</li>
+            </Btn>
+            <Btn>
+              <li>Adress A - Z</li>
+            </Btn>
+          </ul>
+        </SortContainer>
+      )}
+      {toggleFilter && (
+        <Form>
+          <Heading>Akut eller livshotande</Heading>
+          <Label>
+            <RadioBtn
+              type="radio" />
+            Ja
+          </Label>
+          <Label>
+            <RadioBtn
+              type="radio" />
+            Nej
+          </Label>
+          <Heading>Klinikverksamhet</Heading>
+          <Label>
+            <Checkbox
+              type="checkbox" />
+            Vårdcentral
+          </Label>
+          <Label>
+            <Checkbox
+              type="checkbox" />
+            Närakut
+          </Label>
+          <Label>
+            <Checkbox
+              type="checkbox" />
+            Akutmottagning
+          </Label>
+          <Heading>
+            Öppettider
+          </Heading>
+          <Label>
+            <Checkbox
+              type="checkbox" />
+              Dygnet runt
+          </Label>
+          <Label>
+            <Checkbox
+              type="checkbox" />
+              Vardagar 8 - 17
+          </Label>
+          <Label>
+            <Checkbox
+              type="checkbox" />
+              Helger 8 - 17
+          </Label>
+          <Heading>
+            Drop-in
+          </Heading>
+          <Label>
+            <Checkbox
+              type="checkbox" />
+              Ja
+          </Label>
+        </Form>
+      )}
+    </Section>
+  )
+}
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
+`
+
+const SortContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 const Btn = styled.button`
@@ -16,9 +112,9 @@ const Btn = styled.button`
 `
 const Section = styled.section`
   display: flex;
+  width: 100%;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 40px;
 `
 const RadioBtn = styled.input`
@@ -43,77 +139,3 @@ const Form = styled.form`
 const Heading = styled.h3`
 
 `
-
-export const Filter = () => {
-  return (
-    <Section>
-      <Container>
-        <Btn>
-          Filtrera
-        </Btn>
-        <Btn>
-          Sortera
-        </Btn>
-      </Container>
-      <Form>
-        <Heading>
-          Akut eller livshotande
-        </Heading>
-        <Label>
-          <RadioBtn
-            type="radio" />
-          Ja
-        </Label>
-        <Label>
-          <RadioBtn
-            type="radio" />
-          Nej
-        </Label>
-        <Heading>
-          Klinikverksamhet
-        </Heading>
-        <Label>
-          <Checkbox
-            type="checkbox" />
-          Vårdcentral
-        </Label>
-        <Label>
-          <Checkbox
-            type="checkbox" />
-          Närakut
-        </Label>
-        <Label>
-          <Checkbox
-            type="checkbox" />
-          Akutmottagning
-        </Label>
-        <Heading>
-          Öppettider
-        </Heading>
-        <Label>
-          <Checkbox
-            type="checkbox" />
-            Dygnet runt
-        </Label>
-        <Label>
-          <Checkbox
-            type="checkbox" />
-            Vardagar 8 - 17
-        </Label>
-        <Label>
-          <Checkbox
-            type="checkbox" />
-            Helger 8 - 17
-        </Label>
-        <Heading>
-          Drop-in
-        </Heading>
-        <Label>
-          <Checkbox
-            type="checkbox" />
-            Ja
-        </Label>
-      </Form>
-    </Section>
-  )
-}

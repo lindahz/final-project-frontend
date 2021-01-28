@@ -5,40 +5,32 @@ import styled from 'styled-components/macro'
 
 export const ClinicList = ({ clinic_name, address }) => {
   return (
-    <Section>
-      <List>
-        <Title>
-          {clinic_name}
-        </Title>
-        <Text>
-          {address}
-        </Text>
-        <Container>
-          <Chip>
-            Akuta ärenden
-          </Chip>
-          <Chip>
-            Drop-in
-          </Chip>
-          <Chip>
-            24/7
-          </Chip>
-          <ChipRating>
-            4.6 ★
-          </ChipRating>
-        </Container>
-      </List>
-      {/* <Clinic /> */}
-    </Section>
+    <Wrapper>
+      <Title>
+        {clinic_name}
+      </Title>
+      <Text>
+        {address}
+      </Text>
+      <Container>
+        <Chip>
+          Akuta ärenden
+        </Chip>
+        <Chip>
+          Drop-in
+        </Chip>
+        <Chip>
+          24/7
+        </Chip>
+        <ChipRating>
+          4.6 ★
+        </ChipRating>
+      </Container>
+    </Wrapper>
   )
 }
 
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-`
-
-const List = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
