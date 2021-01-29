@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import styled from 'styled-components/macro'
 
@@ -7,11 +8,10 @@ import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
 
 export const Navbar = () => {
-
   const search = useSelector((store) => store.clinics.search)
   const dispatch = useDispatch()
 
-  // the fetch is called by this button - how can I then sort or change page after the first fetch is completed without clicking the button?
+// how can I then sort or change page after the first fetch is completed without clicking the button?
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(fetchClinics(search))
@@ -34,10 +34,10 @@ export const Navbar = () => {
           onChange={(event) => onChangeEvent(event.target.value)} />
       </Form>
       <Container>
-        <Link href="#"><li>Hitta och jämför vård</li></Link>
-        <Link href="#"><li>Fakta och råd</li></Link>
-        <Link href="#"><li>Om oss</li></Link>
-        <Link href="#"><li>Kontakt</li></Link>
+        <Category><Link to="/">Hitta och jämför vård</Link></Category>
+        <Category><Link to="/fakta-och-rad">Fakta och råd</Link></Category>
+        <Category><Link to="/om-oss">Om oss</Link></Category>
+        <Category><Link to="/kontakt">Kontakt</Link></Category>
       </Container>
     </Section>
   )
@@ -69,7 +69,7 @@ const Container = styled.ul`
   margin: 0;
   padding: 0;
 `
-const Link = styled.a`
+const Category = styled.li`
   padding: 20px;
 `
 const Btn = styled.button`

@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-// import { Clinic } from './Clinic'
-
 export const ClinicList = ({ clinic_name, address }) => {
   return (
     <Wrapper>

@@ -34,7 +34,6 @@ const Btn = styled.button`
 `
 const Section = styled.section`
   display: flex;
- 
 `
 const Text = styled.p`
  

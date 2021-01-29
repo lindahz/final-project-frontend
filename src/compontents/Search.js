@@ -66,6 +66,7 @@ const Btn = styled.button`
 const Section = styled.section`
   background-color: lightblue;
   padding: 80px 80px;
+  width: 100%;
 `
 const Form = styled.form`
   display: flex;
