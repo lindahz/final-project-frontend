@@ -12,8 +12,12 @@ export const Main = () => {
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
   return (
     <Section>
-      <Search />
-      <Filter />
+      {!clinicData && (
+        <Search />
+      )}
+      {clinicData && (
+        <Filter />
+      )}
       <Wrapper>
         {clinicData && clinicData.map((clinic, index) => {
           return (
@@ -30,11 +34,11 @@ export const Main = () => {
 
 const Section = styled.main`
   min-height: 100vh;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px;
 `
 const Wrapper = styled.div`
   display: flex;

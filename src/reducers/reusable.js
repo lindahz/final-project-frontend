@@ -1,11 +1,13 @@
 import { clinics } from './clinics'
 
-// const REVIEW_URL = `http//localhost:8080/clinics/${id}/review`
+// How can I import all parameters that is needed for CLINIC_URL from the clinics store?
 
+// const REVIEW_URL = `http://localhost:8080/clinics/${id}/review`
+// http://localhost:8080//clinics?search=${search}&sortField=${sortField}&sortOrder=${sortOrder}&pageSize=${pageSize}&pageNum=${pageNum} 
 // FETCH FOR CLINIC
-export const fetchClinics = (search) => {
+export const fetchClinics = (search, sortField, sortOrder, pageSize, pageNum) => {
   console.log(search)
-  const CLINICS_URL = `http://localhost:8080/clinics?search=${search}`
+  const CLINICS_URL = `http://localhost:8080/clinics?search=${search}` 
   return (dispatch) => {
     fetch(CLINICS_URL)
       .then((res) => res.json())

@@ -6,7 +6,8 @@ import styled from 'styled-components/macro'
 import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
 
-export const Search = () => {
+export const Navbar = () => {
+
   const search = useSelector((store) => store.clinics.search)
   const dispatch = useDispatch()
 
@@ -19,54 +20,62 @@ export const Search = () => {
   const onChangeEvent = (value) => {
     dispatch(clinics.actions.generateSearch(value))
   }
-
   return (
     <Section>
-      <Title>Health finder</Title>
-      <Subtitle>Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver. </Subtitle>
       <Form onSubmit={handleSubmit}>
+        <Btn
+          type="submit">
+          icon
+        </Btn>
         <Textfield
           type="text"
           placeholder="Ange region, ort eller adress..."
           value={search}
           onChange={(event) => onChangeEvent(event.target.value)} />
-        <Btn
-          type="submit">
-          button
-        </Btn>
       </Form>
+      <Container>
+        <Link href="#"><li>Hitta och jämför vård</li></Link>
+        <Link href="#"><li>Fakta och råd</li></Link>
+        <Link href="#"><li>Om oss</li></Link>
+        <Link href="#"><li>Kontakt</li></Link>
+      </Container>
     </Section>
   )
 }
 
-const Title = styled.h1`
-  font-size: 56px;
-  margin: 25px 100px 25px 25px;
-`
-const Subtitle = styled.h3`
-  font-size: 22px;
-  margin: 25px 200px 25px 25px;
-  width: 60%;
-`
-const Textfield = styled.input`
+const Section = styled.div`
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: lightyellow;
-  border: solid 1px #000000;
-  min-width: 300px;
-  font-size: 20px;
-  padding: 10px;
-  margin-left: 25px;
-`
-const Btn = styled.button`
-  background-color: lightyellow;
-  border: solid 1px #000000;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 10px;
-`
-const Section = styled.section`
-  background-color: lightblue;
-  padding: 80px 80px;
+  border-bottom: 1px solid #000000;
 `
 const Form = styled.form`
+  margin-left: 10px;
+`
+const Textfield = styled.input`
+  padding: 10px;
+  width: 300px;
+  font-size: 16px;
+`
+const Container = styled.ul`
+  list-style-type: none;
   display: flex;
+  margin: 0;
+  padding: 0;
+`
+const Link = styled.a`
+  padding: 20px;
+`
+const Btn = styled.button`
+  background-color: transparent;
+  border: solid 1px #000000;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
 `

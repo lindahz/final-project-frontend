@@ -12,6 +12,15 @@ export const Filter = () => {
   const handleToggleFilter = () => setToggleFilter(!toggleFilter)
   const handleToggleSort = () => setToggleSort(!toggleSort)
 
+  const sort = useSelector((store) => store.clinics.sortField)
+  const dispatch = useDispatch()
+
+  const handleClick = (value) => {
+    dispatch(clinics.actions.generateSortField(value))
+    dispatch(fetchClinics(sort))
+  }
+  console.log(sort)
+
   return (
     <Section>
       <Container>
@@ -22,12 +31,8 @@ export const Filter = () => {
         <SortContainer>
           <p>Sortera efter</p>
           <ul>
-            <Btn>
-              <li>Kliniknamn A - Z</li>
-            </Btn>
-            <Btn>
-              <li>Adress A - Z</li>
-            </Btn>
+            <li><Btn value="clinic_name" onClick={(event) => handleClick(event.target.value)}>Kliniknamn A - Z</Btn></li>
+            <li><Btn value="address" onClick={(event) => handleClick(event.target.value)}>Adress A - Z</Btn></li>
           </ul>
         </SortContainer>
       )}
@@ -101,6 +106,9 @@ const Container = styled.div`
 const SortContainer = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: pink;
+  padding: 10px;
+  margin: 20px 0;
 `
 
 const Btn = styled.button`

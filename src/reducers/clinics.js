@@ -17,6 +17,9 @@ export const clinics = createSlice({
     },
     generateClinics: (state, action) => {
       state.clinics = action.payload
+    },
+    generateSortField: (state, action) => {
+      state.sortField = action.payload
     }
   }
 })

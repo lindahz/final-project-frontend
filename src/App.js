@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import { Main } from './pages/Main'
+import { Navbar } from './compontents/Navbar'
 
 import { clinics } from './reducers/clinics'
 
@@ -15,6 +16,7 @@ const store = configureStore({ reducer })
 export const App = () => {
   return (
     <Provider store={store}>
+      <Navbar />
       <Main />
     </Provider>
   )
