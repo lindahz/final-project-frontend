@@ -10,6 +10,7 @@ import { NextPage } from '../compontents/NextPage'
 
 export const Main = () => {
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
+  console.log(clinicData)
   return (
     <Section>
       {!clinicData && (

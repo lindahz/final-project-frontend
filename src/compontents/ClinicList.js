@@ -1,30 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import styled from 'styled-components/macro'
 
-export const ClinicList = ({ clinic_name, address }) => {
+export const ClinicList = ({ clinic_name, address, _id }) => {
   return (
-    <Wrapper>
-      <Title>
-        {clinic_name}
-      </Title>
-      <Text>
-        {address}
-      </Text>
-      <Container>
-        <Chip>
-          Akuta ärenden
-        </Chip>
-        <Chip>
-          Drop-in
-        </Chip>
-        <Chip>
-          24/7
-        </Chip>
-        <ChipRating>
-          4.6 ★
-        </ChipRating>
-      </Container>
-    </Wrapper>
+    <Link to={`kliniker/${_id}`}>
+      <Wrapper>
+        <Title>{clinic_name}</Title>
+        <Text>{address}</Text>
+        <Container>
+          <Chip>Akuta ärenden</Chip>
+          <Chip>Drop-in</Chip>
+          <Chip>24/7</Chip>
+          <ChipRating>4.6 ★</ChipRating>
+        </Container>
+      </Wrapper>
+    </Link>
   )
 }
 
@@ -37,6 +29,7 @@ const Wrapper = styled.div`
   margin: 20px;
   background-color: lightyellow;
   width: 400px;
+  cursor: pointer;
   `
 const Title = styled.h2`
   margin: 5px 0;
