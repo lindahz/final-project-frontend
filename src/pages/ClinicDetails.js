@@ -37,6 +37,7 @@ export const ClinicDetails = () => {
       <Wrapper>
         <Subtitle>{clinic.clinic_type}</Subtitle>
         <Title>{clinic.clinic_name}</Title>
+        <Heading>★4.6 Fantastiskt bra</Heading>
         <Heading>Öppettider</Heading>
         <p>{clinic.open_hours}</p>
         <Heading>Adress</Heading>
@@ -61,7 +62,8 @@ export const ClinicDetails = () => {
 const Section = styled.section`
   min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   padding: 120px 80px 0 80px;
   width: 100%;
 `
@@ -71,7 +73,7 @@ const Btn = styled.button`
   flex-grow: 2;
 `
 const Wrapper = styled.div`
-  width: 40%;
+  width: 60%;
   padding: 30px;
   margin: 40px;
   background-color: lightyellow;
