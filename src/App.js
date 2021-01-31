@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Main } from './pages/Main'
 import { ClinicDetails } from './pages/ClinicDetails'
 import { Navbar } from './compontents/Navbar'
+import { Footer } from './compontents/Footer'
 import { About } from './pages/About'
 import { Facts } from './pages/Facts'
 import { Contact } from './pages/Contact'
@@ -44,6 +45,7 @@ export const App = () => {
           </Route>
           <Redirect to="/404" />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </Provider>
   )

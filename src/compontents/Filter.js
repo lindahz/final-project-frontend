@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import Select from 'react-select'
+
 import styled from 'styled-components/macro'
 
 import { clinics } from '../reducers/clinics'
@@ -19,17 +21,22 @@ export const Filter = () => {
     dispatch(clinics.actions.generateSortField(value))
     dispatch(fetchClinics(sort))
   }
-  console.log(sort)
+  
+  const options = [
+    {value: 'asc', label: 'Kliniknamn A-Z'},
+    {value: 'dsc', label: 'Kliniknamn Z-A'}
+  ]
 
   return (
     <Section>
       <Container>
         <Btn onClick={() => handleToggleFilter()}>Filtrera</Btn>
-        <Btn onClick={() => handleToggleSort()}>Sortera</Btn>
+        <Btn onClick={() => handleToggleSort()}>Sortera efter</Btn>
       </Container>
       {toggleSort && (
         <SortContainer>
           <p>Sortera efter</p>
+          <Select options={options} />
           <ul>
             <li><Btn value="clinic_name" onClick={(event) => handleClick(event.target.value)}>Kliniknamn A - Z</Btn></li>
             <li><Btn value="address" onClick={(event) => handleClick(event.target.value)}>Adress A - Z</Btn></li>

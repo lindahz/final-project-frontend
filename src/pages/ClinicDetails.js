@@ -62,7 +62,8 @@ export const ClinicDetails = () => {
         <p>{clinic.open_hours}</p>
         <Heading>Adress</Heading>
         <p>{clinic.address}</p>
-        <Heading>Övrigt</Heading>
+        <Heading>Drop-in</Heading>
+        <p>{clinic.drop_in}</p>
       </Wrapper>
       <WrapperReview>
         <Subtitle>Skriv ett omdöme</Subtitle>

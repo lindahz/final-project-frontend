@@ -6,6 +6,8 @@ import styled from 'styled-components/macro'
 
 import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
+import { Textfield } from '../lib/Textfields'
+import { Button } from '../lib/Buttons'
 
 export const Navbar = () => {
   const search = useSelector((store) => store.clinics.search)
@@ -23,21 +25,18 @@ export const Navbar = () => {
   return (
     <Section>
       <Form onSubmit={handleSubmit}>
-        <Btn
-          type="submit">
-          icon
-        </Btn>
+        <Button type="submit" />
         <Textfield
+          onChange={(event) => onChangeEvent(event.target.value)}
           type="text"
-          placeholder="Ange region, ort eller adress..."
-          value={search}
-          onChange={(event) => onChangeEvent(event.target.value)} />
+          placeholder="Ange region, ort eller adress...."
+          required />
       </Form>
       <Container>
-        <Category><Link to="/">Hitta och jämför vård</Link></Category>
-        <Category><Link to="/fakta-och-rad">Fakta och råd</Link></Category>
-        <Category><Link to="/om-oss">Om oss</Link></Category>
-        <Category><Link to="/kontakt">Kontakt</Link></Category>
+        <Link to="/"><Category>Hitta och jämför vård</Category></Link>
+        <Link to="/fakta-och-rad"><Category>Fakta och råd</Category></Link>
+        <Link to="/om-oss"><Category>Om oss</Category></Link>
+        <Link to="/kontakt"><Category>Kontakt</Category></Link>
       </Container>
     </Section>
   )
@@ -52,30 +51,26 @@ const Section = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: lightyellow;
-  border-bottom: 1px solid #000000;
+  box-shadow: 10px 10px 29px -16px rgba(156,156,156,0.6);
 `
 const Form = styled.form`
+  display: flex;
   margin-left: 10px;
 `
-const Textfield = styled.input`
-  padding: 10px;
-  width: 300px;
-  font-size: 16px;
+const Container = styled.div`
+  margin-right: 10px;
 `
-const Container = styled.ul`
-  list-style-type: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-`
-const Category = styled.li`
-  padding: 20px;
-`
-const Btn = styled.button`
-  background-color: transparent;
-  border: solid 1px #000000;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 10px;
+const Category = styled.a`
+  display: inline-block;
+  padding: 25px 10px;
+  color: #2d3235;
+  font-weight: 500;
+  margin: 0 10px;
+  transition: 0.3s ease;
+
+  &:hover {
+    border-bottom: 1px solid #000000;
+    font-weight: 500;
+    color: #000000;
+  }
 `
