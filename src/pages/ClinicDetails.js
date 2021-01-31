@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-
-
+import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { Reviews } from '../compontents/Reviews'
@@ -44,8 +41,16 @@ export const ClinicDetails = () => {
         <p>{clinic.address}</p>
         <Heading>Övrigt</Heading>
       </Wrapper>
-      <Wrapper>
+      <WrapperReview>
         <Subtitle>Skriv ett omdöme</Subtitle>
+        <Form>
+          <input 
+            type="range" />
+          <textarea />
+          <input
+            type="text" />
+          <button type="submit">submit</button>
+        </Form>
         <Subtitle>Omdömen ({clinic.text_reviews_count})</Subtitle>
         {reviews && reviews.map((review, index) => {
           return (
@@ -54,7 +59,7 @@ export const ClinicDetails = () => {
               {...review} />
           )
         })}
-      </Wrapper>
+      </WrapperReview>
     </Section>
   )
 }
@@ -67,6 +72,10 @@ const Section = styled.section`
   padding: 120px 80px 0 80px;
   width: 100%;
 `
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 const Btn = styled.button`
   font-size: 18px;
   color: gray;
@@ -78,7 +87,15 @@ const Wrapper = styled.div`
   margin: 40px;
   background-color: lightyellow;
 `
+const WrapperReview = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+  margin: 40px;
+  background-color: lightyellow;
+`
 const Subtitle = styled.h3`
+  flex: 100%;
   text-transform: uppercase;
   font-weight: 400;
   margin: 10px 0;
