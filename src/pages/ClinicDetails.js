@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { Reviews } from '../compontents/Reviews'
@@ -7,6 +8,10 @@ import { Reviews } from '../compontents/Reviews'
 export const ClinicDetails = () => {
   const [clinic, setClinic] = useState({})
   const [reviews, setReviews] = useState('')
+
+  const [name, setName] = useState('')
+  const [rating, setRating] = useState('')
+  const [review, setReview] = useState('')
 
   const { id } = useParams()
 
@@ -26,6 +31,24 @@ export const ClinicDetails = () => {
       })
   }, [id])
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    fetch(`http://localhost:8080/clinics/${id}/review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        review: review,
+        rating: +rating,
+        name: name,
+        clinic_id: id
+      })
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+      })
+  }
+
   console.log(reviews)
   console.log(clinic)
   return (
@@ -43,12 +66,21 @@ export const ClinicDetails = () => {
       </Wrapper>
       <WrapperReview>
         <Subtitle>Skriv ett omdöme</Subtitle>
-        <Form>
-          <input 
-            type="range" />
-          <textarea />
+        <Form onSubmit={handleSubmit}>
           <input
-            type="text" />
+            type="text" 
+            placeholder="Ange rankning..."
+            value={rating}
+            onChange={(event) => setRating(event.target.value)} />
+          <textarea 
+            placeholder="Ange omdöme..."
+            value={review}
+            onChange={(event) => setReview(event.target.value)} />
+          <input
+            type="text"
+            placeholder="Ange namn..."
+            value={name}
+            onChange={(event) => setName(event.target.value)} />
           <button type="submit">submit</button>
         </Form>
         <Subtitle>Omdömen ({clinic.text_reviews_count})</Subtitle>

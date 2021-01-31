@@ -9,7 +9,7 @@ import { Navbar } from './compontents/Navbar'
 import { About } from './pages/About'
 import { Facts } from './pages/Facts'
 import { Contact } from './pages/Contact'
-import { NotFound } from './pages/NotFound'
+// import { NotFound } from './pages/NotFound'
 import { clinics } from './reducers/clinics'
 
 const reducer = combineReducers({
@@ -40,7 +40,7 @@ export const App = () => {
             <Contact />
           </Route>
           <Route path="/404">
-            <NotFound />
+           {/* <NotFound /> */}
           </Route>
           <Redirect to="/404" />
         </Switch>

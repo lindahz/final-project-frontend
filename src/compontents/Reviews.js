@@ -11,7 +11,7 @@ export const Reviews = ({ rating, review, review_date, name }) => {
       <Rating>{rating}/5</Rating>
       <Wrapper>
         <Name>{name}</Name>
-        <Date>{moment(review_date).startOf('day').fromNow()}</Date>
+        <Date>{moment(review_date).fromNow()}</Date>
       </Wrapper>
       <Review>{review}</Review>
     </Article>
