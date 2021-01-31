@@ -5,7 +5,13 @@ const initialState = {
   sortField: '',
   sortOrder: '',
   searchHistory: [],
-  clinics: []
+  clinics: [],
+  filter: [
+    { name: 'emergency', checked: false },
+    { name: 'clinicType', checked: false },
+    { name: 'openHours', checked: false },
+    { name: 'other', checked: false }
+  ]
 }
 
 export const clinics = createSlice({
@@ -20,6 +26,12 @@ export const clinics = createSlice({
     },
     generateSortField: (state, action) => {
       state.sortField = action.payload
+    },
+    toggleFilter: (state, action) => {
+      const foundItem = state.filter.find(prop => prop.name === action.payload)
+      if (foundItem) {
+        foundItem.checked = !foundItem.checked
+      }
     }
   }
 })

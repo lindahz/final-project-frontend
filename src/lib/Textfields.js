@@ -15,7 +15,7 @@ export const Textfield = ({ title, type, onChange, placeholder, required }) => {
 }
 
 const Text = styled.input`
-  color: #000000;
+  color: #2d3235;
   background-color: #ffffff;
   font-family: 'Roboto', monospace;
   font-size: 20px;
@@ -23,21 +23,25 @@ const Text = styled.input`
   margin-bottom: 20px;
   text-decoration: none;
   border: none;
-  //border-radius: 5px 0 0 0;
+  border-bottom: 2px solid #ffffff;
   transition: 0.3s ease;
 
   &:focus {
     outline: none;
-    border-bottom: 1px solid #000000;
+    border-bottom: 2px solid #2d3235;
   }
 
   &:hover {
-    background-color: rgb(235, 237, 238, 0.8); 
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
   }
 
   &::-webkit-input-placeholder {
+    transition: 0.3s ease;
     color: #000000;
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   @media (max-width: 280px) {
@@ -48,5 +52,6 @@ const Text = styled.input`
     margin-bottom: 0; 
     width: 400px;
     height: 70px;
+    font-size: 18px;
   }
   `;

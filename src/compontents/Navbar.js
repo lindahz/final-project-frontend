@@ -13,7 +13,9 @@ export const Navbar = () => {
   const search = useSelector((store) => store.clinics.search)
   const dispatch = useDispatch()
 
-// how can I then sort or change page after the first fetch is completed without clicking the button?
+  // how can I then sort or change page after the
+  // first fetch is completed without clicking the button?
+
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(fetchClinics(search))
@@ -66,10 +68,11 @@ const Category = styled.a`
   color: #2d3235;
   font-weight: 500;
   margin: 0 10px;
+  border-bottom: 3px solid #ffffff;
   transition: 0.3s ease;
 
   &:hover {
-    border-bottom: 1px solid #000000;
+    border-bottom: 3px solid #d4a5a5;
     font-weight: 500;
     color: #000000;
   }

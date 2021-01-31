@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import moment from 'moment'
 import 'moment/locale/sv'
 
-import { clinics } from 'reducers/clinics'
+// import { clinics } from 'reducers/clinics'
 
 export const Reviews = ({ rating, review, review_date, name }) => {
   return (

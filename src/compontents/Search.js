@@ -12,7 +12,10 @@ export const Search = () => {
   const search = useSelector((store) => store.clinics.search)
   const dispatch = useDispatch()
 
- // the fetch is called by this button - how can I then sort or change page after the first fetch is completed without clicking the button?
+  // the fetch is called by this button
+  // how can I then sort or change page after the first fetch
+  // is completed without clicking the button?
+
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(fetchClinics(search))
@@ -25,7 +28,9 @@ export const Search = () => {
   return (
     <Section>
       <Title>Health finder</Title>
-      <Subtitle>Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver. </Subtitle>
+      <Subtitle>
+        Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver.
+      </Subtitle>
       <Form onSubmit={handleSubmit}>
         <Textfield
           type="text"
@@ -33,7 +38,7 @@ export const Search = () => {
           value={search}
           onChange={(event) => onChangeEvent(event.target.value)}
           required />
-        <Button 
+        <Button
           type="submit" />
       </Form>
     </Section>
@@ -43,17 +48,17 @@ export const Search = () => {
 const Title = styled.h1`
   font-size: 56px;
   color: #2d3235;
-  margin: 25px 100px 25px 25px;
+  margin: 25px 100px 25px 0;
 `
 const Subtitle = styled.h3`
   font-size: 22px;
   color: #2d3235;
-  margin: 25px 200px 25px 25px;
-  width: 60%;
+  margin: 25px 200px 25px 0;
+  width: 50%;
 `
 const Section = styled.section`
   background-color: #d4a5a5;
-  padding: 80px 80px;
+  padding: 120px 100px;
   width: 100%;
 `
 const Form = styled.form`
