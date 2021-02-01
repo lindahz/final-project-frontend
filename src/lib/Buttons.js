@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import search from '../assets/search.svg'
+import arrow from '../assets/arrow.svg'
 
 export const Button = ({ type, disabled, className, onClick, key, background }) => {
   return (
@@ -29,33 +30,47 @@ export const ToggleBtn = ({ title, type, disabled, className, onClick, key, back
       key={key}
       background={background}>
       {title}
+      <Icon
+        src={arrow} />
     </Toggle>
   )
 }
 
 const Toggle = styled.button`
-  background-color: #ffffff;
-  color: #2d3235;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  text-align: left;
+  font-weight: 600;
+  color: #808080;
   border: none;
-  padding: 10px 10px;
-  margin: 10px;
+  padding: 10px 5px;
+  margin: 0 10px;
   transition: 0.3s ease;
   cursor: pointer;
-  border: 1px solid #bdc0c2;
-  border-radius: 3px;
+  border-top: 1px solid #c8c8c8;
+  border-bottom: 1px solid #c8c8c8;
 
   &:focus {
     border: 1px solid #000000;
   }
 
   &:hover {
-    border: 1px solid #000000;
+    color: #d4a5a5;
   }
 
   @media (min-width: 768px) {
-    min-width: 110px;
-    padding: 20px 8px;
-    font-size: 16px;
+    min-width: 150px;
+    padding: 10px 10px;
+    font-size: 14px;
+  }
+`
+const Icon = styled.img`
+  width: 20px;
+
+  @media (min-width: 768px) {
+    width: 20px;
   }
 `
 

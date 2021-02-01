@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
 
-import { CustomCheckbox } from '../lib/Checkboxes'
+import { Checkbox } from '../lib/Checkboxes'
+import { ToggleBtn } from '../lib/Buttons'
 
 export const Filter = () => {
+  const [toggleFilter, setToggleFilter] = useState(false)
+  const handleToggleFilter = () => setToggleFilter(!toggleFilter)
+
+  const [toggleType, setToggleType] = useState(false)
+  const handleToggleType = () => setToggleType(!toggleType)
+
+  const [toggleOpen, setToggleOpen] = useState(false)
+  const handleToggleOpen = () => setToggleOpen(!toggleOpen)
+
+  const [toggleOther, setToggleOther] = useState(false)
+  const handleToggleOther = () => setToggleOther(!toggleOther)
   // const dispatch = useDispatch()
 
   // ADD DISPATCH FUNCION FOR FILTERING
@@ -15,45 +27,93 @@ export const Filter = () => {
   // }
 
   return (
-    <Section>
-      <Form>
-        <Heading>Akut eller livshotande</Heading>
-        <Label><CustomCheckbox />Ja</Label>
-        <Heading>Klinikverksamhet</Heading>
-        <Label><CustomCheckbox />Akutmottagning</Label>
-        <Label><CustomCheckbox />Vårdcentral</Label>
-        <Label><CustomCheckbox />Närakut</Label>
-        <Heading>Öppettider</Heading>
-        <Label><CustomCheckbox />Dygnet runt</Label>
-        <Label><CustomCheckbox />Vardagar 8 - 17</Label>
-        <Label><CustomCheckbox />Helger 8 - 17</Label>
-        <Heading>Övrigt</Heading>
-        <Label><CustomCheckbox />Endast drop-in
-        </Label>
-      </Form>
-    </Section>
+    <>
+      <Wrapper>
+        <ToggleBtn
+          onClick={() => handleToggleFilter()}
+          title="Ärende" />
+        {toggleFilter && (
+          <Container>
+            <Checkbox
+              label="Akut/livshotande"
+              id="emergency"
+              value="emergency" />
+            <Checkbox
+              label="Vårdbesök"
+              id="visit"
+              value="visit" />
+          </Container>
+        )}
+      </Wrapper>
+      <Wrapper>
+        <ToggleBtn
+          onClick={() => handleToggleType()}
+          title="Verksamhet" />
+        {toggleType && (
+          <Container>
+            <Checkbox
+              label="Akutmottagning"
+              id="hospital"
+              value="hospital" />
+            <Checkbox
+              label="Närakut"
+              id="emergency-clinic"
+              value="emergency-clinic" />
+            <Checkbox
+              label="Vårdcentral"
+              id="clinic"
+              value="clinic" />
+          </Container>
+        )}
+      </Wrapper>
+      <Wrapper>
+        <ToggleBtn
+          onClick={() => handleToggleOpen()}
+          title="Öppettider" />
+        {toggleOpen && (
+          <Container>
+            <Checkbox
+              label="Dygnet runt"
+              id="all-hours"
+              value="all-hours" />
+            <Checkbox
+              label="Vardagar 8 - 17"
+              id="weekdays"
+              value="weekdays" />
+            <Checkbox
+              label="Helger 8 - 17"
+              id="weekends"
+              value="weekends" />
+          </Container>
+        )}
+      </Wrapper>
+      <Wrapper>
+        <ToggleBtn
+          onClick={() => handleToggleOther()}
+          title="Övrigt" />
+        {toggleOther && (
+          <Container>
+            <Checkbox
+              label="Drop-in"
+              id="dropin"
+              value="dropin" />
+          </Container>
+        )}
+      </Wrapper>
+    </>
   )
 }
-const Section = styled.section`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-`
-const Label = styled.label`
-  display: flex;
-  margin: 5px 0;
-`
-const Form = styled.form`
-  align-self: flex-start;
-  width: 100%;
+const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px 80px;
+  margin: 0 10px;
+  background-color: #EEEEEE;
+  padding: 10px;
+  box-shadow: 10px 10px 14px -9px rgba(45,50,53,0.6);
 `
-const Heading = styled.h3`
-
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 40px 0;
+  margin: 20px 0;
 `

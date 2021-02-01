@@ -29,6 +29,10 @@ const Text = styled.input`
   &:focus {
     outline: none;
     border-bottom: 2px solid #2d3235;
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
   }
 
   &:hover {

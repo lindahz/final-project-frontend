@@ -7,18 +7,33 @@ import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
 import { Textfield } from '../lib/Textfields'
 import { Button } from '../lib/Buttons'
+import tool from '../assets/tool.jpg'
 
 export const Search = () => {
-  const search = useSelector((store) => store.clinics.search)
   const dispatch = useDispatch()
+  const search = useSelector((store) => store.clinics.search)
+  const sortOrder = useSelector((store) => store.clinics.sortOrder)
+
+  // ALTERNATIVE TO THUNK
+  /* const handleFetchSuccess = (json) => { dispatch(clinics.actions.generateClinics(json))}
+  const CLINICS_URL = `http://localhost:8080/clinics?search=${search}&sortField=clinic_type`
+
+  const handleFetch = (event) => {
+    event.preventDefault()
+    fetch(CLINICS_URL)
+      .then((res) => res.json())
+      .then((json) => handleFetchSuccess(json))
+  }
+  */
 
   // the fetch is called by this button
   // how can I then sort or change page after the first fetch
   // is completed without clicking the button?
+  // behöver jag göra en ny fetch i sort kanske?
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch(fetchClinics(search))
+    dispatch(fetchClinics(search, sortOrder))
   }
 
   const onChangeEvent = (value) => {
@@ -31,7 +46,7 @@ export const Search = () => {
       <Subtitle>
         Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver.
       </Subtitle>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}> {/*{handleFetch}*/}
         <Textfield
           type="text"
           placeholder="Ange region, ort eller adress..."
@@ -41,6 +56,7 @@ export const Search = () => {
         <Button
           type="submit" />
       </Form>
+      <Overlay />
     </Section>
   )
 }
@@ -57,9 +73,23 @@ const Subtitle = styled.h3`
   width: 50%;
 `
 const Section = styled.section`
-  background-color: #d4a5a5;
   padding: 120px 100px;
   width: 100%;
+  position: relative;
+`
+const Overlay = styled.div`
+  background-image: url(${tool});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #e9f1ef;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: -1;
 `
 const Form = styled.form`
   display: flex;

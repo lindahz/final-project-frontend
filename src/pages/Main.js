@@ -13,28 +13,17 @@ import { ToggleBtn } from '../lib/Buttons'
 export const Main = () => {
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
 
-  const [toggleFilter, setToggleFilter] = useState(false)
-  const [toggleSort, setToggleSort] = useState(false)
-  const handleToggleFilter = () => setToggleFilter(!toggleFilter)
-  const handleToggleSort = () => setToggleSort(!toggleSort)
-
   return (
     <Section>
       {!clinicData && (
         <Search />
       )}
-      {!clinicData && (
+      {clinicData && (
         <>
-          <Container>
-            <ToggleBtn
-              onClick={() => handleToggleFilter()}
-              title="Filter" />
-            <ToggleBtn
-              onClick={() => handleToggleSort()}
-              title="Sortera efter" />
-          </Container>
-          {toggleFilter && (<Filter />)}
-          {toggleSort && (<Sort />)}
+          <FilterControls>
+            <Filter />
+            <Sort />
+          </FilterControls>
         </>
       )}
       <Wrapper>
@@ -64,7 +53,9 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `
-const Container = styled.div`
+const FilterControls = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  width: 100%;
+  background-color: #e9f1ef;
 `

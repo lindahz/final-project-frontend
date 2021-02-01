@@ -5,7 +5,6 @@ import styled from 'styled-components/macro'
 
 export const NextPage = () => {
   const clinicData = useSelector((store) => store.clinics.clinics)
-  console.log(clinicData)
   return (
     <Section>
       {clinicData.clinics && (

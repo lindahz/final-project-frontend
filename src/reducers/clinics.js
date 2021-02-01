@@ -2,15 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   search: '',
-  sortField: '',
-  sortOrder: '',
+  sortOrder: 'asc',
   searchHistory: [],
   clinics: [],
   filter: [
-    { name: 'emergency', checked: false },
-    { name: 'clinicType', checked: false },
-    { name: 'openHours', checked: false },
-    { name: 'other', checked: false }
+    { id: 1, name: 'emergency', checked: false },
+    { id: 2, name: 'clinicType', checked: false },
+    { id: 3, name: 'openHours', checked: false },
+    { id: 4, name: 'other', checked: false }
   ]
 }
 
@@ -24,8 +23,8 @@ export const clinics = createSlice({
     generateClinics: (state, action) => {
       state.clinics = action.payload
     },
-    generateSortField: (state, action) => {
-      state.sortField = action.payload
+    generateSortOrder: (state, action) => {
+      state.sortOrder = action.payload
     },
     toggleFilter: (state, action) => {
       const foundItem = state.filter.find(prop => prop.name === action.payload)
