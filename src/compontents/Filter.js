@@ -114,6 +114,5 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 40px 40px 40px 0;
-  margin: 20px 0;
+  margin: 20px;
 `

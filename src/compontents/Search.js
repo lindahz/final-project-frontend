@@ -5,8 +5,8 @@ import styled from 'styled-components/macro'
 
 import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
-import { Textfield } from '../lib/Textfields'
-import { Button } from '../lib/Buttons'
+import { SearchTextfield } from '../lib/Textfields'
+import { SearchBtn } from '../lib/Buttons'
 import tool from '../assets/tool.jpg'
 
 export const Search = () => {
@@ -47,13 +47,13 @@ export const Search = () => {
         Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver.
       </Subtitle>
       <Form onSubmit={handleSubmit}> {/*{handleFetch}*/}
-        <Textfield
+        <SearchTextfield
           type="text"
           placeholder="Ange region, ort eller adress..."
           value={search}
           onChange={(event) => onChangeEvent(event.target.value)}
           required />
-        <Button
+        <SearchBtn
           type="submit" />
       </Form>
       <Overlay />

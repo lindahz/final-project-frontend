@@ -1,45 +1,69 @@
 import React from 'react'
+
 import styled from 'styled-components/macro'
 import moment from 'moment'
 import 'moment/locale/sv'
 
+import Rating from '@material-ui/lab/Rating'
+import { withStyles } from '@material-ui/core/styles'
+
 // import { clinics } from 'reducers/clinics'
 
-export const Reviews = ({ rating, review, review_date, name }) => {
+export const Reviews = ({ rating, review, review_date, name, title }) => {
+  const StyledRating = withStyles({
+    iconFilled: {
+      color: '#6ab0d2'
+    },
+    iconHover: {
+      color: '#ff3d47'
+    },
+  })(Rating);
+
   return (
-    <Article>
-      <Rating>{rating}/5</Rating>
+    <ReviewContainer>
       <Wrapper>
-        <Name>{name}</Name>
-        <Date>{moment(review_date).fromNow()}</Date>
+        <StyledRating
+          name="read-only"
+          value={rating}
+          readOnly />
+        <ReviewDate>{moment(review_date).fromNow()}</ReviewDate>
       </Wrapper>
-      <Review>{review}</Review>
-    </Article>
+      <ReviewTitle>{title}</ReviewTitle>
+      {/* <Rating>{rating}/5</Rating> */}
+      <ReviewText>{review}</ReviewText>
+      <ReviewName>{name}</ReviewName>
+    </ReviewContainer>
   )
 }
 
-const Article = styled.article`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 20px 0;
+const ReviewContainer = styled.div`
+  display: block;
+  margin: 10px 0;
   padding: 10px;
-  border: 1px solid;
+  border-bottom: 1px solid #d6d6d6;
   flex: 50%;
 `
-const Wrapper = styled.div`
-`
-const Name = styled.h4`
-  margin: 0;
-`
-const Rating = styled.h3`
-  margin: 0;
-`
-const Date = styled.span`
-  margin: 0;
-`
-const Review = styled.h4`
+const ReviewTitle = styled.h3`
   margin: 10px 0;
-  flex: 100%;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: 600;
+`
+const ReviewText = styled.h4`
+  margin: 10px 0;
+  font-weight: 500;
+`
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+const ReviewName = styled.h4`
+  margin: 10px 0;
+  font-weight: 500;
+  color: #898989;
+`
+const ReviewDate = styled.p`
+  margin: 0;
+  font-weight: 500;
+  color: #898989;
 `

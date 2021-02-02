@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from 'styled-components/macro'
 
-export const Checkbox = ({ name, value, id, disabled, checked, onChange, label }) => {
+export const Checkbox = ({ value, id, disabled, checked, onChange, label }) => {
   return (
     <>
       <Input

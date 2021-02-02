@@ -6,8 +6,8 @@ import styled from 'styled-components/macro'
 
 import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
-import { Textfield } from '../lib/Textfields'
-import { Button } from '../lib/Buttons'
+import { SearchTextfield } from '../lib/Textfields'
+import { SearchBtn } from '../lib/Buttons'
 
 export const Navbar = () => {
   const search = useSelector((store) => store.clinics.search)
@@ -27,8 +27,8 @@ export const Navbar = () => {
   return (
     <Section>
       <Form onSubmit={handleSubmit}>
-        <Button type="submit" />
-        <Textfield
+        <SearchBtn type="submit" />
+        <SearchTextfield
           onChange={(event) => onChangeEvent(event.target.value)}
           type="text"
           placeholder="Ange region, ort eller adress...."

@@ -6,21 +6,15 @@ import styled from 'styled-components/macro'
 export const NextPage = () => {
   const clinicData = useSelector((store) => store.clinics.clinics)
   return (
-    <Section>
+    <>
       {clinicData.clinics && (
-        <>
-          <Btn>
-            Föregående
-          </Btn>
-          <Text>
-            (visar {clinicData.clinics.length} av {clinicData.total_results})
-          </Text>
-          <Btn>
-          Nästa
-          </Btn>
-        </>
+        <Section>
+          {/* <Text>(visar {clinicData.clinics.length} av {clinicData.total_results})</Text> */}
+          <Btn>«Föregående sida</Btn>
+          <Btn>Nästa sida»</Btn>
+        </Section>
       )}
-    </Section>
+    </>
   )
 }
 
@@ -33,7 +27,9 @@ const Btn = styled.button`
 `
 const Section = styled.section`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `
 const Text = styled.p`
- 
 `

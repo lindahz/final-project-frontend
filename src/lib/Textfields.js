@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from 'styled-components/macro'
 
-export const Textfield = ({ title, type, onChange, placeholder, required }) => {
+export const SearchTextfield = ({ title, type, onChange, placeholder, required }) => {
   return (
     <Text
       type={type}
@@ -13,6 +13,99 @@ export const Textfield = ({ title, type, onChange, placeholder, required }) => {
     </Text>
   )
 }
+
+export const ReviewTextfield = ({ title, type, onChange, placeholder, required }) => {
+  return (
+    <ReviewLabel>
+      {title}
+      <ReviewText
+        type={type}
+        onChange={onChange}
+        placeholder={placeholder}
+        required={required} />
+    </ReviewLabel>
+  )
+}
+
+export const ReviewTextarea = ({ title, type, onChange, placeholder, required }) => {
+  return (
+    <ReviewLabel>
+      {title}
+      <Textarea
+        type={type}
+        onChange={onChange}
+        placeholder={placeholder}
+        required={required} />
+    </ReviewLabel>
+  )
+}
+
+const Textarea = styled.textarea`
+  width: 100%;
+  height: 70px;
+  margin: 5px 0 5px 0;
+  padding: 8px 12px;
+  display: block;
+  background-color: #ffffff;
+  font-size: 14px;
+  font-family: 'Roboto', monospace;
+  color: #2d3235;
+  border: 2px solid #a6d0e4;
+  border-radius: 2px;
+  resize: none;
+  //border-bottom: 2px solid #ffffff;
+  transition: 0.3s ease;
+`
+
+const ReviewLabel = styled.label`
+  width: 100%;
+  margin: 10px 0 10px 0;
+  color: #2d3235;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: 'Roboto', monospace;
+`
+const ReviewText = styled.input`
+  width: 100%;
+  margin: 5px 0 5px 0;
+  padding: 8px 12px;
+  display: block;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #2d3235;
+  border: 2px solid #a6d0e4;
+  border-radius: 2px;
+  //border-bottom: 2px solid #ffffff;
+  transition: 0.3s ease;
+
+  &:focus {
+    border: 2px solid;
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
+  }
+
+  &::-webkit-input-placeholder {
+    transition: 0.3s ease;
+    color: #000000;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 280px) {
+  }
+
+  @media (min-width: 768px) {
+  }
+  `
 
 const Text = styled.input`
   color: #2d3235;
@@ -58,4 +151,4 @@ const Text = styled.input`
     height: 70px;
     font-size: 18px;
   }
-  `;
+  `

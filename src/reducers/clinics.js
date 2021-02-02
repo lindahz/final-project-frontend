@@ -6,10 +6,10 @@ const initialState = {
   searchHistory: [],
   clinics: [],
   filter: [
-    { id: 1, name: 'emergency', checked: false },
-    { id: 2, name: 'clinicType', checked: false },
-    { id: 3, name: 'openHours', checked: false },
-    { id: 4, name: 'other', checked: false }
+    { id: 1, checked: false },
+    { id: 2, checked: false },
+    { id: 3, checked: false },
+    { id: 4, checked: false }
   ]
 }
 

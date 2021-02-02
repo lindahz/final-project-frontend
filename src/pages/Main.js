@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
@@ -8,7 +8,6 @@ import { Filter } from '../compontents/Filter'
 import { Sort } from '../compontents/Sort'
 import { ClinicList } from '../compontents/ClinicList'
 import { NextPage } from '../compontents/NextPage'
-import { ToggleBtn } from '../lib/Buttons'
 
 export const Main = () => {
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
