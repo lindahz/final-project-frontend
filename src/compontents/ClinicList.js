@@ -3,17 +3,33 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components/macro'
 
-export const ClinicList = ({ clinic_name, address, _id }) => {
+export const ClinicList = ({
+  clinic_name,
+  address,
+  _id,
+  average_rating,
+  drop_in,
+  open_hours,
+  clinic_operation
+}) => {
   return (
     <StyledLink to={`kliniker/${_id}`}>
       <Wrapper>
         <Title>{clinic_name}</Title>
         <Text>{address}</Text>
         <Container>
-          <Chip>Akuta ärenden</Chip>
-          <Chip>Drop-in</Chip>
-          <Chip>24/7</Chip>
-          <ChipRating>4.6 ★</ChipRating>
+          {clinic_operation.includes('Akutverksamhet') && (
+            <Chip>Akuta ärenden</Chip>
+          )}
+          {drop_in !== 'Ej angivet/stängt' && (
+            <Chip>Drop-in</Chip>
+          )}
+          {open_hours === 'Dygnet runt' && (
+            <Chip>24/7</Chip>
+          )}
+          {average_rating !== 0 && (
+            <ChipRating>{average_rating} ★</ChipRating>
+          )}
         </Container>
       </Wrapper>
     </StyledLink>
@@ -69,10 +85,6 @@ const Chip = styled.div`
   margin-right: 10px;
   padding: 5px;
   color: #2d3235;
-  text-decoration: none;
-  &:focus, &:hover, &:visited, &:link, &:active {
-    text-decoration: none;
-  }
 `
 
 const ChipRating = styled.div`

@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
+import { ReviewForm } from './pages/ReviewForm'
 import { Main } from './pages/Main'
 import { ClinicDetails } from './pages/ClinicDetails'
 import { Navbar } from './compontents/Navbar'
@@ -30,6 +31,9 @@ export const App = () => {
           </Route>
           <Route path="/kliniker/:id" exact>
             <ClinicDetails />
+          </Route>
+          <Route path="/kliniker/:id/skriv-omdome">
+            <ReviewForm />
           </Route>
           <Route path="/fakta-och-rad" exact>
             <Facts />

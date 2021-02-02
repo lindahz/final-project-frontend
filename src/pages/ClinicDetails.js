@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { Reviews } from '../compontents/Reviews'
-import { ReviewForm } from '../compontents/ReviewForm'
 
 import { BackBtn } from '../lib/Buttons'
 
@@ -19,6 +18,8 @@ export const ClinicDetails = () => {
   }
 
   const { id } = useParams()
+
+  console.log(id)
 
   const CLINIC_URL = `http://localhost:8080/clinic/${id}`
 
@@ -44,7 +45,7 @@ export const ClinicDetails = () => {
       <Wrapper>
         <Subtitle>{clinic.clinic_type}</Subtitle>
         <Title>{clinic.clinic_name}</Title>
-        <Heading>★4.6 Fantastiskt bra</Heading>
+        <Heading>★{clinic.average_rating} Fantastiskt bra</Heading>
         <Heading>Öppettider</Heading>
         <p>{clinic.open_hours}</p>
         <Heading>Adress</Heading>
@@ -55,7 +56,9 @@ export const ClinicDetails = () => {
       <WrapperReview>
         <TextContainer>
           <Subtitle>Omdömen <Span>({clinic.text_reviews_count})</Span></Subtitle>
-          <Subtitle>Skriv ett omdöme</Subtitle>
+          <StyledLink to={`/kliniker/${id}/skriv-omdome`}>
+            <Subtitle>Skriv ett omdöme</Subtitle>
+          </StyledLink>
         </TextContainer>
         {reviews && reviews.map((review, index) => {
           return (
@@ -64,7 +67,7 @@ export const ClinicDetails = () => {
               {...review} />
           )
         })}
-        <ReviewForm generateUpdate={generateUpdate} />
+        {/* <ReviewForm generateUpdate={generateUpdate} /> */}
       </WrapperReview>
     </Section>
   )
@@ -80,6 +83,7 @@ const TextContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #d6d6d6;
 `
 const Subtitle = styled.h3`
@@ -92,7 +96,6 @@ const Span = styled(Subtitle)`
   color: #898989;
 `
 const Section = styled.section`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Rating from '@material-ui/lab/Rating'
 
 import { ReviewTextfield, ReviewTextarea } from '../lib/Textfields'
-import { ReviewBtn } from '../lib/Buttons'
+import { ReviewBtn, BackBtn } from '../lib/Buttons'
 
-export const ReviewForm = ({ generateUpdate }) => {
+export const ReviewForm = () => {
   const { id } = useParams()
   const [title, setTitle] = useState('')
   const [name, setName] = useState('')
@@ -29,7 +30,7 @@ export const ReviewForm = ({ generateUpdate }) => {
     })
       .then((response) => response.json())
       .then((json) => {
-        generateUpdate(json)
+        console.log(json)
         setName('')
         setRating('')
         setReview('')
@@ -37,29 +38,30 @@ export const ReviewForm = ({ generateUpdate }) => {
   }
 
   return (
-    <Article>
+    <Section>
+      <StyledLink to={`/kliniker/${id}/`}><BackBtn title="Gå tillbaka" /></StyledLink>
       <Form onSubmit={handleSubmit}>
         <Title>Skriv ett omdöme om Axelsbergs vårdcentral</Title>
         <Container>
-          <Label>Välj betyg</Label>
+          <Label>Välj betyg*</Label>
           <Rating
             name="simple-controlled"
             value={rating}
             onChange={(event, value) => setRating(value)} />
         </Container>
         <ReviewTextfield
-          title="Din titel"
+          title="Din titel*"
           type="text"
           placeholder="Ange titel..."
           value={title}
           onChange={(event) => setTitle(event.target.value)} />
         <ReviewTextarea
-          title="Ditt omdöme"
+          title="Ditt omdöme*"
           placeholder="Ange omdöme..."
           value={review}
           onChange={(event) => setReview(event.target.value)} />
         <ReviewTextfield
-          title="Ditt namn"
+          title="Ditt namn*"
           type="text"
           placeholder="Ange namn..."
           value={name}
@@ -68,7 +70,7 @@ export const ReviewForm = ({ generateUpdate }) => {
           title="Skicka omdöme"
           type="submit" />
       </Form>
-    </Article>
+    </Section>
   )
 }
 
@@ -84,19 +86,28 @@ const Label = styled.h4`
   font-family: 'Roboto', monospace;
 `
 const Form = styled.form`
-  width: inherit;
+  width: 50%;
   padding: 30px;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  border: 1px solid #d6d6d6;
 `
 const Container = styled.div`
   margin: 10px 0px;
 `
-const Article = styled.div`
-  width: 100%;
-  padding: 20px;
+const Section = styled.section`
   display: flex;
   flex-direction: column;
-  background-color: #ffecda;
+  align-items: center;
+  padding: 120px 100px 80px 100px;
+  width: 100%;
+  background-color: #F2F2F2;
 `
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+  }
+  `
