@@ -11,6 +11,7 @@ import { SearchBtn } from '../lib/Buttons'
 
 export const Navbar = () => {
   const search = useSelector((store) => store.clinics.search)
+  const sortOrder = useSelector((store) => store.clinics.sortOrder)
   const dispatch = useDispatch()
 
   // how can I then sort or change page after the
@@ -18,7 +19,7 @@ export const Navbar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch(fetchClinics(search))
+    dispatch(fetchClinics(search, sortOrder))
   }
 
   const onChangeEvent = (value) => {

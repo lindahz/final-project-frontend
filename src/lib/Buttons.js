@@ -89,39 +89,38 @@ const ReviewButton = styled.button`
 const Back = styled.button`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background-color: transparent;
   text-align: left;
+  font-family: 'Quicksand', sans-serif;
   font-weight: 600;
-  color: #808080;
-  border: none;
-  padding: 10px 5px;
-  margin: 0 10px;
+  color: #2d3235;
   transition: 0.3s ease;
   cursor: pointer;
-  border-top: 1px solid #c8c8c8;
-  border-bottom: 1px solid #c8c8c8;
+  border: 2px solid #2d3235;
+  border-radius: 3px;
   text-decoration: none;
 
   &:focus {
-    border: 1px solid #000000;
+    border: 2px solid #2d3235;
   }
 
   &:hover {
-    color: #d4a5a5;
+    opacity: 0.5;
   }
 
   @media (min-width: 768px) {
     min-width: 150px;
     padding: 10px 10px;
-    font-size: 14px;
+    font-size: 16px;
   }
 `
 const Arrow = styled.img`
-  width: 20px;
+  width: 16px;
+  margin-right: 5px;
 
   @media (min-width: 768px) {
-    width: 50px;
+    
   }
 `
 const Toggle = styled.button`

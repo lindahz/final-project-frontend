@@ -40,8 +40,7 @@ export const Search = () => {
           type="text"
           placeholder="Ange region, ort eller adress..."
           value={search}
-          onChange={(event) => onChangeEvent(event.target.value)}
-          required />
+          onChange={(event) => onChangeEvent(event.target.value)} />
         <SearchBtn
           type="submit" />
       </Form>
