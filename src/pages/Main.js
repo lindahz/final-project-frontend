@@ -17,7 +17,7 @@ export const Main = () => {
       {!clinicData && (
         <Search />
       )}
-      {clinicData && (
+      {clinicData && clinicData.length > 0 && (
         <>
           <FilterControls>
             <Filter />
@@ -26,13 +26,16 @@ export const Main = () => {
         </>
       )}
       <Wrapper>
-        {clinicData && clinicData.map((clinic, index) => {
+        {clinicData && clinicData.length > 0 && clinicData.map((clinic, index) => {
           return (
             <ClinicList
               key={index}
               {... clinic} />
           )
         })}
+        {clinicData && clinicData.length === 0 && (
+          <NoResultsText>Hittade inga kliniker som matchade sökresultatet...</NoResultsText>
+        )}
       </Wrapper>
       <NextPage />
     </Section>
@@ -57,4 +60,7 @@ const FilterControls = styled.div`
   justify-content: space-evenly;
   width: 100%;
   background-color: #e9f1ef;
+`
+const NoResultsText = styled.p`
+  font-size: 18px;
 `

@@ -125,6 +125,7 @@ const Arrow = styled.img`
   }
 `
 const Toggle = styled.button`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;

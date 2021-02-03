@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
@@ -14,26 +14,15 @@ export const Search = () => {
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
 
-  // ALTERNATIVE TO THUNK
-  /* const handleFetchSuccess = (json) => { dispatch(clinics.actions.generateClinics(json))}
-  const CLINICS_URL = `http://localhost:8080/clinics?search=${search}&sortField=clinic_type`
-
-  const handleFetch = (event) => {
-    event.preventDefault()
-    fetch(CLINICS_URL)
-      .then((res) => res.json())
-      .then((json) => handleFetchSuccess(json))
-  }
-  */
-
-  // the fetch is called by this button
-  // how can I then sort or change page after the first fetch
-  // is completed without clicking the button?
-  // behöver jag göra en ny fetch i sort kanske?
+  const [errorMessage, setErrorMessage] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch(fetchClinics(search, sortOrder))
+    if (search.replace(/\s/g, '').length === 0) {
+      return setErrorMessage(true)
+    } else {
+      return dispatch(fetchClinics(search, sortOrder))
+    }
   }
 
   const onChangeEvent = (value) => {
@@ -46,7 +35,7 @@ export const Search = () => {
       <Subtitle>
         Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver.
       </Subtitle>
-      <Form onSubmit={handleSubmit}> {/*{handleFetch}*/}
+      <Form onSubmit={handleSubmit}>
         <SearchTextfield
           type="text"
           placeholder="Ange region, ort eller adress..."
@@ -56,10 +45,19 @@ export const Search = () => {
         <SearchBtn
           type="submit" />
       </Form>
+      {errorMessage && (
+        <ErrorMessage>Du måste ange ett område</ErrorMessage>
+      )}
       <Overlay />
     </Section>
   )
 }
+
+const ErrorMessage = styled.p`
+  display: block;
+  font-size: 14px;
+  color: #6ab0d2;
+`
 
 const Title = styled.h1`
   font-size: 56px;

@@ -7,17 +7,38 @@ import { Checkbox } from '../lib/Checkboxes'
 import { ToggleBtn } from '../lib/Buttons'
 
 export const Filter = () => {
-  const [toggleFilter, setToggleFilter] = useState(false)
-  const handleToggleFilter = () => setToggleFilter(!toggleFilter)
-
+  const [toggleErrand, setToggleErrand] = useState(false)
   const [toggleType, setToggleType] = useState(false)
-  const handleToggleType = () => setToggleType(!toggleType)
-
   const [toggleOpen, setToggleOpen] = useState(false)
-  const handleToggleOpen = () => setToggleOpen(!toggleOpen)
-
   const [toggleOther, setToggleOther] = useState(false)
-  const handleToggleOther = () => setToggleOther(!toggleOther)
+
+  const handleToggleErrand = () => {
+    setToggleErrand(!toggleErrand)
+    setToggleType(false)
+    setToggleOpen(false)
+    setToggleOther(false)
+  }
+
+  const handleToggleType = () => {
+    setToggleType(!toggleType)
+    setToggleErrand(false)
+    setToggleOpen(false)
+    setToggleOther(false)
+  }
+
+  const handleToggleOpen = () => {
+    setToggleOpen(!toggleOpen)
+    setToggleErrand(false)
+    setToggleType(false)
+    setToggleOther(false)
+  }
+
+  const handleToggleOther = () => {
+    setToggleOther(!toggleOther)
+    setToggleErrand(false)
+    setToggleType(false)
+    setToggleOpen(false)
+  }
   // const dispatch = useDispatch()
 
   // ADD DISPATCH FUNCION FOR FILTERING
@@ -30,9 +51,9 @@ export const Filter = () => {
     <>
       <Wrapper>
         <ToggleBtn
-          onClick={() => handleToggleFilter()}
+          onClick={() => handleToggleErrand()}
           title="Ärende" />
-        {toggleFilter && (
+        {toggleErrand && (
           <Container>
             <Checkbox
               label="Akut/livshotande"
@@ -104,6 +125,9 @@ export const Filter = () => {
   )
 }
 const Container = styled.div`
+  width: 100%;
+  position: absolute;
+  top: 42px;
   display: flex;
   flex-direction: column;
   margin: 0 10px;
@@ -112,6 +136,7 @@ const Container = styled.div`
   box-shadow: 10px 10px 14px -9px rgba(45,50,53,0.6);
 `
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin: 20px;
