@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
+
+import { clinics } from '../reducers/clinics'
 
 import { Checkbox } from '../lib/Checkboxes'
 import { ToggleBtn } from '../lib/Buttons'
@@ -39,13 +41,30 @@ export const Filter = () => {
     setToggleType(false)
     setToggleOpen(false)
   }
-  // const dispatch = useDispatch()
+
+  const errand = useSelector((store) => store.clinics.filter.errand)
+  const type = useSelector((store) => store.clinics.filter.type)
+  const open = useSelector((store) => store.clinics.filter.open)
+  const other = useSelector((store) => store.clinics.filter.other)
+
+  console.log(errand)
+
+  const dispatch = useDispatch()
 
   // ADD DISPATCH FUNCION FOR FILTERING
 
-  // const handleCheckboxClick = () => {
-  //   dispatch(clinics.actions.toggleFilter(clinics.name))
-  // }
+  const handleCheckboxErrandClick = (value) => {
+    dispatch(clinics.actions.toggleErrand(value))
+  }
+  const handleCheckboxTypeClick = (value) => {
+    dispatch(clinics.actions.toggleType(value))
+  }
+  const handleCheckboxOpenClick = (value) => {
+    dispatch(clinics.actions.toggleOpen(value))
+  }
+  const handleCheckboxOtherClick = (value) => {
+    dispatch(clinics.actions.toggleOther(value))
+  }
 
   return (
     <>
@@ -53,24 +72,47 @@ export const Filter = () => {
         <ToggleBtn
           onClick={() => handleToggleErrand()}
           title="Ärende" />
-        {toggleErrand && (
+        {toggleErrand && errand.map((item) => {
+          return (
+            <Container>
+              <Checkbox
+                label={item.label}
+                id={item.id}
+                value={item.value}
+                onChange={(event) => handleCheckboxErrandClick(event.target.value)} />
+            </Container>
+          )
+        })}
+        {/* {toggleErrand && (
           <Container>
             <Checkbox
               label="Akut/livshotande"
               id="emergency"
-              value="emergency" />
+              value="emergency"
+              onChange={handleCheckboxClick} />
             <Checkbox
               label="Vårdbesök"
               id="visit"
               value="visit" />
           </Container>
-        )}
+        )} */}
       </Wrapper>
       <Wrapper>
         <ToggleBtn
           onClick={() => handleToggleType()}
           title="Verksamhet" />
-        {toggleType && (
+        {toggleType && type.map((item) => {
+          return (
+            <Container>
+              <Checkbox
+                label={item.label}
+                id={item.id}
+                value={item.value}
+                onChange={(event) => handleCheckboxTypeClick(event.target.value)} />
+            </Container>
+          )
+        })}
+        {/* {toggleType && (
           <Container>
             <Checkbox
               label="Akutmottagning"
@@ -85,13 +127,24 @@ export const Filter = () => {
               id="clinic"
               value="clinic" />
           </Container>
-        )}
+        )} */}
       </Wrapper>
       <Wrapper>
         <ToggleBtn
           onClick={() => handleToggleOpen()}
           title="Öppettider" />
-        {toggleOpen && (
+        {toggleOpen && open.map((item) => {
+          return (
+            <Container>
+              <Checkbox
+                label={item.label}
+                id={item.id}
+                value={item.value}
+                onChange={(event) => handleCheckboxOpenClick(event.target.value)} />
+            </Container>
+          )
+        })}
+        {/* {toggleOpen && (
           <Container>
             <Checkbox
               label="Dygnet runt"
@@ -106,27 +159,38 @@ export const Filter = () => {
               id="weekends"
               value="weekends" />
           </Container>
-        )}
+        )} */}
       </Wrapper>
       <Wrapper>
         <ToggleBtn
           onClick={() => handleToggleOther()}
           title="Övrigt" />
-        {toggleOther && (
+        {toggleOther && other.map((item) => {
+          return (
+            <Container>
+              <Checkbox
+                label={item.label}
+                id={item.id}
+                value={item.value}
+                onChange={(event) => handleCheckboxOtherClick(event.target.value)} />
+            </Container>
+          )
+        })}
+        {/* {toggleOther && (
           <Container>
             <Checkbox
               label="Drop-in"
               id="dropin"
               value="dropin" />
           </Container>
-        )}
+        )} */}
       </Wrapper>
     </>
   )
 }
 const Container = styled.div`
   width: 100%;
-  position: absolute;
+  //position: absolute;
   top: 42px;
   display: flex;
   flex-direction: column;

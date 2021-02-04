@@ -48,7 +48,7 @@ const Textarea = styled.textarea`
   display: block;
   background-color: #ffffff;
   font-size: 14px;
-  font-family: 'Roboto', monospace;
+  font-family: 'Quicksand', sans-serif;
   color: #2d3235;
   border: 2px solid #a6d0e4;
   border-radius: 2px;
@@ -64,7 +64,7 @@ const ReviewLabel = styled.label`
   text-transform: uppercase;
   font-weight: 500;
   font-size: 14px;
-  font-family: 'Roboto', monospace;
+  font-family: 'Quicksand', sans-serif;
 `
 const ReviewText = styled.input`
   width: 100%;
@@ -73,6 +73,7 @@ const ReviewText = styled.input`
   display: block;
   background-color: #ffffff;
   font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
   color: #2d3235;
   border: 2px solid #a6d0e4;
   border-radius: 2px;
@@ -110,7 +111,7 @@ const ReviewText = styled.input`
 const Text = styled.input`
   color: #2d3235;
   background-color: #ffffff;
-  font-family: 'Roboto', monospace;
+  font-family: 'Quicksand', sans-serif;
   font-size: 20px;
   padding: 10px 20px;
   margin-bottom: 20px;

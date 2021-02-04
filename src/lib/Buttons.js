@@ -40,7 +40,7 @@ export const ToggleBtn = ({ title, type, disabled, className, onClick, key, back
 export const BackBtn = ({ title }) => {
   return (
     <Back>
-      <Arrow 
+      <Arrow
         src={backarrow} />
       {title}
     </Back>
@@ -130,6 +130,7 @@ const Toggle = styled.button`
   justify-content: space-between;
   background-color: transparent;
   text-align: left;
+  font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   color: #808080;
   border: none;
