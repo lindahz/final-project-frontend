@@ -13,6 +13,7 @@ export const Search = () => {
   const dispatch = useDispatch()
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
+  const pageNum = useSelector((store) => store.clinics.pageNum)
 
   const [errorMessage, setErrorMessage] = useState(false)
 
@@ -21,7 +22,7 @@ export const Search = () => {
     if (search.replace(/\s/g, '').length === 0) {
       return setErrorMessage(true)
     } else {
-      return dispatch(fetchClinics(search, sortOrder))
+      return dispatch(fetchClinics(search, sortOrder, pageNum))
     }
   }
 

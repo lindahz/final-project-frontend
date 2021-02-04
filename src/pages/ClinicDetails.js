@@ -53,7 +53,7 @@ export const ClinicDetails = () => {
         <Heading>Drop-in</Heading>
         <p>{clinic.drop_in}</p>
       </Wrapper>
-      <WrapperReview>
+      <Wrapper>
         <TextContainer>
           <Subtitle>Omdömen <Span>({clinic.text_reviews_count})</Span></Subtitle>
           <StyledLink to={`/kliniker/${id}/skriv-omdome`}>
@@ -68,7 +68,7 @@ export const ClinicDetails = () => {
           )
         })}
         {/* <ReviewForm generateUpdate={generateUpdate} /> */}
-      </WrapperReview>
+      </Wrapper>
     </Section>
   )
 }
@@ -104,15 +104,9 @@ const Section = styled.section`
   background-color: #F2F2F2;
 `
 const Wrapper = styled.div`
-  width: 60%;
-  padding: 30px;
-  margin: 40px;
-  background-color: lightyellow;
-`
-const WrapperReview = styled.div`
   width: 70%;
   padding: 30px;
-  //align-self: flex-start;
+  margin: 20px;
   background-color: #ffffff;
   border: 1px solid #d6d6d6;
 `

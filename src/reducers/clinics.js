@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   search: '',
   sortOrder: 'asc',
+  pageNum: 1,
   clinics: [],
   filter: {
     errand: [
@@ -80,10 +81,14 @@ export const clinics = createSlice({
     generateClinics: (state, action) => {
       state.clinics = action.payload
 
-      // include some kind of filtern function related to checked prop.
+      // include filter functions related to checked prop.
+
     },
     generateSortOrder: (state, action) => {
       state.sortOrder = action.payload
+    },
+    generatePageNum: (state, action) => {
+      state.pageNum = action.payload
     },
     toggleErrand: (state, action) => {
       const foundItem = state.filter.errand.find((item) => item.value === action.payload)

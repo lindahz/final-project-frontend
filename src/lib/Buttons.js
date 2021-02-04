@@ -21,15 +21,12 @@ export const SearchBtn = ({ type, disabled, className, onClick, key, background 
   )
 }
 
-export const ToggleBtn = ({ title, type, disabled, className, onClick, key, background }) => {
+export const ToggleBtn = ({ title, type, disabled, onClick }) => {
   return (
     <Toggle
-      type={type}
+      type={type} 
       disabled={disabled}
-      className={className}
-      onClick={onClick}
-      key={key}
-      background={background}>
+      onClick={onClick}>
       {title}
       <Icon
         src={arrow} />

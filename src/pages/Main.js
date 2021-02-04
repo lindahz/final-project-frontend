@@ -7,7 +7,7 @@ import { Search } from '../compontents/Search'
 import { Filter } from '../compontents/Filter'
 import { Sort } from '../compontents/Sort'
 import { ClinicList } from '../compontents/ClinicList'
-import { NextPage } from '../compontents/NextPage'
+import { Pages } from '../compontents/Pages'
 
 export const Main = () => {
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
@@ -37,7 +37,7 @@ export const Main = () => {
           <NoResultsText>Hittade inga kliniker som matchade sökresultatet...</NoResultsText>
         )}
       </Wrapper>
-      <NextPage />
+      <Pages />
     </Section>
   )
 }

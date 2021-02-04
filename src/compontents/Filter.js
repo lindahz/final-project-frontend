@@ -47,8 +47,6 @@ export const Filter = () => {
   const open = useSelector((store) => store.clinics.filter.open)
   const other = useSelector((store) => store.clinics.filter.other)
 
-  console.log(errand)
-
   const dispatch = useDispatch()
 
   // ADD DISPATCH FUNCION FOR FILTERING
@@ -72,9 +70,9 @@ export const Filter = () => {
         <ToggleBtn
           onClick={() => handleToggleErrand()}
           title="Ärende" />
-        {toggleErrand && errand.map((item) => {
+        {errand.map((item) => {
           return (
-            <Container>
+            <Container visibility={toggleErrand}>
               <Checkbox
                 label={item.label}
                 id={item.id}
@@ -101,9 +99,9 @@ export const Filter = () => {
         <ToggleBtn
           onClick={() => handleToggleType()}
           title="Verksamhet" />
-        {toggleType && type.map((item) => {
+        {type.map((item) => {
           return (
-            <Container>
+            <Container visibility={toggleType}>
               <Checkbox
                 label={item.label}
                 id={item.id}
@@ -133,9 +131,9 @@ export const Filter = () => {
         <ToggleBtn
           onClick={() => handleToggleOpen()}
           title="Öppettider" />
-        {toggleOpen && open.map((item) => {
+        {open.map((item) => {
           return (
-            <Container>
+            <Container visibility={toggleOpen}>
               <Checkbox
                 label={item.label}
                 id={item.id}
@@ -165,9 +163,9 @@ export const Filter = () => {
         <ToggleBtn
           onClick={() => handleToggleOther()}
           title="Övrigt" />
-        {toggleOther && other.map((item) => {
+        {other.map((item) => {
           return (
-            <Container>
+            <Container visibility={toggleOther}>
               <Checkbox
                 label={item.label}
                 id={item.id}
@@ -191,13 +189,14 @@ export const Filter = () => {
 const Container = styled.div`
   width: 100%;
   //position: absolute;
+  display: ${props => props.visibility ? 'block': 'none'};
   top: 42px;
-  display: flex;
   flex-direction: column;
   margin: 0 10px;
   background-color: #EEEEEE;
   padding: 10px;
   box-shadow: 10px 10px 14px -9px rgba(45,50,53,0.6);
+  //transition: visibility 0s, opacity 0.5s linear;
 `
 const Wrapper = styled.div`
   position: relative;

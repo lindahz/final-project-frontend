@@ -14,15 +14,11 @@ export const Sort = () => {
 
   const dispatch = useDispatch()
   const search = useSelector((store) => store.clinics.search)
-  const sortOrder = useSelector((store) => store.clinics.sortOrder)
-  console.log(`redux: ${sortOrder}`)
-
-  // not working correctly, sometimes I have to click two times?
+  const pageNum = useSelector((store) => store.clinics.pageNum)
 
   const onChangeEvent = (value) => {
-    console.log(`input value: ${value}`)
     dispatch(clinics.actions.generateSortOrder(value))
-    dispatch(fetchClinics(search, value))
+    dispatch(fetchClinics(search, value, pageNum))
   }
 
   return (

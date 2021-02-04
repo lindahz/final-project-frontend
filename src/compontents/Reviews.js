@@ -29,7 +29,6 @@ export const Reviews = ({ rating, review, review_date, name, title }) => {
         <ReviewDate>{moment(review_date).fromNow()}</ReviewDate>
       </Wrapper>
       <ReviewTitle>{title}</ReviewTitle>
-      {/* <Rating>{rating}/5</Rating> */}
       <ReviewText>{review}</ReviewText>
       <ReviewName>{name}</ReviewName>
     </ReviewContainer>
