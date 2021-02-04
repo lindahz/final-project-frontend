@@ -55,25 +55,42 @@ export const Search = () => {
 
 const ErrorMessage = styled.p`
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   color: #6ab0d2;
-`
 
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+`
 const Title = styled.h1`
-  font-size: 56px;
+  font-size: 42px;
+  margin: 20px 0;
   color: #2d3235;
-  margin: 25px 100px 25px 0;
+
+  @media (min-width: 768px) {
+    margin: 25px 100px 25px 0;
+    font-size: 56px;
+  }
 `
 const Subtitle = styled.h3`
-  font-size: 22px;
+  font-size: 16px;
   color: #2d3235;
-  margin: 25px 200px 25px 0;
-  width: 50%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    margin: 25px 200px 25px 0;
+    font-size: 22px;
+  }
 `
 const Section = styled.section`
-  margin: 120px 80px;
-  padding: 120px 100px;
+  margin-top: 150px;
+  padding: 25px;
   position: relative;
+
+  @media (min-width: 768px) {
+    margin: 120px 80px;
+    padding: 120px 100px;
+  }
 `
 const Overlay = styled.div`
   background-image: url(${tool});

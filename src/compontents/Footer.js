@@ -10,6 +10,7 @@ export const Footer = () => {
 }
 
 const Section = styled.section`
+  z-index: 1;
   bottom: 0;
   padding: 80px;
   background-color: #ffffff;

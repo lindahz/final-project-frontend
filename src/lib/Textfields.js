@@ -109,12 +109,12 @@ const ReviewText = styled.input`
   `
 
 const Text = styled.input`
-  color: #2d3235;
+  width: 100%;
+  padding: 8px 15px;
   background-color: #ffffff;
+  color: #2d3235;
+  font-size: 14px;
   font-family: 'Quicksand', sans-serif;
-  font-size: 20px;
-  padding: 10px 20px;
-  margin-bottom: 20px;
   text-decoration: none;
   border: none;
   border-bottom: 2px solid #ffffff;
@@ -143,13 +143,14 @@ const Text = styled.input`
   }
 
   @media (max-width: 280px) {
-    font-size: 22px;
+    font-size: 14px;
   }
 
   @media (min-width: 768px) {
-    margin-bottom: 0; 
     width: 400px;
     height: 70px;
+    padding: 10px 20px;
+    margin-bottom: 0; 
     font-size: 18px;
   }
   `

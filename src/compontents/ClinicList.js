@@ -13,8 +13,8 @@ export const ClinicList = ({
   clinic_operation
 }) => {
   return (
-    <StyledLink to={`kliniker/${_id}`}>
       <Wrapper>
+        <StyledLink to={`kliniker/${_id}`}>
         <Title>{clinic_name}</Title>
         <Text>{address}</Text>
         <Container>
@@ -31,30 +31,31 @@ export const ClinicList = ({
             <ChipRating>{average_rating} ★</ChipRating>
           )}
         </Container>
+        </StyledLink>
       </Wrapper>
-    </StyledLink>
   )
 }
 
 const Wrapper = styled.div`
-  width: 400px;
-  height: 200px;
+  width: 100%;
+  margin: 10px 40px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 40px;
-  margin: 20px;
   background-color: #ffecda;
   box-shadow: 10px 10px 23px -42px rgba(45,50,53,0.34);
   cursor: pointer;
 
   @media (max-width: 280px) {
-    
   }
 
   @media (min-width: 768px) {
-    width: 500px;
+    width: 40%;
+    height: 200px;
+    margin: 20px;
+    padding: 40px;
   }
   `
 const StyledLink = styled(Link)`
@@ -66,17 +67,30 @@ const StyledLink = styled(Link)`
 `
 const Title = styled.h2`
   margin: 5px 0;
-  font-size: 20px;
+  font-size: 12px;
   color: #2d3235;
+  
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 `
 const Text = styled.p`
   margin: 0;
   color: #2d3235;
+  font-size: 12px;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `
 const Container = styled.div`
   display: flex;
   justify-content: flex-start;
-  width: 70%;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 70%;
+  }
 `
 const Chip = styled.div`
   font-size: 10px;

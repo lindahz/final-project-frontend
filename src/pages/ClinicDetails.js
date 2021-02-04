@@ -85,23 +85,34 @@ const TextContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #d6d6d6;
+
+  @media (min-width: 768px) {
+    
+  }
 `
 const Subtitle = styled.h3`
   margin: 10px 0;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 18px;
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+  }
 `
 const Span = styled(Subtitle)`
   display: inline-block;
   color: #898989;
 `
 const Section = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 120px 100px 80px 100px;
-  width: 100%;
   background-color: #F2F2F2;
+
+  @media (min-width: 768px) {
+    padding: 120px 100px 80px 100px;
+  }
 `
 const Wrapper = styled.div`
   width: 70%;
@@ -111,8 +122,12 @@ const Wrapper = styled.div`
   border: 1px solid #d6d6d6;
 `
 const Title = styled.h2`
-  font-size: 36px;
+  font-size: 20px;
   margin: 10px 0;
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+  }
 `
 const Heading = styled.h4`
   font-size: 18px;

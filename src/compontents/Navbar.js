@@ -46,20 +46,29 @@ export const Navbar = () => {
 }
 
 const Section = styled.div`
+  display: none;
   overflow: hidden;
   position: fixed;
   z-index: 1;
   top: 0;
   width: 100%;
   background-color: #ffffff;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 10px 10px 29px -16px rgba(156,156,156,0.6);
+  
+  @media (min-width: 768px) {
+    display: flex;
+
+  }
 `
 const Form = styled.form`
-  display: flex;
-  margin-left: 10px;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    margin-left: 10px;
+  }
 `
 const Container = styled.div`
   margin-right: 10px;
@@ -68,6 +77,7 @@ const Category = styled.a`
   display: inline-block;
   padding: 25px 10px;
   color: #2d3235;
+  font-size: 14px;
   font-weight: 500;
   margin: 0 10px;
   border-bottom: 3px solid #ffffff;
@@ -77,5 +87,9 @@ const Category = styled.a`
     border-bottom: 3px solid #d4a5a5;
     font-weight: 500;
     color: #000000;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 18px; 
   }
 `

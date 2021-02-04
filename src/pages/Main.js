@@ -13,30 +13,47 @@ export const Main = () => {
   const [filteredClinicData, setFilteredClinicData] = useState([])
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
 
-  const filters = useSelector((store) => store.clinics.filter.errand)
+  const filters = useSelector((store) => store.clinics.filter)
 
-  //console.log(filters)
+  let results = clinicData
 
-  // const filtering = () => {
+  filters.forEach((item) => {
+    if (item.checked === true && item.id === 'emg') {
+      results = results.filter((clinic) => {
+        return clinic.clinic_operation.includes('Akutverksamhet')
+      })
+    }
+    if (item.checked === true && item.id === 'reg') {
+      results = results.filter((clinic) => {
+        return clinic.clinic_operation.includes('Vårdcentral')
+      })
+    }
+    if (item.checked === true && item.id === 'all') {
+      results = results.filter((clinic) => {
+        return clinic.open_hours.includes('Dygnet runt')
+      })
+    }
+    if (item.checked === true && item.id === 'week') {
+      console.log('veckodagar')
+    }
+    if (item.checked === true && item.id === 'wkn') {
+      console.log('helger')
+    }
+    if (item.checked === true && item.id === 'dropin') {
+      results = results.filter((clinic) => {
+        return clinic.drop_in.includes('Ej angivet/stängt') // should be does not include
+      })
+    }
+  })
 
-  //   let results = clinicData
+  console.log(results)
 
-  //   filters.forEach((item, index) => {
-  //     if (item.checked && index === 0) {
-  //       results = results.filter((clinics) => clinics.clinic_operation.includes('Akutverksamhet'))
-  //     } else if (item.checked && index === 1) {
-  //       results = results.filter((clinics) => clinics.clinic_operation.includes('Vårdcentral'))
-  //     }
-  //   })
-  //   console.log(results)
-  // }
-
-  // useEffect(() => {
-  //   const result = clinicData.filter((clinics) => {
-  //     if ()
-  //   })
-  //   setFilteredClinicData(result)
-  // })
+//   useEffect(() => {
+//   const result = clinicData.filter((clinics) => {
+    
+//   })
+//   setFilteredClinicData(result)
+// })
 
   return (
     <Section>
@@ -80,17 +97,31 @@ const Section = styled.main`
   display: flex;
 `
 const Wrapper = styled.div`
+  width: 100%;
   margin-top: 120px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    display: flex;
+    width: 70%;
+  }
 `
 const FilterControls = styled.div`
-  width: 800px;
+  width: 350px;
+  height: 100vh;
   padding: 120px 40px 20px 40px;
-  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: none;
   flex-direction: column;
   background-color: #F2F2F2;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `
 const NoResultsText = styled.p`
   font-size: 18px;
