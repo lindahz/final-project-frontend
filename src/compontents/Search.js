@@ -71,8 +71,8 @@ const Subtitle = styled.h3`
   width: 50%;
 `
 const Section = styled.section`
+  margin: 120px 80px;
   padding: 120px 100px;
-  width: 100%;
   position: relative;
 `
 const Overlay = styled.div`

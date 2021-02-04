@@ -28,17 +28,18 @@ const Input = styled.input`
   clip: rect(1px 1px 1px 1px);
 `
 const Label = styled.label`
-  width: 100%;
+  width: 45%;
+  margin: 2px 4px 2px 0;
+  padding: 5px 0;
   display: block;
   position: relative;
-  margin: 3px;
-  border-radius: 4px;
+  border: 1px solid #2d3235;
+  border-radius: 3px;
   color: #000000;
-  background-color: #ffffff;
-  border: 1px solid gray;
-  padding: 8px 15px;
-  font-size: 11px;
+  background-color: transparent;
+  font-size: 12px;
   font-weight: 500;
+  text-align: center;
   cursor: pointer;
   transition: 0.5s;
 

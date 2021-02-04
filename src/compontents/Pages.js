@@ -42,7 +42,6 @@ export const Pages = () => {
     <>
       {clinicData.clinics && (
         <Section>
-          {/* <Text>(visar {clinicData.clinics.length} av {clinicData.total_results})</Text> */}
           {/* <Btn>«Föregående sida</Btn>
           <Btn>Nästa sida»</Btn> */}
           <Pagination
@@ -68,6 +67,4 @@ const Section = styled.section`
   justify-content: center;
   align-items: center;
   width: 100%;
-`
-const Text = styled.p`
 `

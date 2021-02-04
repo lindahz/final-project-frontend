@@ -9,198 +9,73 @@ import { Checkbox } from '../lib/Checkboxes'
 import { ToggleBtn } from '../lib/Buttons'
 
 export const Filter = () => {
-  const [toggleErrand, setToggleErrand] = useState(false)
-  const [toggleType, setToggleType] = useState(false)
-  const [toggleOpen, setToggleOpen] = useState(false)
-  const [toggleOther, setToggleOther] = useState(false)
+  const [toggle, setToggle] = useState(false)
 
-  const handleToggleErrand = () => {
-    setToggleErrand(!toggleErrand)
-    setToggleType(false)
-    setToggleOpen(false)
-    setToggleOther(false)
+  const handleToggle = () => {
+    setToggle(!toggle)
   }
-
-  const handleToggleType = () => {
-    setToggleType(!toggleType)
-    setToggleErrand(false)
-    setToggleOpen(false)
-    setToggleOther(false)
-  }
-
-  const handleToggleOpen = () => {
-    setToggleOpen(!toggleOpen)
-    setToggleErrand(false)
-    setToggleType(false)
-    setToggleOther(false)
-  }
-
-  const handleToggleOther = () => {
-    setToggleOther(!toggleOther)
-    setToggleErrand(false)
-    setToggleType(false)
-    setToggleOpen(false)
-  }
-
-  const errand = useSelector((store) => store.clinics.filter.errand)
-  const type = useSelector((store) => store.clinics.filter.type)
-  const open = useSelector((store) => store.clinics.filter.open)
-  const other = useSelector((store) => store.clinics.filter.other)
 
   const dispatch = useDispatch()
 
-  // ADD DISPATCH FUNCION FOR FILTERING
-
-  const handleCheckboxErrandClick = (value) => {
-    dispatch(clinics.actions.toggleErrand(value))
-  }
-  const handleCheckboxTypeClick = (value) => {
-    dispatch(clinics.actions.toggleType(value))
-  }
-  const handleCheckboxOpenClick = (value) => {
-    dispatch(clinics.actions.toggleOpen(value))
-  }
-  const handleCheckboxOtherClick = (value) => {
-    dispatch(clinics.actions.toggleOther(value))
+  const handleCheckboxClick = (value) => {
+    dispatch(clinics.actions.toggleFilter(value))
   }
 
   return (
-    <>
-      <Wrapper>
-        <ToggleBtn
-          onClick={() => handleToggleErrand()}
-          title="Ärende" />
-        {errand.map((item) => {
-          return (
-            <Container visibility={toggleErrand}>
-              <Checkbox
-                label={item.label}
-                id={item.id}
-                value={item.value}
-                onChange={(event) => handleCheckboxErrandClick(event.target.value)} />
-            </Container>
-          )
-        })}
-        {/* {toggleErrand && (
-          <Container>
-            <Checkbox
-              label="Akut/livshotande"
-              id="emergency"
-              value="emergency"
-              onChange={handleCheckboxClick} />
-            <Checkbox
-              label="Vårdbesök"
-              id="visit"
-              value="visit" />
-          </Container>
-        )} */}
-      </Wrapper>
-      <Wrapper>
-        <ToggleBtn
-          onClick={() => handleToggleType()}
-          title="Verksamhet" />
-        {type.map((item) => {
-          return (
-            <Container visibility={toggleType}>
-              <Checkbox
-                label={item.label}
-                id={item.id}
-                value={item.value}
-                onChange={(event) => handleCheckboxTypeClick(event.target.value)} />
-            </Container>
-          )
-        })}
-        {/* {toggleType && (
-          <Container>
-            <Checkbox
-              label="Akutmottagning"
-              id="hospital"
-              value="hospital" />
-            <Checkbox
-              label="Närakut"
-              id="emergency-clinic"
-              value="emergency-clinic" />
-            <Checkbox
-              label="Vårdcentral"
-              id="clinic"
-              value="clinic" />
-          </Container>
-        )} */}
-      </Wrapper>
-      <Wrapper>
-        <ToggleBtn
-          onClick={() => handleToggleOpen()}
-          title="Öppettider" />
-        {open.map((item) => {
-          return (
-            <Container visibility={toggleOpen}>
-              <Checkbox
-                label={item.label}
-                id={item.id}
-                value={item.value}
-                onChange={(event) => handleCheckboxOpenClick(event.target.value)} />
-            </Container>
-          )
-        })}
-        {/* {toggleOpen && (
-          <Container>
-            <Checkbox
-              label="Dygnet runt"
-              id="all-hours"
-              value="all-hours" />
-            <Checkbox
-              label="Vardagar 8 - 17"
-              id="weekdays"
-              value="weekdays" />
-            <Checkbox
-              label="Helger 8 - 17"
-              id="weekends"
-              value="weekends" />
-          </Container>
-        )} */}
-      </Wrapper>
-      <Wrapper>
-        <ToggleBtn
-          onClick={() => handleToggleOther()}
-          title="Övrigt" />
-        {other.map((item) => {
-          return (
-            <Container visibility={toggleOther}>
-              <Checkbox
-                label={item.label}
-                id={item.id}
-                value={item.value}
-                onChange={(event) => handleCheckboxOtherClick(event.target.value)} />
-            </Container>
-          )
-        })}
-        {/* {toggleOther && (
-          <Container>
-            <Checkbox
-              label="Drop-in"
-              id="dropin"
-              value="dropin" />
-          </Container>
-        )} */}
-      </Wrapper>
-    </>
+    <Section>
+      {/* <ToggleBtn
+        onClick={() => handleToggle()}
+        title="Ärende" /> */}
+      <Container> {/* visibility={toggle} */}
+        <Category>Ärende</Category>
+        <Checkbox
+          label="Akut"
+          value="emg"
+          id="emg"
+          onChange={(event) => handleCheckboxClick(event.target.value)} />
+        <Checkbox
+          label="Vårdbesök"
+          value="reg"
+          id="reg"
+          onChange={(event) => handleCheckboxClick(event.target.value)} />
+        <Category>Öppettider</Category>
+        <Checkbox
+          label="Dygnet runt"
+          value="all"
+          id="all"
+          onChange={(event) => handleCheckboxClick(event.target.value)} />
+        <Checkbox
+          label="Vardagar"
+          value="week"
+          id="week"
+          onChange={(event) => handleCheckboxClick(event.target.value)} />
+        <Checkbox
+          label="Helger"
+          value="wkn"
+          id="wkn"
+          onChange={(event) => handleCheckboxClick(event.target.value)} />
+        <Category>Övrigt</Category>
+        <Checkbox
+          label="Drop-in"
+          value="dropin"
+          id="dropin"
+          onChange={(event) => handleCheckboxClick(event.target.value)} />
+      </Container>
+    </Section>
   )
 }
-const Container = styled.div`
-  width: 100%;
-  //position: absolute;
-  display: ${props => props.visibility ? 'block': 'none'};
-  top: 42px;
-  flex-direction: column;
-  margin: 0 10px;
-  background-color: #EEEEEE;
-  padding: 10px;
-  box-shadow: 10px 10px 14px -9px rgba(45,50,53,0.6);
-  //transition: visibility 0s, opacity 0.5s linear;
+
+const Section = styled.section`
 `
-const Wrapper = styled.div`
-  position: relative;
+const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  margin: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  //position: absolute;
+  //display: ${props => props.visibility ? 'block': 'none'};
+`
+
+const Category = styled.p`
+  width: 100%;
 `
