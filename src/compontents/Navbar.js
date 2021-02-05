@@ -59,7 +59,6 @@ const Section = styled.div`
   
   @media (min-width: 768px) {
     display: flex;
-
   }
 `
 const Form = styled.form`

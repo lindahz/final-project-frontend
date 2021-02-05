@@ -21,14 +21,14 @@ export const Sort = () => {
   return (
     <Container>
       <RadioBtn
-        label="Kliniknamn, A - Z"
+        label="Kliniknamn: A - Z"
         role="radio"
         id="asc"
         onChange={(event) => onChangeEvent(event.target.value)}
         value="asc"
         name="name" />
       <RadioBtn
-        label="Kliniknamn, Z - A"
+        label="Kliniknamn: Z - A"
         role="radio"
         onChange={(event) => onChangeEvent(event.target.value)}
         id="desc"

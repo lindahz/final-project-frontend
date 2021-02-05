@@ -27,7 +27,7 @@ export const Filter = () => {
         onClick={() => handleToggle()}
         title="Ärende" /> */}
       <Container> {/* visibility={toggle} */}
-        <Category>Ärende</Category>
+        <Subtitle>Ärende</Subtitle>
         <Checkbox
           label="Akut"
           value="emg"
@@ -38,7 +38,7 @@ export const Filter = () => {
           value="reg"
           id="reg"
           onChange={(event) => handleCheckboxClick(event.target.value)} />
-        <Category>Öppettider</Category>
+        <Subtitle>Öppettider</Subtitle>
         <Checkbox
           label="Dygnet runt"
           value="all"
@@ -54,7 +54,7 @@ export const Filter = () => {
           value="wkn"
           id="wkn"
           onChange={(event) => handleCheckboxClick(event.target.value)} />
-        <Category>Övrigt</Category>
+        <Subtitle>Övrigt</Subtitle>
         <Checkbox
           label="Drop-in"
           value="dropin"
@@ -76,6 +76,9 @@ const Container = styled.div`
   //display: ${props => props.visibility ? 'block': 'none'};
 `
 
-const Category = styled.p`
+const Subtitle = styled.h3`
   width: 100%;
+  // margin: 18px 0;
+  font-size: 14px;
+  text-transform: uppercase;
 `

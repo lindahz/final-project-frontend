@@ -45,7 +45,7 @@ export const ClinicDetails = () => {
       <Wrapper>
         <Subtitle>{clinic.clinic_type}</Subtitle>
         <Title>{clinic.clinic_name}</Title>
-        <Heading>★{clinic.average_rating} Fantastiskt bra</Heading>
+        <Heading><Span>★ </Span>{clinic.average_rating} Fantastiskt bra</Heading>
         <Heading>Öppettider</Heading>
         <p>{clinic.open_hours}</p>
         <Heading>Adress</Heading>
@@ -55,7 +55,7 @@ export const ClinicDetails = () => {
       </Wrapper>
       <Wrapper>
         <TextContainer>
-          <Subtitle>Omdömen <Span>({clinic.text_reviews_count})</Span></Subtitle>
+          <Subtitle>Omdömen <SubtitleGray>({clinic.text_reviews_count})</SubtitleGray></Subtitle>
           <StyledLink to={`/kliniker/${id}/skriv-omdome`}>
             <Subtitle>Skriv ett omdöme</Subtitle>
           </StyledLink>
@@ -72,6 +72,19 @@ export const ClinicDetails = () => {
     </Section>
   )
 }
+
+const Section = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+
+  @media (min-width: 768px) {
+    padding: 120px 100px 80px 100px;
+  }
+`
+
 const StyledLink = styled(Link)`
   text-decoration: none;
 
@@ -94,36 +107,32 @@ const Subtitle = styled.h3`
   margin: 10px 0;
   font-weight: 500;
   font-size: 18px;
+  text-transform: uppercase;
 
   @media (min-width: 768px) {
-    font-size: 32px;
+    font-size: 24px;
   }
 `
-const Span = styled(Subtitle)`
+const SubtitleGray = styled(Subtitle)`
   display: inline-block;
   color: #898989;
 `
-const Section = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #F2F2F2;
-
-  @media (min-width: 768px) {
-    padding: 120px 100px 80px 100px;
-  }
+const Span = styled.span`
+  color: #FFCC66;
 `
 const Wrapper = styled.div`
   width: 70%;
   padding: 30px;
   margin: 20px;
   background-color: #ffffff;
-  border: 1px solid #d6d6d6;
+  // border: 1px solid #d6d6d6;
+  border: 2px solid;
+  border-radius: 3px;
 `
 const Title = styled.h2`
   font-size: 20px;
   margin: 10px 0;
+  // color: #9b5151;
 
   @media (min-width: 768px) {
     font-size: 36px;

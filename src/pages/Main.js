@@ -9,21 +9,36 @@ import { Sort } from '../compontents/Sort'
 import { ClinicList } from '../compontents/ClinicList'
 import { Pages } from '../compontents/Pages'
 
+
+import { CrossBtn } from '../lib/Buttons'
+
 export const Main = () => {
+  const [toggle, setToggle] = useState(false)
+  const handleToggle = () => {
+    setToggle(!toggle)
+  }
+
+  console.log(toggle)
+
   const [filteredClinicData, setFilteredClinicData] = useState([])
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
+  const totalClinics = useSelector((store) => store.clinics.clinics.total_results)
 
   const filters = useSelector((store) => store.clinics.filter)
+
+  console.log(totalClinics)
 
   let results = clinicData
 
   filters.forEach((item) => {
-    if (item.checked === true && item.id === 'emg') {
+    if (item.checked === true && item.id === 'reg' && item.id === 'emg') {
+      // should return all results
+      console.log('båda')
+    } else if (item.checked === true && item.id === 'emg') {
       results = results.filter((clinic) => {
         return clinic.clinic_operation.includes('Akutverksamhet')
       })
-    }
-    if (item.checked === true && item.id === 'reg') {
+    } else if (item.checked === true && item.id === 'reg') {
       results = results.filter((clinic) => {
         return clinic.clinic_operation.includes('Vårdcentral')
       })
@@ -34,19 +49,20 @@ export const Main = () => {
       })
     }
     if (item.checked === true && item.id === 'week') {
+      // return all results
       console.log('veckodagar')
     }
     if (item.checked === true && item.id === 'wkn') {
+      // return results including Lör or/and sön
       console.log('helger')
     }
     if (item.checked === true && item.id === 'dropin') {
       results = results.filter((clinic) => {
-        return clinic.drop_in.includes('Ej angivet/stängt') // should be does not include
+        // should be opposite - does not include
+        return !clinic.drop_in.includes('Ej angivet/stängt')
       })
     }
   })
-
-  console.log(results)
 
 //   useEffect(() => {
 //   const result = clinicData.filter((clinics) => {
@@ -57,11 +73,23 @@ export const Main = () => {
 
   return (
     <Section>
-      <div>
       {!clinicData && (
         <Search />
       )}
+      {clinicData && /* clinicData.length > 0 && */ (
+        <FilterControls visibility={toggle}>
+          <CrossBtn
+            onClick={handleToggle} />
+          <FilterContainer visibility={toggle}>
+            <h3>Filtrera</h3>
+            <Filter />
+            <h3>Sortera</h3>
+            <Sort />
+          </FilterContainer>
+        </FilterControls>
+      )}
       <Wrapper>
+        {clinicData && <Text>Vi hittade <Span>{totalClinics}</Span> vårdgivare som matchade din sökning.</Text>}
         {clinicData && clinicData.length > 0 && clinicData.map((clinic, index) => { // filteredClinicData.map()
           return (
             <ClinicList
@@ -70,59 +98,80 @@ export const Main = () => {
           )
         })}
         {clinicData && clinicData.length === 0 && (
-          <NoResultsText>Hittade inga kliniker som matchade sökresultatet...</NoResultsText>
+          <NoResultsText>Hittade inga vårdgivare som matchade sökresultatet...</NoResultsText>
         )}
+        {clinicData && <Pages />}
       </Wrapper>
-      <Pages />
-      </div>
-      {clinicData && /* clinicData.length > 0 && */ (
-        <FilterControls>
-          <div>
-            <h3>Filtrera</h3>
-            <Filter />
-          </div>
-          <div>
-            <h3>Sortera</h3>
-            <Sort />
-          </div>
-        </FilterControls>
-      )}
     </Section>
   )
 }
 
 const Section = styled.main`
   min-height: 100vh;
-  //padding: 120px 0;
   display: flex;
 `
 const Wrapper = styled.div`
   width: 100%;
-  margin-top: 120px;
+  margin: 120px 0px 0px 0px;
+  float: right;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
   @media (min-width: 768px) {
-    display: flex;
-    width: 70%;
   }
 `
 const FilterControls = styled.div`
-  width: 350px;
+  width: 100%;
   height: 100vh;
-  padding: 120px 40px 20px 40px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  display: none;
+  overflow: hidden;
+  padding-top: 120px;
+  position: absolute;
+  display: flex;
   flex-direction: column;
-  background-color: #F2F2F2;
+  background-color: #ffffff;
+  border-right: 1px solid;
+  transition: all 0.3s ease-out; 
+  background-color: #ffffff;
 
   @media (min-width: 768px) {
+    position: static;
     display: flex;
+    width: ${props => props.visibility ? '100px': '450px'};
   }
 `
+const FilterContainer = styled.div`
+  width: 100%;
+  padding: 120px 0 40px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-size: 14px;
+  transition: all 0.3s ease-out; 
+  // visibility: ${props => props.visibility ? 'visible': 'hidden'};
+  // opacity: ${props => props.visibility ? '1': '0'};
+
+  @media (min-width: 768px) {
+    width: 300px;
+    visibility: ${props => props.visibility ? 'hidden': 'visible'};
+    opacity: ${props => props.visibility ? '0': '1'};
+  }
+`
+const Text = styled.h3`
+  width: 100%;
+  margin: 20px 70px;
+  font-size: 18px;
+`
+const Span = styled.span`
+  margin: 0;
+  display: inline-block;
+  color: #ef4f4f;
+  font-weight: bold;
+`
+
 const NoResultsText = styled.p`
   font-size: 18px;
 `

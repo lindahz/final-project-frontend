@@ -45,11 +45,13 @@ const Label = styled.label`
   transition: 0.5s;
 
   ${Input}:focus + & {
-    border: #dc20cc solid 1px;
+    border: #ef4f4f solid 1px;
   }
 
   ${Input}:checked + & {
-    background-color: #ffecda;
+    background-color: #74c7b8;
+    border: 1px solid #2e7366;
+    color: #ffffff;
   }
 
   &:hover {

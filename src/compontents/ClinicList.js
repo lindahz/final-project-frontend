@@ -13,13 +13,13 @@ export const ClinicList = ({
   clinic_operation
 }) => {
   return (
-      <Wrapper>
-        <StyledLink to={`kliniker/${_id}`}>
+    <Wrapper>
+      <StyledLink to={`kliniker/${_id}`}>
         <Title>{clinic_name}</Title>
-        <Text>{address}</Text>
+        <Subtitle>{address}</Subtitle>
         <Container>
           {clinic_operation.includes('Akutverksamhet') && (
-            <Chip>Akuta ärenden</Chip>
+            <ChipRed>Akuta ärenden</ChipRed>
           )}
           {drop_in !== 'Ej angivet/stängt' && (
             <Chip>Drop-in</Chip>
@@ -28,34 +28,37 @@ export const ClinicList = ({
             <Chip>24/7</Chip>
           )}
           {average_rating !== 0 && (
-            <ChipRating>{average_rating} ★</ChipRating>
+            <Chip>{average_rating} <Span>★</Span></Chip>
           )}
         </Container>
-        </StyledLink>
-      </Wrapper>
+      </StyledLink>
+    </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
   width: 100%;
   margin: 10px 40px;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: #ffecda;
-  box-shadow: 10px 10px 23px -42px rgba(45,50,53,0.34);
+  background-color: #ffffff;
+  border: 1px solid #2d3235;
+  border-radius: 3px;
+  // box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+  // transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   cursor: pointer;
 
   @media (max-width: 280px) {
   }
 
   @media (min-width: 768px) {
-    width: 40%;
+    width: 450px;
     height: 200px;
     margin: 20px;
-    padding: 40px;
+    padding: 30px 40px 40px 40px;
   }
   `
 const StyledLink = styled(Link)`
@@ -67,20 +70,21 @@ const StyledLink = styled(Link)`
 `
 const Title = styled.h2`
   margin: 5px 0;
-  font-size: 12px;
   color: #2d3235;
+  font-size: 12px;
+  font-weight: 800;
   
   @media (min-width: 768px) {
-    font-size: 20px;
+    font-size: 18px;
   }
 `
-const Text = styled.p`
+const Subtitle = styled.h4`
   margin: 0;
   color: #2d3235;
   font-size: 12px;
 
   @media (min-width: 768px) {
-    font-size: 18px;
+    font-size: 14px;
   }
 `
 const Container = styled.div`
@@ -89,23 +93,24 @@ const Container = styled.div`
   width: 100%;
 
   @media (min-width: 768px) {
-    width: 70%;
+    
   }
 `
 const Chip = styled.div`
-  font-size: 10px;
-  background-color: pink;
+  background-color: transparent;
   margin: 10px 0;
   margin-right: 10px;
   padding: 5px;
+  border-radius: 3px;
+  border: 1px solid;
   color: #2d3235;
+  font-size: 10px;
+  font-weight: 600;
+`
+const ChipRed = styled(Chip)`
+  color: #ef4f4f;
 `
 
-const ChipRating = styled.div`
-  font-size: 10px;
-  color: #2d3235;
-  background-color: lightgreen;
-  margin: 10px 0;
-  margin-right: 10px;
-  padding: 5px;
+const Span = styled.span`
+  color: #FFCC66;
 `

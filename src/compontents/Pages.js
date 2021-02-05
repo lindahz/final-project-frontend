@@ -36,7 +36,7 @@ export const Pages = () => {
 
   console.log(page)
 
-  const pageCount = () => clinicData.total_results / 5
+  const pageCount = () => clinicData.total_results / 6
 
   return (
     <>
@@ -48,7 +48,8 @@ export const Pages = () => {
             count={Math.ceil(pageCount())}
             page={page}
             onChange={handleChange}
-            shape="rounded" />
+            shape="rounded"
+            color="" />
         </Section>
       )}
     </>
@@ -63,8 +64,9 @@ const Btn = styled.button`
   padding: 10px;
 `
 const Section = styled.section`
+  width: 100%;
+  margin: 40px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 `

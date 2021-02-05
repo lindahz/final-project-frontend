@@ -41,14 +41,16 @@ const Label = styled.label`
   font-weight: 500;
   text-align: center;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.3s;
 
   ${Input}:focus + & {
-    border: #dc20cc solid 1px;
+    box-shadow: 0 0 2px 1px #ef4f4f;
   }
 
   ${Input}:checked + & {
-    background-color: #ffecda;
+    background-color: #74c7b8;
+    border: 1px solid #2e7366;
+    color: #ffffff;
   }
 
   &:hover {
