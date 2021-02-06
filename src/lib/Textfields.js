@@ -4,15 +4,101 @@ import styled from 'styled-components/macro'
 
 export const SearchTextfield = ({ title, type, onChange, placeholder, required }) => {
   return (
-    <Text
+    <Search
       type={type}
       onChange={onChange}
       placeholder={placeholder}
       required={required}>
       {title}
-    </Text>
+    </Search>
   )
 }
+const Search = styled.input`
+  width: 100%;
+  padding: 8px 15px;
+  background-color: #ffffff;
+  color: #2d3235;
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 3px 0 0 3px;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  transition: 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid #2d3235;
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
+  }
+
+  &::-webkit-input-placeholder {
+    transition: 0.3s ease;
+    color: #2d3235;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 280px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 768px) {
+    width: 450px;
+    height: 73px;
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+  `
+
+export const CustomSearchTextfield = ({ title, type, onChange, placeholder, required }) => {
+  return (
+    <CustomSearch
+      type={type}
+      onChange={onChange}
+      placeholder={placeholder}
+      required={required}>
+      {title}
+    </CustomSearch>
+  )
+}
+const CustomSearch = styled(Search)`
+  border-radius: 0;
+  border-bottom: 2px solid #ffffff;
+
+  &:focus {
+    border-bottom: 2px solid #2d3235;
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
+  }
+
+  &::-webkit-input-placeholder {
+    transition: 0.3s ease;
+    color: #2d3235;
+    opacity: 0.5;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+  `
 
 export const ReviewTextfield = ({ title, type, onChange, placeholder, required }) => {
   return (
@@ -105,52 +191,5 @@ const ReviewText = styled.input`
   }
 
   @media (min-width: 768px) {
-  }
-  `
-
-const Text = styled.input`
-  width: 100%;
-  padding: 8px 15px;
-  background-color: #ffffff;
-  color: #2d3235;
-  font-size: 14px;
-  font-family: 'Quicksand', sans-serif;
-  text-decoration: none;
-  border: none;
-  border-bottom: 2px solid #ffffff;
-  transition: 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-bottom: 2px solid #2d3235;
-    &::-webkit-input-placeholder {
-      color: #2d3235;
-      opacity: 1;
-    }
-  }
-
-  &:hover {
-    &::-webkit-input-placeholder {
-      color: #2d3235;
-      opacity: 1;
-    }
-  }
-
-  &::-webkit-input-placeholder {
-    transition: 0.3s ease;
-    color: #000000;
-    opacity: 0.5;
-  }
-
-  @media (max-width: 280px) {
-    font-size: 14px;
-  }
-
-  @media (min-width: 768px) {
-    width: 400px;
-    height: 70px;
-    padding: 10px 20px;
-    margin-bottom: 0; 
-    font-size: 18px;
   }
   `

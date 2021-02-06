@@ -7,7 +7,9 @@ import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
 import { SearchTextfield } from '../lib/Textfields'
 import { SearchBtn } from '../lib/Buttons'
+
 import tool from '../assets/tool.jpg'
+import doctor from '../assets/doctor.jpg'
 
 export const Search = () => {
   const dispatch = useDispatch()
@@ -32,43 +34,57 @@ export const Search = () => {
 
   return (
     <Section>
-      <Title>Health finder</Title>
-      <Subtitle>
-        Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver.
-      </Subtitle>
-      <Form onSubmit={handleSubmit}>
-        <SearchTextfield
-          type="text"
-          placeholder="Ange region, ort eller adress..."
-          value={search}
-          onChange={(event) => onChangeEvent(event.target.value)} />
-        <SearchBtn
-          type="submit" />
-      </Form>
-      {errorMessage && (
-        <ErrorMessage>Du måste ange ett område</ErrorMessage>
-      )}
-      <Overlay />
+      <Container>
+        <Title>Hitta vårdgivare i ditt område!</Title>
+        <Subtitle>
+          Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver.
+        </Subtitle>
+        <Form onSubmit={handleSubmit}>
+          <SearchTextfield
+            type="text"
+            placeholder="Ange region, ort eller adress..."
+            value={search}
+            onChange={(event) => onChangeEvent(event.target.value)} />
+          <SearchBtn
+            type="submit" />
+        </Form>
+        {errorMessage && (
+          <ErrorMessage>Du måste ange ett område</ErrorMessage>
+        )}
+        <BackgroundImage />
+      </Container>
     </Section>
   )
 }
 
-const ErrorMessage = styled.p`
-  display: block;
-  font-size: 12px;
-  color: #6ab0d2;
+const Section = styled.section`
+  width: 100%;
+  // margin-top: 150px;
+  // padding: 25px;
 
   @media (min-width: 768px) {
-    font-size: 14px;
+  }
+`
+const Container = styled.div`
+  height: inherit;
+  margin: 110px 40px 0 40px;
+  padding: 120px 150px 110px 150px;
+  position: relative;
+  background-color: rgb(116, 199, 184, 0.4);
+  border-radius: 3px;
+
+  @media (min-width: 768px) {
   }
 `
 const Title = styled.h1`
+  width: 50%;
   font-size: 42px;
-  margin: 20px 0;
+  font-weight: 800;
+  margin: 0;
   color: #2d3235;
 
   @media (min-width: 768px) {
-    margin: 25px 100px 25px 0;
+    margin: 0;
     font-size: 56px;
   }
 `
@@ -82,24 +98,24 @@ const Subtitle = styled.h3`
     font-size: 22px;
   }
 `
-const Section = styled.section`
-  margin-top: 150px;
-  padding: 25px;
-  position: relative;
+
+const ErrorMessage = styled.p`
+  display: block;
+  font-size: 12px;
+  color: #6ab0d2;
 
   @media (min-width: 768px) {
-    margin: 120px 80px;
-    padding: 120px 100px;
+    font-size: 14px;
   }
 `
-const Overlay = styled.div`
+const BackgroundImage = styled.div`
+  position: absolute;
   background-image: url(${tool});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   top: 0;
   left: 0;
-  position: absolute;
   background-color: #e9f1ef;
   width: 100%;
   height: 100%;

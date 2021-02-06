@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 
 import { Search } from '../compontents/Search'
+import { Info } from '../compontents/Info'
 import { Filter } from '../compontents/Filter'
 import { Sort } from '../compontents/Sort'
 import { ClinicList } from '../compontents/ClinicList'
@@ -69,7 +70,10 @@ export const Main = () => {
   return (
     <Section>
       {!clinicData && (
-        <Search />
+        <div>
+          <Search />
+          <Info />
+        </div>
       )}
       {clinicData && /* clinicData.length > 0 && */ (
         <FilterControls visibility={toggle}>
@@ -83,20 +87,22 @@ export const Main = () => {
           </FilterContainer>
         </FilterControls>
       )}
-      <Wrapper>
-        {clinicData && <Text>Vi hittade <Span>{totalClinics}</Span> vårdgivare som matchade din sökning.</Text>}
-        {clinicData && clinicData.length > 0 && clinicData.map((clinic, index) => { // filteredClinicData.map()
-          return (
-            <ClinicList
-              key={index}
-              {... clinic} />
-          )
-        })}
-        {clinicData && clinicData.length === 0 && (
-          <NoResultsText>Hittade inga vårdgivare som matchade sökresultatet...</NoResultsText>
-        )}
-        {clinicData && <Pages />}
-      </Wrapper>
+      {clinicData && (
+        <Wrapper>
+          <TextContainer>
+            <Text>Vi hittade <Span>{totalClinics}</Span> vårdgivare som matchade din sökning.</Text>
+            {clinicData && clinicData.length === 0 && <Text>Försök igen!</Text>}
+          </TextContainer>
+          {clinicData && clinicData.length > 0 && clinicData.map((clinic, index) => { // filteredClinicData.map()
+            return (
+              <ClinicList
+                key={index}
+                {... clinic} />
+            )
+          })}
+          <Pages />
+        </Wrapper>
+      )}
     </Section>
   )
 }
@@ -105,13 +111,14 @@ const Section = styled.main`
   min-height: 100vh;
   display: flex;
 `
+
 const Wrapper = styled.div`
   width: 100%;
-  margin: 120px 0px 0px 0px;
+  margin: 120px 40px 40px 60px;
   float: right;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 
   @media (min-width: 768px) {
   }
@@ -155,18 +162,18 @@ const FilterContainer = styled.div`
     opacity: ${props => props.visibility ? '0': '1'};
   }
 `
-const Text = styled.h3`
+const TextContainer = styled.div`
   width: 100%;
-  margin: 20px 70px;
+`
+
+const Text = styled.h3`
   font-size: 18px;
+  display: inline-block;
+  margin-right: 3px;
 `
 const Span = styled.span`
   margin: 0;
   display: inline-block;
   color: #ef4f4f;
   font-weight: bold;
-`
-
-const NoResultsText = styled.p`
-  font-size: 18px;
 `

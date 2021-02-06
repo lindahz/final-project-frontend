@@ -7,20 +7,83 @@ import arrow from '../assets/arrow.svg'
 import backarrow from '../assets/backarrow.svg'
 import filter from '../assets/filter.svg'
 
-export const SearchBtn = ({ type, disabled, className, onClick, key, background }) => {
+export const SearchBtn = ({ type, disabled, onClick, width }) => {
   return (
-    <Btn
+    <Search
       type={type}
       disabled={disabled}
-      className={className}
       onClick={onClick}
-      key={key}
-      background={background}>
-      <Image
+      width={width}>
+      <SearchIcon
         src={search} />
-    </Btn>
+    </Search>
   )
 }
+
+const Search = styled.button`
+  padding: 10px 10px;
+  background-color: #ffcda3; // #ffecda;
+  border: none;
+  border-radius: 0 3px 3px 0;
+  transition: 0.3s ease;
+  align-self: center;
+  cursor: pointer;
+  z-index: 2;
+
+  &:focus {
+    outline: 1px solid #2d3235;
+    border: none;
+  }
+
+  &:hover {
+    box-shadow: 10px 10px 14px -9px rgba(45,50,53,0.6);
+  }
+
+  @media (min-width: 768px) {
+    width: 80px;
+    align-self: unset;
+  }
+`
+const SearchIcon = styled.img`
+  width: ${(props) => props.width || '20px'};
+
+  @media (min-width: 768px) {
+    width: ${(props) => props.width || '35px'};
+  }
+`
+
+export const CustomSearchBtn = ({ type, disabled, onClick }) => {
+  return (
+    <CustomSearch
+      type={type}
+      disabled={disabled}
+      onClick={onClick}>
+      <SearchIcon
+        src={search} />
+    </CustomSearch>
+  )
+}
+
+const CustomSearch = styled(Search)`
+  padding: 5px;
+  background-color: transparent; 
+  border-radius: 0;
+  border-bottom: 2px solid #ffffff;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid #2d3235;
+  }
+
+  &:hover {
+    box-shadow: none;
+    border-bottom: 2px solid #2d3235;
+  }
+
+  @media (min-width: 768px) {
+    width: 50px;
+  }
+`
 
 export const ToggleBtn = ({ title, type, disabled, onClick }) => {
   return (
@@ -93,7 +156,7 @@ const ReviewButton = styled.button`
   padding: 10px 5px;
   margin: 10px 0;
   border: 1px solid lightgray;
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: #ffecda;
   font-weight: 600;
   color: #2d3235;
@@ -189,37 +252,5 @@ const Icon = styled.img`
 
   @media (min-width: 768px) {
     width: 20px;
-  }
-`
-
-const Btn = styled.button`
-  background-color: #ffcda3; // #ffecda;
-  border: none;
-  padding: 10px 10px;
-  transition: 0.3s ease;
-  align-self: center;
-  cursor: pointer;
-  z-index: 2;
-
-  &:focus {
-    outline: 1px solid #2d3235;
-    border: none;
-  }
-
-  &:hover {
-    box-shadow: 10px 10px 14px -9px rgba(45,50,53,0.6);
-  }
-
-  @media (min-width: 768px) {
-    width: 80px;
-    align-self: unset;
-  }
-`
-
-const Image = styled.img`
-  width: 20px;
-
-  @media (min-width: 768px) {
-    width: 35px;
   }
 `
