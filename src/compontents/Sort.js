@@ -13,8 +13,11 @@ export const Sort = () => {
   const search = useSelector((store) => store.clinics.search)
   const pageNum = useSelector((store) => store.clinics.pageNum)
 
+  console.log(pageNum)
+
   const onChangeEvent = (value) => {
     dispatch(clinics.actions.generateSortOrder(value))
+    console.log(pageNum)
     dispatch(fetchClinics(search, value, pageNum))
   }
 

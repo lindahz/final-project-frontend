@@ -9,8 +9,7 @@ import { Sort } from '../compontents/Sort'
 import { ClinicList } from '../compontents/ClinicList'
 import { Pages } from '../compontents/Pages'
 
-
-import { CrossBtn } from '../lib/Buttons'
+import { FilterBtn } from '../lib/Buttons'
 
 export const Main = () => {
   const [toggle, setToggle] = useState(false)
@@ -18,15 +17,11 @@ export const Main = () => {
     setToggle(!toggle)
   }
 
-  console.log(toggle)
-
   const [filteredClinicData, setFilteredClinicData] = useState([])
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
   const totalClinics = useSelector((store) => store.clinics.clinics.total_results)
 
   const filters = useSelector((store) => store.clinics.filter)
-
-  console.log(totalClinics)
 
   let results = clinicData
 
@@ -78,7 +73,7 @@ export const Main = () => {
       )}
       {clinicData && /* clinicData.length > 0 && */ (
         <FilterControls visibility={toggle}>
-          <CrossBtn
+          <FilterBtn
             onClick={handleToggle} />
           <FilterContainer visibility={toggle}>
             <h3>Filtrera</h3>
@@ -142,7 +137,7 @@ const FilterControls = styled.div`
 `
 const FilterContainer = styled.div`
   width: 100%;
-  padding: 120px 0 40px 40px;
+  padding: 140px 0 40px 40px;
   position: fixed;
   top: 0;
   left: 0;

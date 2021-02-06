@@ -5,7 +5,7 @@ import styled from 'styled-components/macro'
 import search from '../assets/search.svg'
 import arrow from '../assets/arrow.svg'
 import backarrow from '../assets/backarrow.svg'
-import cross from '../assets/cross.svg'
+import filter from '../assets/filter.svg'
 
 export const SearchBtn = ({ type, disabled, className, onClick, key, background }) => {
   return (
@@ -56,27 +56,26 @@ export const ReviewBtn = ({ title, type, disabled, onClick }) => {
   )
 }
 
-export const CrossBtn = ({ onClick, disabled, type }) => {
+export const FilterBtn = ({ onClick, disabled, type }) => {
   return (
-    <Cross
+    <Filter
       type={type}
       disabled={disabled}
       onClick={onClick}>
-      <CrossIcon
-        src={cross} />
-    </Cross>
+      <FilterIcon
+        src={filter} />
+    </Filter>
   )
 }
 
-const CrossIcon = styled.img`
+const FilterIcon = styled.img`
   width: 20px;
 
   @media (min-width: 768px) {
-    width: 20px;
+    width: 25px;
   }
 `
-const Cross = styled.button`
-  width: 30px;
+const Filter = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,7 +84,6 @@ const Cross = styled.button`
   background-color: transparent;
 
   @media (min-width: 768px) {
-    
   }
 `
 

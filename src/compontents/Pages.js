@@ -22,7 +22,6 @@ export const Pages = () => {
   const clinicData = useSelector((store) => store.clinics.clinics)
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
-  const pageNum = useSelector((store) => store.clinics.pageNum)
 
   const dispatch = useDispatch()
 
@@ -30,11 +29,9 @@ export const Pages = () => {
 
   const handleChange = (event, value) => {
     setPage(value)
-    dispatch(clinics.actions.generateSortOrder(page))
-    dispatch(fetchClinics(search, sortOrder, page))
+    dispatch(clinics.actions.generatePageNum(value))
+    dispatch(fetchClinics(search, sortOrder, value))
   }
-
-  console.log(page)
 
   const pageCount = () => clinicData.total_results / 6
 
@@ -42,8 +39,6 @@ export const Pages = () => {
     <>
       {clinicData.clinics && (
         <Section>
-          {/* <Btn>«Föregående sida</Btn>
-          <Btn>Nästa sida»</Btn> */}
           <Pagination
             count={Math.ceil(pageCount())}
             page={page}
@@ -56,13 +51,6 @@ export const Pages = () => {
   )
 }
 
-const Btn = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 10px;
-`
 const Section = styled.section`
   width: 100%;
   margin: 40px 0;

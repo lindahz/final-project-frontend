@@ -19,7 +19,7 @@ export const Navbar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch(fetchClinics(search, sortOrder))
+    dispatch(fetchClinics(search, sortOrder, 1))
   }
 
   const onChangeEvent = (value) => {
