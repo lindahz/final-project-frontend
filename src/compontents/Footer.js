@@ -12,17 +12,28 @@ export const Footer = () => {
     <Section>
       <Container>
         <MainLogo src={logo} />
-        <Text>Vi hjälper dig att hitta och jämföra vårdgivare och få stöd med att få den vård du behöver.</Text>
+        <Text>
+          Vi hjälper dig att hitta och jämföra vårdgivare
+          och få stöd med att få den vård du behöver.
+        </Text>
         <Text>© 2021 Health Finder</Text>
       </Container>
       <Container>
         <Subtitle>
           Information
         </Subtitle>
-        <StyledLink to="/"><TextCategory>Hitta och jämför vård</TextCategory></StyledLink>
-        <StyledLink to="/fakta-och-rad"><TextCategory>Fakta och råd</TextCategory></StyledLink>
-        <StyledLink to="/om-oss"><TextCategory>Om oss</TextCategory></StyledLink>
-        <StyledLink to="/kontakt"><TextCategory>Kontakt</TextCategory></StyledLink>
+        <StyledLink to="/">
+          <TextCategory>Hitta och jämför vård</TextCategory>
+        </StyledLink>
+        <StyledLink to="/fakta-och-rad">
+          <TextCategory>Fakta och råd</TextCategory>
+        </StyledLink>
+        <StyledLink to="/om-oss">
+          <TextCategory>Om oss</TextCategory>
+        </StyledLink>
+        <StyledLink to="/kontakt">
+          <TextCategory>Kontakt</TextCategory>
+        </StyledLink>
         <LogoContainer>
           <Logo src={facebook} />
           <Logo src={instagram} />
@@ -36,29 +47,61 @@ export const Footer = () => {
 const Section = styled.section`
   z-index: 1;
   bottom: 0;
-  padding: 50px 150px;
+  padding: 50px 25px;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: space-between;
-  align-items: flex-end;
   background-color: #ffffff;
   border-top: 1px solid #d6d6d6;
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    padding: 50px 80px;
+    flex-direction: row;
+    font-size: 18px;
+  }
+
+  @media (min-width: 1025px) {
+    padding: 50px 150px;
+    flex-direction: row;
+    font-size: 18px;
+  }
 `
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+
+  @media (min-width: 768px) {
+    align-items: flex-end;
+  }
 `
 const LogoContainer = styled.div`
-  margin: 20px 0 0 0;
+  margin: 10px 0;
+
+  @media (min-width: 768px) {
+    margin: 20px 0 0 0;
+  }
 `
+const Logo = styled.img`
+  width: 15px;
+  margin-right: 20px;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    margin: 0;
+    margin-left: 20px;
+  }
+`
+
 const Subtitle = styled.h4`
   width: 100%;
   margin: 15px 0;
   text-transform: uppercase;
-  text-align: right;
   font-size: 14px;
   font-weight: 600;
-  // display: flex;
+
+  @media (min-width: 768px) {
+    text-align: right;
+  }
 `
 const TextCategory = styled.p`
   padding-bottom: 1px 0;
@@ -73,28 +116,26 @@ const TextCategory = styled.p`
     opacity: 0.5;
   }
 `
+const Text = styled.p`
+  display: block;
+  width: 200px;
+  margin: 10px 0;
+  font-size: 12px;
+  font-weight: 400;
 
+  @media (min-width: 768px) {
+    display: block;
+  }
+`
+const MainLogo = styled.img`
+  width: 70px;
+  margin: 10px 0;
+  align-self: flex-start;
+`
 const StyledLink = styled(Link)`
   text-decoration: none;
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
   }
-`
-
-const Text = styled.p`
-  width: 200px;
-  margin: 10px 0;
-  font-size: 12px;
-  font-weight: 400;
-`
-const Logo = styled.img`
-  width: 15px;
-  margin-left: 20px;
-  cursor: pointer;
-`
-const MainLogo = styled.img`
-  width: 70px;
-  margin: 10px 0;
-  align-self: flex-start;
 `

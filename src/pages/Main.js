@@ -70,10 +70,10 @@ export const Main = () => {
   return (
     <Section>
       {!clinicData && (
-        <div>
+        <Container>
           <Search />
           <Info />
-        </div>
+        </Container>
       )}
       {clinicData && /* clinicData.length > 0 && */ (
         <FilterControls visibility={toggle}>
@@ -89,10 +89,10 @@ export const Main = () => {
       )}
       {clinicData && (
         <Wrapper>
-          <TextContainer>
+          <Container>
             <Text>Vi hittade <Span>{totalClinics}</Span> vårdgivare som matchade din sökning.</Text>
             {clinicData && clinicData.length === 0 && <Text>Försök igen!</Text>}
-          </TextContainer>
+          </Container>
           {clinicData && clinicData.length > 0 && clinicData.map((clinic, index) => { // filteredClinicData.map()
             return (
               <ClinicList
@@ -162,7 +162,7 @@ const FilterContainer = styled.div`
     opacity: ${props => props.visibility ? '0': '1'};
   }
 `
-const TextContainer = styled.div`
+const Container = styled.div`
   width: 100%;
 `
 

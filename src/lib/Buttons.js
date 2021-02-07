@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import search from '../assets/search.svg'
-import arrow from '../assets/arrow.svg'
 import backarrow from '../assets/backarrow.svg'
 import filter from '../assets/filter.svg'
 
@@ -22,13 +21,14 @@ export const SearchBtn = ({ type, disabled, onClick, width }) => {
 
 const Search = styled.button`
   padding: 10px 10px;
+  width: 100px;
+  height: 65px;
   background-color: #ffcda3; // #ffecda;
   border: none;
   border-radius: 0 3px 3px 0;
   transition: 0.3s ease;
   align-self: center;
   cursor: pointer;
-  z-index: 2;
 
   &:focus {
     outline: 1px solid #2d3235;
@@ -39,16 +39,21 @@ const Search = styled.button`
     box-shadow: 10px 10px 14px -9px rgba(45,50,53,0.6);
   }
 
+  @media (max-width: 320px) {
+    width: 50px;
+  }
+
   @media (min-width: 768px) {
     width: 80px;
+    height: 75px;
     align-self: unset;
   }
 `
 const SearchIcon = styled.img`
-  width: ${(props) => props.width || '20px'};
+  width: 30px;
 
   @media (min-width: 768px) {
-    width: ${(props) => props.width || '35px'};
+    width: 35px;
   }
 `
 
@@ -65,14 +70,16 @@ export const CustomSearchBtn = ({ type, disabled, onClick }) => {
 }
 
 const CustomSearch = styled(Search)`
+  width: 55px;
+  height: 50px;
   padding: 5px;
   background-color: transparent; 
   border-radius: 0;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #2d3235;
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid #2d3235;
+    border-bottom: 2px solid #ef4f4f;
   }
 
   &:hover {
@@ -80,24 +87,71 @@ const CustomSearch = styled(Search)`
     border-bottom: 2px solid #2d3235;
   }
 
+  @media screen and (max-width: 320px) {
+    width: 40px;
+  }
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    height: 80px;
+  }
+
+
   @media (min-width: 768px) {
     width: 50px;
+    border-bottom: 2px solid #ffffff;
   }
 `
 
-export const ToggleBtn = ({ title, type, disabled, onClick }) => {
+export const ToggleBtn = ({ title, type, disabled, onClick, src, width }) => {
   return (
     <Toggle
       type={type} 
       disabled={disabled}
       onClick={onClick}>
       {title}
-      <Icon
-        src={arrow} />
+      <ToggleIcon
+        src={src} 
+        width={width} />
     </Toggle>
   )
 }
+const Toggle = styled.button`
+  padding: 5px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  background-color: transparent;
+  color: #2d3235;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  border: none;
+  transition: 0.3s ease;
+  cursor: pointer;
 
+  &:focus {
+    border: 1px solid #000000;
+  }
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  @media (min-width: 768px) {
+    width: 70px;
+    padding: 10px 10px;
+    font-size: 20px;
+  }
+`
+const ToggleIcon = styled.img`
+  width: ${(props) => props.width || '15px'};
+  margin: 0 5px;
+
+  @media (min-width: 768px) {
+    width: ${(props) => props.width || '20px'};
+  }
+`
 export const BackBtn = ({ title }) => {
   return (
     <Back>
@@ -213,44 +267,5 @@ const Arrow = styled.img`
 
   @media (min-width: 768px) {
     
-  }
-`
-const Toggle = styled.button`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: transparent;
-  text-align: left;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
-  color: #808080;
-  border: none;
-  padding: 10px 5px;
-  margin: 0 10px;
-  transition: 0.3s ease;
-  cursor: pointer;
-  border-top: 1px solid #c8c8c8;
-  border-bottom: 1px solid #c8c8c8;
-
-  &:focus {
-    border: 1px solid #000000;
-  }
-
-  &:hover {
-    color: #d4a5a5;
-  }
-
-  @media (min-width: 768px) {
-    min-width: 150px;
-    padding: 10px 10px;
-    font-size: 14px;
-  }
-`
-const Icon = styled.img`
-  width: 20px;
-
-  @media (min-width: 768px) {
-    width: 20px;
   }
 `

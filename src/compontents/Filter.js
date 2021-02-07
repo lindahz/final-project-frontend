@@ -6,15 +6,8 @@ import styled from 'styled-components/macro'
 import { clinics } from '../reducers/clinics'
 
 import { Checkbox } from '../lib/Checkboxes'
-import { ToggleBtn } from '../lib/Buttons'
 
 export const Filter = () => {
-  const [toggle, setToggle] = useState(false)
-
-  const handleToggle = () => {
-    setToggle(!toggle)
-  }
-
   const dispatch = useDispatch()
 
   const handleCheckboxClick = (value) => {
@@ -23,10 +16,7 @@ export const Filter = () => {
 
   return (
     <Section>
-      {/* <ToggleBtn
-        onClick={() => handleToggle()}
-        title="Ärende" /> */}
-      <Container> {/* visibility={toggle} */}
+      <Container>
         <Subtitle>Ärende</Subtitle>
         <Checkbox
           label="Akut"

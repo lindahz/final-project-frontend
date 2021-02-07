@@ -59,40 +59,73 @@ export const Search = () => {
 
 const Section = styled.section`
   width: 100%;
+  height: 100vh;
   // margin-top: 150px;
   // padding: 25px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1025px) {
+    height: initial;
   }
 `
 const Container = styled.div`
   height: inherit;
-  margin: 110px 40px 0 40px;
-  padding: 120px 150px 110px 150px;
+  margin: 0;
+  padding: 200px 25px 300px 25px;
   position: relative;
   background-color: rgb(116, 199, 184, 0.4);
   border-radius: 3px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (min-width: 1025px) {
+    margin: 110px 40px 0 40px;
+    padding: 120px 150px 110px 150px;
   }
 `
 const Title = styled.h1`
-  width: 50%;
-  font-size: 42px;
+  font-size: 40px;
   font-weight: 800;
   margin: 0;
   color: #2d3235;
 
-  @media (min-width: 768px) {
-    margin: 0;
+  @media screen and (max-width: 320px) {
+    font-size: 36px;
+  }
+
+  @media screen and (min-width: 667px) and (max-width: 1024px) {
+    width: 80%;
+    font-size: 56px;
+  }
+
+  @media (min-width: 1025px) {
+    width: 50%;
     font-size: 56px;
   }
 `
+
 const Subtitle = styled.h3`
-  font-size: 16px;
+  font-size: 18px;
   color: #2d3235;
 
-  @media (min-width: 768px) {
+  @media (max-width: 320px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 667px) and (max-width: 1024px) {
+    width: 80%;
+    margin: 25px 200px 25px 0;
+    font-size: 22px;
+  }
+
+  @media (min-width: 1025px) {
     width: 50%;
     margin: 25px 200px 25px 0;
     font-size: 22px;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -8,10 +8,18 @@ import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
 import { CustomSearchTextfield } from '../lib/Textfields'
 import { CustomSearchBtn } from '../lib/Buttons'
+import { ToggleBtn } from '../lib/Buttons'
 
 import logo from '../assets/logo.png'
+import cross from '../assets/cross.svg'
+import hamburger from '../assets/hamburger.svg'
 
 export const Navbar = () => {
+  const [toggle, setToggle] = useState(false)
+  const handleToggle = () => {
+    setToggle(!toggle)
+  }
+
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
@@ -28,25 +36,40 @@ export const Navbar = () => {
   }
   return (
     <Section>
-      <Container>
-        <Logo src={logo} />
-        {!clinicData && (
-          <Form onSubmit={handleSubmit}>
-            <CustomSearchBtn type="submit" />
-            <CustomSearchTextfield
-              onChange={(event) => onChangeEvent(event.target.value)}
-              type="text"
-              placeholder="Ange region, ort eller adress...."
-              required />
-          </Form>
-        )}
-      </Container>
+      <ToggleBtn type="submit" onClick={handleToggle} src={hamburger} width="100%" />
+      <CompanyLogo src={logo} />
+      <HamburgerContainer visibility={toggle}>
+        <ToggleBtn type="submit" title="Stäng" onClick={handleToggle} src={cross} />
+        <Text>Sök efter vårdgivare i Sverige</Text>
+        <Form onSubmit={handleSubmit}>
+          <CustomSearchBtn type="submit" />
+          <CustomSearchTextfield
+            onChange={(event) => onChangeEvent(event.target.value)}
+            type="text"
+            placeholder="Ange region, ort eller adress...."
+            required />
+        </Form>
+        <Link to="/"><CategoryText>Hitta och jämför vård</CategoryText></Link>
+        <Link to="/fakta-och-rad"><CategoryText>Fakta och råd</CategoryText></Link>
+        <Link to="/om-oss"><CategoryText>Om oss</CategoryText></Link>
+        <Link to="/kontakt"><CategoryText>Kontakt</CategoryText></Link>
+      </HamburgerContainer>
       <Container>
         <Link to="/"><CategoryText>Hitta och jämför vård</CategoryText></Link>
         <Link to="/fakta-och-rad"><CategoryText>Fakta och råd</CategoryText></Link>
         <Link to="/om-oss"><CategoryText>Om oss</CategoryText></Link>
         <Link to="/kontakt"><CategoryText>Kontakt</CategoryText></Link>
       </Container>
+      {clinicData && (
+        <Form onSubmit={handleSubmit}>
+          <CustomSearchBtn type="submit" />
+          <CustomSearchTextfield
+            onChange={(event) => onChangeEvent(event.target.value)}
+            type="text"
+            placeholder="Ange region, ort eller adress...."
+            required />
+        </Form>
+      )}
     </Section>
   )
 }
@@ -54,55 +77,115 @@ export const Navbar = () => {
 const Section = styled.div`
   z-index: 1;
   width: 100%;
-  overflow: hidden;
+  padding: 10px 20px;
   position: fixed;
   top: 0;
-  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #ffffff;
   box-shadow: 10px 10px 29px -16px rgba(156,156,156,0.6);
   
-  @media (min-width: 768px) {
+  @media (min-width: 1025px) {
+    padding: 10px 0;
+    overflow: hidden;
+  }
+`
+const Container = styled.div`
+  display: none;
+
+  @media (min-width: 1025px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 16px;
+  }
+`
+const HamburgerContainer = styled.div`
+  z-index: 2;
+  height: 100vh;
+  padding: 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  
+  background-color: ${(props) => props.visibility ? '#ffffff': 'transparent'};
+  width: ${(props) => props.visibility ? '100%': '0%'};
+  opacity: ${(props) => props.visibility ? '1': '0'};
+  visibility: ${(props) => props.visibility ? 'visible': 'hidden'};
+  transition: all 0.1s ease-out;
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    padding: 50px 80px;
+  }
+
+  @media (min-width: 1025px) {
+    display: none;
   }
 `
 const Form = styled.form`
-  display: none;
+  width: 100%;
+  display: flex;
+  margin-bottom: 50px;
 
-  @media (min-width: 768px) {
-    display: flex;
+  @media (min-width: 1025px) {
+    margin: 0;
     margin-left: 10px;
     justify-self: flex-end;
   }
 `
-const Container = styled.div`
-  margin-right: 40px;
-  display: flex;
-  align-items: center;
+const Text = styled.h3`
+  margin-top: 50px;
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+
+  @media (max-width: 320px) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    font-size: 28px;
+  }
+
+ @media (min-width: 1025px) {
+    display: none;
+  }
 `
 const CategoryText = styled.a`
+  margin: 5px 0;
+  padding: 0;
   display: inline-block;
-  padding: 25px 10px;
   color: #2d3235;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
-  margin: 0 10px;
-  border-bottom: 3px solid #ffffff;
   transition: 0.3s ease;
 
-  &:hover {
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    font-size: 24px;
+  }
+
+  @media (min-width: 1025px) {
+    margin: 0 10px;
+    padding: 25px 10px;
+    border-bottom: 3px solid #ffffff;
+    font-size: 16px;
+
+    &:hover {
     border-bottom: 3px solid #d4a5a5;
     font-weight: 500;
     color: #000000;
   }
-
-  @media (min-width: 768px) {
-    font-size: 16px; 
   }
 `
-const Logo = styled.img`
-  width: 50px;
+const CompanyLogo = styled.img`
+  width: 45px;
   height: inherit;
-  margin: 0 40px;
-  float: left;
+
+  @media (min-width: 1025px) {
+    width: 50px;
+    margin: 0 40px;
+  }
 `

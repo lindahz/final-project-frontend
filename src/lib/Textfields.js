@@ -15,6 +15,7 @@ export const SearchTextfield = ({ title, type, onChange, placeholder, required }
 }
 const Search = styled.input`
   width: 100%;
+  height: 65px;
   padding: 8px 15px;
   background-color: #ffffff;
   color: #2d3235;
@@ -47,13 +48,13 @@ const Search = styled.input`
     opacity: 0.5;
   }
 
-  @media (max-width: 280px) {
-    font-size: 14px;
+  @media (max-width: 320px) {
+    font-size: 12px;
   }
 
   @media (min-width: 768px) {
     width: 450px;
-    height: 73px;
+    height: 75px;
     padding: 10px 20px;
     font-size: 18px;
   }
@@ -71,11 +72,14 @@ export const CustomSearchTextfield = ({ title, type, onChange, placeholder, requ
   )
 }
 const CustomSearch = styled(Search)`
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
   border-radius: 0;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #2d3235;
 
   &:focus {
-    border-bottom: 2px solid #2d3235;
+    border-bottom: 2px solid #ef4f4f;
     &::-webkit-input-placeholder {
       color: #2d3235;
       opacity: 1;
@@ -95,7 +99,22 @@ const CustomSearch = styled(Search)`
     opacity: 0.5;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (max-width: 320px) {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    height: 80px;
+    padding: 5px 10px;
+    font-size: 24px;
+  }
+
+  @media (min-width: 1025px) {
+    width: 450px;
+    height: 75px;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ffffff;
     font-size: 16px;
   }
   `

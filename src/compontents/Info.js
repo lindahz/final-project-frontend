@@ -45,48 +45,93 @@ export const Info = () => {
 }
 
 const Section = styled.section`
-  padding: 80px;
+  width: 100%;
+  padding: 50px 25px;
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    padding: 50px;
+  }
+
+  @media (min-width: 1025px) {
+    padding: 80px;
+  }
 `
 const Title = styled.h1`
   margin: 40px 0 0 0;
-  font-size: 42px;
+  font-size: 30px;
   font-weight: 800;
   text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 42px;
+  }
 `
 const Container = styled.div`
   width: 100%;
-  margin: 80px 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-`
-const CardContainer = styled.div`
-  width: 25%;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: 768px) {
+    margin: 80px 0;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+  }
+`
+const CardContainer = styled.div`
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    width: 25%;
+    margin: 0;
+  }
 `
 const IconContainer = styled.div`
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   padding: 30px;
   border-radius: 100%;
   background-color: #ee9595;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    width: 130px;
+    height: 130px;
+  }
 `
 const Icon = styled.img`
-  width: 70px;
+  width: 50px;
   // display: flex;
+  @media (min-width: 768px) {
+    width: 70px;
+  }
 `
 const Subtitle = styled.h3`
   width: 100%;
   margin: 15px 0;
   text-align: center;
+  font-size: 16px;
   // display: flex;
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `
 const Text = styled.p`
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `
 
