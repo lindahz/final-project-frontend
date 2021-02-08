@@ -57,11 +57,12 @@ export const Filter = () => {
           value="wkn"
           id="wkn"
           onChange={(event) => handleCheckboxClick(event.target.value)} />
-        <Subtitle>Omdöme</Subtitle>
+      
+        {/* <Subtitle>Omdöme</Subtitle>
         <StyledRating
           name="simple-controlled"
           value={rating}
-          onChange={(event, value) => setRating(value)} />
+          onChange={(event, value) => setRating(value)} /> */}
         <Subtitle>Övrigt</Subtitle>
         <Checkbox
           label="Drop-in"

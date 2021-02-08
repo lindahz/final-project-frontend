@@ -31,44 +31,55 @@ export const Main = () => {
 
   filters.forEach((item) => {
     if (item.checked === true && item.id === 'reg' && item.id === 'emg') {
-      // should return all results
-      console.log('båda')
+      return results
+      // if both reg and emg is checked, it should return all clinics
     } else if (item.checked === true && item.id === 'emg') {
       results = results.filter((clinic) => {
         return clinic.clinic_operation.includes('Akutverksamhet')
       })
+      // if only emg is checked, it should only return emergency clinics
     } else if (item.checked === true && item.id === 'reg') {
       results = results.filter((clinic) => {
         return clinic.clinic_operation.includes('Vårdcentral')
       })
+      // if both only reg is checked, it should only return regular clinics
     }
-    if (item.checked === true && item.id === 'all') {
+
+    if (item.checked === true && item.id === 'week') {
+      return results
+      // if week is checked, it should return all clinics.
+    } else if (item.checked === true && item.id === 'all' && item.id === 'wkn') {
+      results = results.filter((clinic) => {
+        return clinic.open_hours.includes('Dygnet runt') && clinic.open_hours.includes('Lör') && clinic.open_hours.includes('sön')
+      })
+      // if both all and wkn is checked, it should return all clinics
+    } else if (item.checked === true && item.id === 'all') {
       results = results.filter((clinic) => {
         return clinic.open_hours.includes('Dygnet runt')
       })
+      // if only all is checked, it should only return clinics opened 24/7
+    } else if (item.checked === true && item.id === 'wkn') {
+      results = results.filter((clinic) => {
+        return clinic.open_hours.includes('Lör') && clinic.open_hours.includes('sön')
+      })
+      // if only wkn is checked, it should only return clinics opened on weekends
     }
-    if (item.checked === true && item.id === 'week') {
-      // return all results
-      console.log('veckodagar')
-    }
-    if (item.checked === true && item.id === 'wkn') {
-      // return results including Lör or/and sön
-      console.log('helger')
-    }
+
     if (item.checked === true && item.id === 'dropin') {
       results = results.filter((clinic) => {
-        // should be opposite - does not include
         return !clinic.drop_in.includes('Ej angivet/stängt')
       })
+      // if dropin is checked is should not return clinics including 'Ej angivet/stängt'
     }
   })
 
-//   useEffect(() => {
-//   const result = clinicData.filter((clinics) => {
-    
-//   })
-//   setFilteredClinicData(result)
-// })
+  // useEffect(() => {
+  //   // here's where the filter functions should go?
+  //   const result = clinicData && clinicData.filter((clinics) => {
+  //     return clinics.clinic_operation.includes('Vårdcentral')
+  //   })
+  //   setFilteredClinicData(result)
+  // })
 
   return (
     <Section>
@@ -152,8 +163,8 @@ const FilterContainer = styled.div`
   background-color: transparent;
   font-size: 14px;
   transition: all 0.2s ease-out; 
-  // visibility: ${props => props.visibility ? 'visible': 'hidden'};
-  // opacity: ${props => props.visibility ? '1': '0'};
+  visibility: ${props => props.visibility ? 'visible': 'hidden'};
+  opacity: ${props => props.visibility ? '1': '0'};
 
   @media (min-width: 768px) {
     width: 300px;
