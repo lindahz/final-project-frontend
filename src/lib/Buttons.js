@@ -84,7 +84,6 @@ const CustomSearch = styled(Search)`
 
   &:hover {
     box-shadow: none;
-    border-bottom: 2px solid #2d3235;
   }
 
   @media screen and (max-width: 320px) {
@@ -95,18 +94,19 @@ const CustomSearch = styled(Search)`
     height: 80px;
   }
 
-
   @media (min-width: 768px) {
     width: 50px;
-    border-bottom: 2px solid #ffffff;
+    height: 72px;
+    border-bottom: 3px solid #ffffff;
   }
 `
 
-export const ToggleBtn = ({ title, type, disabled, onClick, src, width }) => {
+export const ToggleBtn = ({ title, type, disabled, onClick, src, width, display }) => {
   return (
     <Toggle
       type={type} 
       disabled={disabled}
+      display={display}
       onClick={onClick}>
       {title}
       <ToggleIcon
@@ -120,7 +120,6 @@ const Toggle = styled.button`
   margin: 5px 0;
   display: flex;
   align-items: center;
-  align-self: flex-end;
   background-color: transparent;
   color: #2d3235;
   font-family: 'Quicksand', sans-serif;
@@ -138,10 +137,14 @@ const Toggle = styled.button`
     opacity: 0.6;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
     width: 70px;
     padding: 10px 10px;
     font-size: 20px;
+  }
+
+  @media (min-width: 1025px) {
+    display: ${(props) => props.display || 'none'};
   }
 `
 const ToggleIcon = styled.img`
@@ -152,15 +155,6 @@ const ToggleIcon = styled.img`
     width: ${(props) => props.width || '20px'};
   }
 `
-export const BackBtn = ({ title }) => {
-  return (
-    <Back>
-      <Arrow
-        src={backarrow} />
-      {title}
-    </Back>
-  )
-}
 
 export const ReviewBtn = ({ title, type, disabled, onClick }) => {
   return (
@@ -172,37 +166,6 @@ export const ReviewBtn = ({ title, type, disabled, onClick }) => {
     </ReviewButton>
   )
 }
-
-export const FilterBtn = ({ onClick, disabled, type }) => {
-  return (
-    <Filter
-      type={type}
-      disabled={disabled}
-      onClick={onClick}>
-      <FilterIcon
-        src={filter} />
-    </Filter>
-  )
-}
-
-const FilterIcon = styled.img`
-  width: 20px;
-
-  @media (min-width: 768px) {
-    width: 25px;
-  }
-`
-const Filter = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-end;
-  border: none;
-  background-color: transparent;
-
-  @media (min-width: 768px) {
-  }
-`
 
 const ReviewButton = styled.button`
   width: 150px;
@@ -232,18 +195,27 @@ const ReviewButton = styled.button`
   }
 `
 
+export const BackBtn = ({ title }) => {
+  return (
+    <Back>
+      <Arrow
+        src={backarrow} />
+      {title}
+    </Back>
+  )
+}
 const Back = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   background-color: transparent;
-  text-align: left;
+  text-align: center;
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   color: #2d3235;
   transition: 0.3s ease;
   cursor: pointer;
-  border: 2px solid #2d3235;
+  border: none;
   border-radius: 3px;
   text-decoration: none;
 
@@ -256,14 +228,13 @@ const Back = styled.button`
   }
 
   @media (min-width: 768px) {
-    min-width: 150px;
     padding: 10px 10px;
-    font-size: 16px;
+    font-size: 20px;
   }
 `
 const Arrow = styled.img`
-  width: 16px;
-  margin-right: 5px;
+  width: 20px;
+  margin-right: 8px;
 
   @media (min-width: 768px) {
     

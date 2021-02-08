@@ -111,14 +111,18 @@ const CustomSearch = styled(Search)`
   }
 
   @media (min-width: 1025px) {
-    width: 450px;
-    height: 75px;
+    width: 300px;
+    height: 72px;
     padding: 10px 20px;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
     font-size: 16px;
-  }
-  `
 
+
+    &:focus {
+      border-bottom: 3px solid #ef4f4f;
+    }
+  }
+`
 export const ReviewTextfield = ({ title, type, onChange, placeholder, required }) => {
   return (
     <ReviewLabel>

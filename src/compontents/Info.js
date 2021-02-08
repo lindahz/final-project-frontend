@@ -15,7 +15,7 @@ export const Info = () => {
           <IconContainer>
             <Icon src={stetoskop} />
           </IconContainer>
-          <Subtitle>HITTA RÄTT VÅRDGIVARE</Subtitle>
+          <Subtitle className="icon">Hitta rätt vårdgivare</Subtitle>
           <Text>
             Det är inte lätt att veta vilken typ av vård du kan få, var man får den bästa möjliga vården och hur man går tillväga. Vi hjälper dig att jämföra vårdgivare och hitta rätt.
           </Text>
@@ -24,7 +24,7 @@ export const Info = () => {
           <IconContainer>
             <Icon src={document} />
           </IconContainer>
-          <Subtitle>SAMLA IN JOURNALER</Subtitle>
+          <Subtitle className="icon">Samla in journaler</Subtitle>
           <Text>
             Som patient har man rätt att få tillgång till sin journal. Att samla in alla relevanta journaler kan vara besvärligt. Vi kan hjälpa till med allt från insamling av journalerna till att översätta dem enligt ISO-standard 17100.
           </Text>
@@ -33,7 +33,7 @@ export const Info = () => {
           <IconContainer>
             <Icon src={lightbulb} />
           </IconContainer>
-          <Subtitle>VÅRD UTOMLANDS</Subtitle>
+          <Subtitle className="icon">Vård utomlands</Subtitle>
           <Text>
             När du söker vård utomlands har du ofta rätt till ersättning. Vi hjälper dig med ekonomisk rådgivning och stöd såväl inför som efter din behandling.
           </Text>
@@ -97,7 +97,7 @@ const IconContainer = styled.div`
   height: 100px;
   padding: 30px;
   border-radius: 100%;
-  background-color: #ee9595;
+  background-color: #949cdf;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +119,12 @@ const Subtitle = styled.h3`
   margin: 15px 0;
   text-align: center;
   font-size: 16px;
-  // display: flex;
+
+  &.icon {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
   @media (min-width: 768px) {
     font-size: 18px;
   }

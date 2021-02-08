@@ -13,7 +13,7 @@ export const Reviews = ({ rating, review, review_date, name, title }) => {
 
   const StyledRating = withStyles({
     iconFilled: {
-      color: '#6ab0d2'
+      color: '#FFCC66'
     },
     iconHover: {
       color: '#ff3d47'

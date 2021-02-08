@@ -37,7 +37,7 @@ const Label = styled.label`
   background-color: transparent;
   border: 1px solid #2d3235;
   border-radius: 3px;
-  color: #000000;
+  color: #2d3235;
   font-size: 12px;
   font-weight: 500;
   text-align: center;
@@ -45,7 +45,7 @@ const Label = styled.label`
   transition: 0.5s;
 
   ${Input}:focus + & {
-    border: #ef4f4f solid 1px;
+    // border: #ef4f4f solid 1px;
   }
 
   ${Input}:checked + & {

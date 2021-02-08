@@ -2,12 +2,25 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
+import Rating from '@material-ui/lab/Rating'
+import { withStyles } from '@material-ui/core/styles'
 
 import { clinics } from '../reducers/clinics'
-
 import { Checkbox } from '../lib/Checkboxes'
 
+const StyledRating = withStyles({
+  iconFilled: {
+    color: '#FFCC66'
+  },
+  iconHover: {
+    color: '#ff3d47'
+  }
+})(Rating);
+
 export const Filter = () => {
+  const [rating, setRating] = useState(0)
+  console.log(rating)
+
   const dispatch = useDispatch()
 
   const handleCheckboxClick = (value) => {
@@ -44,6 +57,11 @@ export const Filter = () => {
           value="wkn"
           id="wkn"
           onChange={(event) => handleCheckboxClick(event.target.value)} />
+        <Subtitle>Omdöme</Subtitle>
+        <StyledRating
+          name="simple-controlled"
+          value={rating}
+          onChange={(event, value) => setRating(value)} />
         <Subtitle>Övrigt</Subtitle>
         <Checkbox
           label="Drop-in"
@@ -69,6 +87,7 @@ const Container = styled.div`
 const Subtitle = styled.h3`
   width: 100%;
   // margin: 18px 0;
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 1px;
 `

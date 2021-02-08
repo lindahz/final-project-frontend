@@ -11,7 +11,8 @@ const initialState = {
     { id: 'all', checked: false },
     { id: 'week', checked: false },
     { id: 'wkn', checked: false },
-    { id: 'dropin', checked: false }
+    { id: 'dropin', checked: false },
+    { id: 'rating', checked: 0 }
   ]
 }
 

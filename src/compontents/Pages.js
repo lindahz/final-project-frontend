@@ -51,8 +51,8 @@ export const Pages = () => {
   )
 }
 
-const Section = styled.section`
-  width: 100%;
+const Section = styled.div`
+  width: inherit;
   margin: 40px 0;
   display: flex;
   justify-content: center;

@@ -41,14 +41,14 @@ export const Navbar = () => {
       <HamburgerContainer visibility={toggle}>
         <ToggleBtn type="submit" title="Stäng" onClick={handleToggle} src={cross} />
         <Text>Sök efter vårdgivare i Sverige</Text>
-        <Form onSubmit={handleSubmit}>
+        <HamburgerForm onSubmit={handleSubmit}>
           <CustomSearchBtn type="submit" />
           <CustomSearchTextfield
             onChange={(event) => onChangeEvent(event.target.value)}
             type="text"
             placeholder="Ange region, ort eller adress...."
             required />
-        </Form>
+        </HamburgerForm>
         <Link to="/"><CategoryText>Hitta och jämför vård</CategoryText></Link>
         <Link to="/fakta-och-rad"><CategoryText>Fakta och råd</CategoryText></Link>
         <Link to="/om-oss"><CategoryText>Om oss</CategoryText></Link>
@@ -87,7 +87,7 @@ const Section = styled.div`
   box-shadow: 10px 10px 29px -16px rgba(156,156,156,0.6);
   
   @media (min-width: 1025px) {
-    padding: 10px 0;
+    padding: 0;
     overflow: hidden;
   }
 `
@@ -96,8 +96,6 @@ const Container = styled.div`
 
   @media (min-width: 1025px) {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     font-size: 16px;
   }
 `
@@ -127,15 +125,23 @@ const HamburgerContainer = styled.div`
 `
 const Form = styled.form`
   width: 100%;
-  display: flex;
+  display: none;
   margin-bottom: 50px;
 
   @media (min-width: 1025px) {
+    width: initial;
+    display: flex;
     margin: 0;
-    margin-left: 10px;
-    justify-self: flex-end;
   }
 `
+const HamburgerForm = styled(Form)`
+  display: flex;
+
+  @media (min-width: 1025px) {
+    display: none;
+  }
+`
+
 const Text = styled.h3`
   margin-top: 50px;
   display: block;
@@ -174,7 +180,7 @@ const CategoryText = styled.a`
     font-size: 16px;
 
     &:hover {
-    border-bottom: 3px solid #d4a5a5;
+    border-bottom: 3px solid #949cdf;
     font-weight: 500;
     color: #000000;
   }
@@ -187,5 +193,6 @@ const CompanyLogo = styled.img`
   @media (min-width: 1025px) {
     width: 50px;
     margin: 0 40px;
+    justify-self: flex-start;
   }
 `

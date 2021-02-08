@@ -45,19 +45,23 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   background-color: #ffffff;
-  border: 1px solid #2d3235;
+  box-shadow: 3px 4px 12px -8px rgba(196,196,196,1);
   border-radius: 3px;
-  // box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
-  // transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 3px 4px 30px 0px rgba(196,196,196,0.63);
+  }
 
   @media (max-width: 280px) {
   }
 
   @media (min-width: 768px) {
-    width: 450px;
+    width: 420px;
     height: 200px;
-    margin: 20px 40px 20px 0;
+    margin: 20px;
     padding: 30px 40px 40px 40px;
   }
   `
