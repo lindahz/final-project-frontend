@@ -11,7 +11,6 @@ import { ClinicList } from '../compontents/ClinicList'
 import { Pages } from '../compontents/Pages'
 
 import { ToggleBtn } from '../lib/Buttons'
-
 import filterIcon from '../assets/filterIcon.svg'
 
 export const Main = () => {
@@ -27,91 +26,55 @@ export const Main = () => {
   const [filteredClinicData, setFilteredClinicData] = useState([])
 
   useEffect(() => {
-    const filteredClinics = clinicData && clinicData.filter((clinic) => {
-      activeFilters.forEach((filterItem) => {
-        // eslint-disable-next-line default-case
-        switch (filterItem.id) {
-          case 'emg':
-            if (clinic.clinic_operation.includes('Akutverksamhet')) {
-              return true;
-            }
-            break;
-          case 'reg':
-            if (clinic.clinic_operation.includes('Vårdcentral')) {
-              return true;
-            }
-            break;
-          case 'all':
-            if (clinic.open_hours.includes('Dygnet runt')) {
-              return true;
-            }
-            break;
-          case 'week':
-            if (clinic.clinic_operation.includes('Vårdcentral')) { // not sure what to write here since it should return all results
-              return true;
-            }
-            break;
-          case 'wkn':
-            if (clinic.open_hours.includes('Lör') || clinic.clinic_operation.includes('sön')) {
-              return true;
-            }
-            break;
-          case 'dropin':
-            if (!clinic.drop_in.includes('Ej angivet/stängt')) {
-              return true;
-            }
-        }
-      })
-    })
-    setFilteredClinicData(filteredClinics);
-    console.log(filteredClinicData)
-  }, [])
-
-  /*   let results = clinicData
-  filters.forEach((item) => {
-    if (item.checked === true && item.id === 'reg' && item.id === 'emg') {
-      return results
-      // if both reg and emg is checked, it should return all clinics
-    } else if (item.checked === true && item.id === 'emg') {
-      results = results.filter((clinic) => {
-        return clinic.clinic_operation.includes('Akutverksamhet')
-      })
-      // if only emg is checked, it should only return emergency clinics
-    } else if (item.checked === true && item.id === 'reg') {
-      results = results.filter((clinic) => {
-        return clinic.clinic_operation.includes('Vårdcentral')
-      })
-      // if both only reg is checked, it should only return regular clinics
-    }
-
-    if (item.checked === true && item.id === 'week') {
-      return results
-      // if week is checked, it should return all clinics.
-    } else if (item.checked === true && item.id === 'all' && item.id === 'wkn') {
-      results = results.filter((clinic) => {
-        return clinic.open_hours.includes('Dygnet runt') && clinic.open_hours.includes('Lör') && clinic.open_hours.includes('sön')
-      })
-      // if both all and wkn is checked, it should return all clinics
-    } else if (item.checked === true && item.id === 'all') {
-      results = results.filter((clinic) => {
-        return clinic.open_hours.includes('Dygnet runt')
-      })
-      // if only all is checked, it should only return clinics opened 24/7
-    } else if (item.checked === true && item.id === 'wkn') {
-      results = results.filter((clinic) => {
-        return clinic.open_hours.includes('Dygnet runt') && clinic.open_hours.includes('Lör') && clinic.open_hours.includes('sön')
-      })
-      // if only wkn is checked, it should only return clinics opened on weekends
-    }
-
-    if (item.checked === true && item.id === 'dropin') {
-      results = results.filter((clinic) => {
-        return !clinic.drop_in.includes('Ej angivet/stängt')
-      })
-      // if dropin is checked is should not return clinics including 'Ej angivet/stängt'
-    }
-  })
-*/
+    const filteredClinics =
+      clinicData &&
+      clinicData.filter((clinic) => {
+        let includeClinic = false;
+        activeFilters.forEach((filterItem) => {
+          // eslint-disable-next-line default-case
+          switch (filterItem.id) {
+            case 'emg':
+              if (clinic.clinic_operation.includes('Akutverksamhet')) {
+                includeClinic = true;
+              }
+              break;
+            case 'reg':
+              if (clinic.clinic_operation.includes('Vårdcentral')) {
+                includeClinic = true;
+              }
+              break;
+            case 'all':
+              if (clinic.open_hours.includes('Dygnet runt')) {
+                includeClinic = true;
+              }
+              break;
+            case 'week':
+              if (clinic.open_hours) {
+                // not sure what to write here since it should return all results
+                includeClinic = true;
+              }
+              break;
+            case 'wkn':
+              if (
+                clinic.open_hours.includes('Lör') ||
+                clinic.open_hours.includes('sön') ||
+                clinic.open_hours.includes('Dygnet runt')
+              ) {
+                includeClinic = true;
+              }
+              break;
+            case 'dropin':
+              if (!clinic.drop_in.includes('Ej angivet/stängt')) {
+                includeClinic = true
+              }
+              break;
+          }
+        });
+        return includeClinic
+      });
+    setFilteredClinicData(filteredClinics)
+    console.log(filteredClinics)
+  }, [filters, clinicData]);
 
   return (
     <Section>
@@ -133,7 +96,8 @@ export const Main = () => {
         </FilterControls>
       )}
       {clinicData && (
-        <Wrapper>
+        <Container className="clinicListContainer">
+          <ToggleBtn display="block" type="submit" onClick={handleToggle} src={filterIcon} width="30px" />
           <Text>Vi hittade <Span>{totalClinics}</Span> vårdgivare som matchade din sökning.</Text>
           {clinicData && clinicData.length === 0 && <Text>Försök igen!</Text>}
           {clinicData && clinicData.length > 0 && clinicData.map((clinic, index) => { // filteredClinicData.map()
@@ -144,7 +108,7 @@ export const Main = () => {
             )
           })}
           <Pages />
-        </Wrapper>
+        </Container>
       )}
     </Section>
   )
@@ -156,16 +120,21 @@ const Section = styled.main`
   justify-content: center;
 `
 
-const Wrapper = styled.div`
+const Container = styled.div`
   width: 100%;
-  padding: 120px 40px 40px 60px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-items: flex-start;
-  justify-content: center;
-  background-color: #f5f5f5;
 
-  @media (min-width: 768px) {
+  &.clinicListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+
+    @media (min-width: 768px) {
+      padding: 120px 40px 40px 60px;
+      //justify-content: flex-start;
+      align-content: center;
+    }
   }
 `
 
@@ -174,19 +143,28 @@ const FilterControls = styled.div`
   height: inherit;
   padding-top: 120px;
   position: absolute;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   background-color: #ffffff;
   border-right: 1px solid #d6d6d6;
+  width: ${props => props.visibility ? '100%': '0%'};
   transition: all 0.2s ease-out; 
 
-  @media (min-width: 768px) {
+  @media screen and (max-width: 320px) {
+  }
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+
+  }
+
+  @media (min-width: 1025px) {
     position: static;
     display: flex;
     width: ${props => props.visibility ? '100px': '500px'};
   }
 `
+
 const FilterContainer = styled.div`
   width: 100%;
   padding: 0 20px;
@@ -203,9 +181,6 @@ const FilterContainer = styled.div`
     visibility: ${props => props.visibility ? 'hidden': 'visible'};
     opacity: ${props => props.visibility ? '0': '1'};
   }
-`
-const Container = styled.div`
-  width: 100%;
 `
 
 const Text = styled.h3`
