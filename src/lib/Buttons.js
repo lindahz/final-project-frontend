@@ -4,7 +4,6 @@ import styled from 'styled-components/macro'
 
 import search from '../assets/search.svg'
 import backarrow from '../assets/backarrow.svg'
-import filter from '../assets/filter.svg'
 
 export const SearchBtn = ({ type, disabled, onClick, width }) => {
   return (
@@ -94,7 +93,7 @@ const CustomSearch = styled(Search)`
     height: 80px;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1025px) {
     width: 50px;
     height: 72px;
     border-bottom: 3px solid #ffffff;
@@ -156,26 +155,26 @@ const ToggleIcon = styled.img`
   }
 `
 
-export const ReviewBtn = ({ title, type, disabled, onClick }) => {
+export const FormBtn = ({ title, type, disabled, onClick }) => {
   return (
-    <ReviewButton
+    <FormButton
       type={type}
       disabled={disabled}
       onClick={onClick}>
       {title}
-    </ReviewButton>
+    </FormButton>
   )
 }
 
-const ReviewButton = styled.button`
+const FormButton = styled.button`
   width: 150px;
   display: block;
   padding: 10px 5px;
   margin: 10px 0;
-  border: 1px solid lightgray;
+  border: 1px solid;
   border-radius: 3px;
-  background-color: #ffecda;
-  font-weight: 600;
+  background-color: transparent;
+  font-family: 'Quicksand', sans-serif;
   color: #2d3235;
   transition: 0.3s ease;
   cursor: pointer;
@@ -191,20 +190,20 @@ const ReviewButton = styled.button`
   @media (min-width: 768px) {
     min-width: 150px;
     padding: 10px 10px;
-    font-size: 16px;
+    font-size: 14px;
   }
 `
 
 export const BackBtn = ({ title }) => {
   return (
-    <Back>
-      <Arrow
+    <BackButton>
+      <ArrowIcon
         src={backarrow} />
       {title}
-    </Back>
+    </BackButton>
   )
 }
-const Back = styled.button`
+const BackButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -228,11 +227,11 @@ const Back = styled.button`
   }
 
   @media (min-width: 768px) {
-    padding: 10px 10px;
+    padding: 20px 0;
     font-size: 20px;
   }
 `
-const Arrow = styled.img`
+const ArrowIcon = styled.img`
   width: 20px;
   margin-right: 8px;
 

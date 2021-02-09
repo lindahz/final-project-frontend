@@ -9,7 +9,6 @@ import { SearchTextfield } from '../lib/Textfields'
 import { SearchBtn } from '../lib/Buttons'
 
 import tool from '../assets/tool.jpg'
-import doctor from '../assets/doctor.jpg'
 
 export const Search = () => {
   const dispatch = useDispatch()

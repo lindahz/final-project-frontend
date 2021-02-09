@@ -12,23 +12,62 @@ import { Pages } from '../compontents/Pages'
 
 import { ToggleBtn } from '../lib/Buttons'
 
-import filter from '../assets/filter.svg'
-import hamburger from '../assets/hamburger.svg'
+import filterIcon from '../assets/filterIcon.svg'
 
 export const Main = () => {
   const [toggle, setToggle] = useState(false)
   const handleToggle = () => {
     setToggle(!toggle)
   }
-
-  const [filteredClinicData, setFilteredClinicData] = useState([])
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
   const totalClinics = useSelector((store) => store.clinics.clinics.total_results)
-
   const filters = useSelector((store) => store.clinics.filter)
+  const activeFilters = filters.filter((filter) => filter.checked)
 
-  let results = clinicData
+  const [filteredClinicData, setFilteredClinicData] = useState([])
 
+  useEffect(() => {
+    const filteredClinics = clinicData && clinicData.filter((clinic) => {
+      activeFilters.forEach((filterItem) => {
+        // eslint-disable-next-line default-case
+        switch (filterItem.id) {
+          case 'emg':
+            if (clinic.clinic_operation.includes('Akutverksamhet')) {
+              return true;
+            }
+            break;
+          case 'reg':
+            if (clinic.clinic_operation.includes('Vårdcentral')) {
+              return true;
+            }
+            break;
+          case 'all':
+            if (clinic.open_hours.includes('Dygnet runt')) {
+              return true;
+            }
+            break;
+          case 'week':
+            if (clinic.clinic_operation.includes('Vårdcentral')) { // not sure what to write here since it should return all results
+              return true;
+            }
+            break;
+          case 'wkn':
+            if (clinic.open_hours.includes('Lör') || clinic.clinic_operation.includes('sön')) {
+              return true;
+            }
+            break;
+          case 'dropin':
+            if (!clinic.drop_in.includes('Ej angivet/stängt')) {
+              return true;
+            }
+        }
+      })
+    })
+    setFilteredClinicData(filteredClinics);
+    console.log(filteredClinicData)
+  }, [])
+
+  /*   let results = clinicData
   filters.forEach((item) => {
     if (item.checked === true && item.id === 'reg' && item.id === 'emg') {
       return results
@@ -60,7 +99,7 @@ export const Main = () => {
       // if only all is checked, it should only return clinics opened 24/7
     } else if (item.checked === true && item.id === 'wkn') {
       results = results.filter((clinic) => {
-        return clinic.open_hours.includes('Lör') && clinic.open_hours.includes('sön')
+        return clinic.open_hours.includes('Dygnet runt') && clinic.open_hours.includes('Lör') && clinic.open_hours.includes('sön')
       })
       // if only wkn is checked, it should only return clinics opened on weekends
     }
@@ -72,14 +111,7 @@ export const Main = () => {
       // if dropin is checked is should not return clinics including 'Ej angivet/stängt'
     }
   })
-
-  // useEffect(() => {
-  //   // here's where the filter functions should go?
-  //   const result = clinicData && clinicData.filter((clinics) => {
-  //     return clinics.clinic_operation.includes('Vårdcentral')
-  //   })
-  //   setFilteredClinicData(result)
-  // })
+*/
 
   return (
     <Section>
@@ -91,7 +123,7 @@ export const Main = () => {
       )}
       {clinicData && /* clinicData.length > 0 && */ (
         <FilterControls visibility={toggle}>
-          <ToggleBtn display="block" type="submit" onClick={handleToggle} src={filter} width="30px" />
+          <ToggleBtn display="block" type="submit" onClick={handleToggle} src={filterIcon} width="30px" />
           <FilterContainer visibility={toggle}>
             <h3>Filtrera</h3>
             <Filter />

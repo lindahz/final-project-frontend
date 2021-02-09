@@ -39,13 +39,27 @@ export const ClinicDetails = () => {
       })
   }, [updateReviews])
 
+  const displayAverageRating = (rating) => {
+    if (rating > 0 && rating < 2) {
+      return (`${clinic.average_rating} Dålig`)
+    } else if (rating >= 2 && rating < 3) {
+      return (`${clinic.average_rating} Okej`)
+    } else if (rating >= 3 && rating < 4) {
+      return (`${clinic.average_rating} Bra`)
+    } else if (rating >= 4) {
+      return (`${clinic.average_rating} Fantastiskt bra`)
+    } else {
+      return 'Inga omdömen'
+    }
+  }
+
   return (
     <Section>
       <StyledLink to="/" className="back"><BackBtn title="Gå tillbaka" /></StyledLink>
       <Wrapper className="border">
         <TextContainer>
           <Subtitle className="clinicType">{clinic.clinic_type}</Subtitle>
-          <Ship><Span>★ </Span>{clinic.average_rating} Fantastiskt bra</Ship>
+          <Ship><Span>★ </Span>{displayAverageRating(clinic.average_rating)}</Ship>
         </TextContainer>
         <Title>{clinic.clinic_name}</Title>
         <Heading>Öppettider</Heading>
@@ -62,6 +76,7 @@ export const ClinicDetails = () => {
             <Subtitle>Skriv ett omdöme</Subtitle>
           </StyledLink>
         </TextContainer>
+        {clinic.text_reviews_count === 0 && (<Heading className="empty">Det finns inga omdömen än...</Heading>)}
         {reviews && reviews.map((review, index) => {
           return (
             <Reviews
@@ -135,6 +150,7 @@ const Span = styled.span`
   color: #FFCC66;
 `
 const Wrapper = styled.div`
+  position: relative;
   width: 50%;
   height: 500px;
   padding: 20px 40px 40px 40px;
@@ -161,6 +177,16 @@ const Title = styled.h2`
 const Heading = styled.h4`
   font-size: 18px;
   color: gray;
+
+  &.empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: lighter;
+    letter-spacing: 0.5px;
+  }
 `
 
 const Ship = styled(Heading)`

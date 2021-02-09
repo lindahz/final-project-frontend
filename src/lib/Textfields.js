@@ -123,74 +123,40 @@ const CustomSearch = styled(Search)`
     }
   }
 `
-export const ReviewTextfield = ({ title, type, onChange, placeholder, required }) => {
+export const FormTextfield = ({ title, type, onChange, placeholder, required }) => {
   return (
-    <ReviewLabel>
+    <FormLabel>
       {title}
-      <ReviewText
+      <FormText
         type={type}
         onChange={onChange}
         placeholder={placeholder}
         required={required} />
-    </ReviewLabel>
+    </FormLabel>
   )
 }
 
-export const ReviewTextarea = ({ title, type, onChange, placeholder, required }) => {
-  return (
-    <ReviewLabel>
-      {title}
-      <Textarea
-        type={type}
-        onChange={onChange}
-        placeholder={placeholder}
-        required={required} />
-    </ReviewLabel>
-  )
-}
-
-const Textarea = styled.textarea`
+const FormText = styled.input`
   width: 100%;
-  height: 70px;
-  margin: 5px 0 5px 0;
+  margin: 5px 0;
   padding: 8px 12px;
   display: block;
-  background-color: #ffffff;
+  background-color: #F2F2F2;
+  border: none;
+  border-bottom: 1px solid #2d3235;
+  border-radius: 3px 3px 0 0;
   font-size: 14px;
   font-family: 'Quicksand', sans-serif;
   color: #2d3235;
-  border: 2px solid #a6d0e4;
-  border-radius: 2px;
-  resize: none;
-  //border-bottom: 2px solid #ffffff;
   transition: 0.3s ease;
-`
 
-const ReviewLabel = styled.label`
-  width: 100%;
-  margin: 10px 0 10px 0;
-  color: #2d3235;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 14px;
-  font-family: 'Quicksand', sans-serif;
-`
-const ReviewText = styled.input`
-  width: 100%;
-  margin: 5px 0 5px 0;
-  padding: 8px 12px;
-  display: block;
-  background-color: #ffffff;
-  font-size: 14px;
-  font-family: 'Quicksand', sans-serif;
-  color: #2d3235;
-  border: 2px solid #a6d0e4;
-  border-radius: 2px;
-  //border-bottom: 2px solid #ffffff;
-  transition: 0.3s ease;
+  &:invalid {
+    border-bottom: 1px solid red;
+  }
 
   &:focus {
-    border: 2px solid;
+    outline: none;
+    border-bottom: 1px solid red;
     &::-webkit-input-placeholder {
       color: #2d3235;
       opacity: 1;
@@ -216,3 +182,65 @@ const ReviewText = styled.input`
   @media (min-width: 768px) {
   }
   `
+const FormLabel = styled.label`
+  width: 100%;
+  margin: 10px 0;
+  color: #2d3235;
+  font-family: 'Quicksand', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  font-size: 14px;
+`
+
+export const FormTextarea = ({ title, type, onChange, placeholder, required }) => {
+  return (
+    <FormLabel>
+      {title}
+      <Textarea
+        type={type}
+        onChange={onChange}
+        placeholder={placeholder}
+        required={required} />
+    </FormLabel>
+  )
+}
+
+const Textarea = styled.textarea`
+  width: 100%;
+  height: 70px;
+  margin: 5px 0;
+  padding: 8px 12px;
+  display: block;
+  resize: none;
+  background-color: #F2F2F2;
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+  color: #2d3235;
+  border: none;
+  border-bottom: 1px solid #2d3235;
+  border-radius: 3px 3px 0 0;
+  transition: 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid red;
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    &::-webkit-input-placeholder {
+      color: #2d3235;
+      opacity: 1;
+    }
+  }
+
+  &::-webkit-input-placeholder {
+    transition: 0.3s ease;
+    color: #000000;
+    opacity: 0.5;
+  }
+`

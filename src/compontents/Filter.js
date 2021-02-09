@@ -19,8 +19,7 @@ const StyledRating = withStyles({
 
 export const Filter = () => {
   const [rating, setRating] = useState(0)
-  console.log(rating)
-
+  // console.log(rating)
   const dispatch = useDispatch()
 
   const handleCheckboxClick = (value) => {
