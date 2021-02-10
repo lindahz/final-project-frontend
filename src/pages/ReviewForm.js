@@ -26,7 +26,7 @@ export const ReviewForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    fetch(`http://localhost:8080/clinics/${id}/review`, {
+    fetch(`https://health-finder.herokuapp.com/clinics/${id}/review`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

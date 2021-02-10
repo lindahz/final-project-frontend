@@ -12,6 +12,9 @@ export const ClinicList = ({
   open_hours,
   clinic_operation
 }) => {
+
+  console.log(clinic_name)
+  
   return (
     <Container>
       <StyledLink to={`kliniker/${_id}`}>

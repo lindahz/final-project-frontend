@@ -21,7 +21,7 @@ export const ClinicDetails = () => {
 
   console.log(id)
 
-  const CLINIC_URL = `http://localhost:8080/clinic/${id}`
+  const CLINIC_URL = `https://health-finder.herokuapp.com/clinic/${id}`
 
   // display clinic details
   useEffect(() => {
@@ -32,7 +32,7 @@ export const ClinicDetails = () => {
 
   // display clinic reviews
   useEffect(() => {
-    fetch(`http://localhost:8080/clinic/${id}/reviews`)
+    fetch(`https://health-finder.herokuapp.com/clinic/${id}/reviews`)
       .then((response) => response.json())
       .then((json) => {
         setReviews(json)

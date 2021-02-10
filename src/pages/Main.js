@@ -78,7 +78,7 @@ export const Main = () => {
     console.log(filteredClinics)
   }, [filters, clinicData]);
 
-  console.log(activeFilters)
+  console.log(clinicData)
 
   return (
     <Section>
