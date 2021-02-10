@@ -12,8 +12,6 @@ import { Pages } from '../compontents/Pages'
 
 import { ToggleBtn } from '../lib/Buttons'
 import filterIcon from '../assets/filterIcon.svg'
-import cross from '../assets/cross.svg'
-import { Subtitles } from '@material-ui/icons'
 
 export const Main = () => {
   const [toggle, setToggle] = useState(false)
