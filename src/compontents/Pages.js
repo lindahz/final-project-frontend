@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const Pages = () => {
   const classes = useStyles();
-
   const clinicData = useSelector((store) => store.clinics.clinics)
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)

@@ -219,7 +219,6 @@ const Textarea = styled.textarea`
   color: #2d3235;
   border-radius: 3px;
   transition: 0.3s ease;
-  position: relative;
 
   &:focus {
     outline: none;

@@ -12,7 +12,6 @@ import { ToggleBtn } from '../lib/Buttons'
 
 import logo from '../assets/logo.png'
 import cross from '../assets/cross.svg'
-import hamburger from '../assets/hamburger.svg'
 import hamburgerMenu from '../assets/hamburgerMenu.svg'
 
 export const Navbar = () => {

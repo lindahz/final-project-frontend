@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 import { useParams } from 'react-router-dom'
+import { Redirect } from "react-router-dom"
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import Rating from '@material-ui/lab/Rating'
 
@@ -21,6 +23,10 @@ export const ReviewForm = () => {
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
 
   const clinic = clinicData && clinicData.find((item) => item._id === id)
+
+  const history = useHistory()
+
+  const redirectPage = (value) => value && history.push(`/kliniker/${id}`)
 
   // validation using classes?
 
@@ -41,7 +47,7 @@ export const ReviewForm = () => {
       .then((json) => {
         console.log(json)
         setErrorMessage(json.success)
-        console.log(rating)
+        redirectPage(json.success)
       })
   }
 

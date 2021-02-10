@@ -26,46 +26,70 @@ export const Main = () => {
   const [filteredClinicData, setFilteredClinicData] = useState([])
 
   useEffect(() => {
-    const filteredClinics =
+
+    let filteredClinics =
       clinicData &&
       clinicData.filter((clinic) => {
-        let includeClinic = false;
+        let includeClinic = true;
         activeFilters.forEach((filterItem) => {
           // eslint-disable-next-line default-case
           switch (filterItem.id) {
             case 'emg':
-              if (clinic.clinic_operation.includes('Akutverksamhet')) {
-                includeClinic = true;
+              if (!clinic.clinic_operation.includes('Akutverksamhet')) {
+                includeClinic = false;
               }
               break;
             case 'reg':
-              if (clinic.clinic_operation.includes('Vårdcentral')) {
-                includeClinic = true;
+              if (!clinic.clinic_operation.includes('Vårdcentral')) {
+                includeClinic = false;
               }
               break;
+          }
+        });
+        return includeClinic
+      });
+
+    filteredClinics =
+      clinicData &&
+      clinicData.filter((clinic) => {
+        let includeClinic = true;
+        activeFilters.forEach((filterItem) => {
+          // eslint-disable-next-line default-case
+          switch (filterItem.id) {
             case 'all':
-              if (clinic.open_hours.includes('Dygnet runt')) {
-                includeClinic = true;
+              if (!clinic.open_hours.includes('Dygnet runt')) {
+                includeClinic = false;
               }
               break;
             case 'week':
-              if (clinic.open_hours) {
-                // not sure what to write here since it should return all results
-                includeClinic = true;
+              if (!clinic.open_hours) {
+                includeClinic = false;
               }
               break;
             case 'wkn':
               if (
-                clinic.open_hours.includes('Lör') ||
-                clinic.open_hours.includes('sön') ||
-                clinic.open_hours.includes('Dygnet runt')
+                !clinic.open_hours.includes('Lör') ||
+                !clinic.open_hours.includes('sön') ||
+                !clinic.open_hours.includes('Dygnet runt')
               ) {
-                includeClinic = true;
+                includeClinic = false;
               }
               break;
+          }
+        });
+        return includeClinic
+      });
+
+    filteredClinics =
+      clinicData &&
+      clinicData.filter((clinic) => {
+        let includeClinic = true;
+        activeFilters.forEach((filterItem) => {
+          // eslint-disable-next-line default-case
+          switch (filterItem.id) {
             case 'dropin':
-              if (!clinic.drop_in.includes('Ej angivet/stängt')) {
-                includeClinic = true
+              if (clinic.drop_in.includes('Ej angivet/stängt')) {
+                includeClinic = false;
               }
               break;
           }
@@ -75,8 +99,6 @@ export const Main = () => {
     setFilteredClinicData(filteredClinics)
     console.log(filteredClinics)
   }, [filters, clinicData]);
-
-  console.log(clinicData)
 
   return (
     <Section>

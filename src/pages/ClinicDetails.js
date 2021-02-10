@@ -28,7 +28,7 @@ export const ClinicDetails = () => {
     fetch(CLINIC_URL)
       .then((response) => response.json())
       .then((json) => setClinic(json))
-  }, [updateReviews])
+  }, [updateReviews, CLINIC_URL])
 
   // display clinic reviews
   useEffect(() => {
@@ -37,7 +37,7 @@ export const ClinicDetails = () => {
       .then((json) => {
         setReviews(json)
       })
-  }, [updateReviews])
+  }, [updateReviews, id])
 
   const displayAverageRating = (rating) => {
     if (rating > 0 && rating < 2) {
