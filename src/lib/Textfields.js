@@ -141,22 +141,22 @@ const FormText = styled.input`
   margin: 5px 0;
   padding: 8px 12px;
   display: block;
-  background-color: #F2F2F2;
   border: none;
-  border-bottom: 1px solid #2d3235;
-  border-radius: 3px 3px 0 0;
+  border: 1px solid #2d3235;
+  border-radius: 3px;
+  color: #2d3235;
   font-size: 14px;
   font-family: 'Quicksand', sans-serif;
   color: #2d3235;
   transition: 0.3s ease;
 
-  &:invalid {
+  /* &:invalid {
     border-bottom: 1px solid red;
-  }
+  } */
 
   &:focus {
     outline: none;
-    border-bottom: 1px solid red;
+    border: 1px solid #ef4f4f;
     &::-webkit-input-placeholder {
       color: #2d3235;
       opacity: 1;
@@ -187,8 +187,8 @@ const FormLabel = styled.label`
   margin: 10px 0;
   color: #2d3235;
   font-family: 'Quicksand', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  //text-transform: uppercase;
+  letter-spacing: 0.3px;
   font-weight: 500;
   font-size: 14px;
 `
@@ -213,18 +213,17 @@ const Textarea = styled.textarea`
   padding: 8px 12px;
   display: block;
   resize: none;
-  background-color: #F2F2F2;
   font-size: 14px;
   font-family: 'Quicksand', sans-serif;
+  border: 1px solid #2d3235;
   color: #2d3235;
-  border: none;
-  border-bottom: 1px solid #2d3235;
-  border-radius: 3px 3px 0 0;
+  border-radius: 3px;
   transition: 0.3s ease;
+  position: relative;
 
   &:focus {
     outline: none;
-    border-bottom: 1px solid red;
+    border: 1px solid #ef4f4f;
     &::-webkit-input-placeholder {
       color: #2d3235;
       opacity: 1;

@@ -86,7 +86,7 @@ const Container = styled.div`
 
   @media (min-width: 1025px) {
     margin: 110px 40px 0 40px;
-    padding: 120px 150px 110px 150px;
+    padding: 120px 150px 130px 150px;
   }
 `
 const Title = styled.h1`

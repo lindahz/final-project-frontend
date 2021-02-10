@@ -9,8 +9,6 @@ import Rating from '@material-ui/lab/Rating'
 import { FormTextfield, FormTextarea } from '../lib/Textfields'
 import { FormBtn, BackBtn } from '../lib/Buttons'
 
-import visit from '../assets/visit.jpg'
-
 export const ReviewForm = () => {
   const { id } = useParams()
   const [title, setTitle] = useState('')
@@ -60,7 +58,7 @@ export const ReviewForm = () => {
               value={rating}
               onChange={(event, value) => setRating(value)} />
           </Container>
-          <ErrorText>Betyg saknas</ErrorText>
+          {/* <ErrorText>Betyg saknas</ErrorText> */}
           <FormTextfield
             title="Din titel"
             required
@@ -68,14 +66,14 @@ export const ReviewForm = () => {
             placeholder="Ange titel..."
             value={title}
             onChange={(event) => setTitle(event.target.value)} />
-          <ErrorText>Titeln måste vara mer än 4 tecken</ErrorText>
+          {/* <ErrorText>Titeln måste vara mer än 4 tecken</ErrorText> */}
           <FormTextarea
             required
             title="Ditt omdöme"
             placeholder="Ange omdöme..."
             value={review}
             onChange={(event) => setReview(event.target.value)} />
-          <ErrorText>Omdömet måste vara mer än 4 tecken</ErrorText>
+          {/* <ErrorText>Omdömet måste vara mellan 5 och 150 tecken</ErrorText> */}
           <FormTextfield
             required
             title="Ditt namn"
@@ -83,7 +81,7 @@ export const ReviewForm = () => {
             placeholder="Ange namn..."
             value={name}
             onChange={(event) => setName(event.target.value)} />
-          <ErrorText>Ditt namn måste vara mer än 4 tecken</ErrorText>
+          {/* <ErrorText>Ditt namn måste vara mer än 4 tecken</ErrorText> */}
           <FormBtn
             required
             title="Skicka omdöme"
@@ -91,26 +89,38 @@ export const ReviewForm = () => {
           {!errorMessage && <ErrorText>Vänligen fyll i de fält som saknas</ErrorText>}
         </Form>
       </Container>
-      <Container className="imageContainer" />
+      {/* <Container className="imageContainer" /> */}
     </Section>
   )
 }
 
 const Section = styled.section`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  padding: 120px 150px 80px 150px;
+  align-items: center;
   width: 100%;
-  background-color: #F2F2F2;
+  background-color: #ffffff;
+  padding-top: 100px;
+  padding: 100px 40px 40px 40px;
+
+  @media (min-width: 768px) {
+    padding: 120px 150px 80px 150px;
+    background-color: #F2F2F2;
+  }
 `
 
 const Title = styled.h3`
   margin: 0 0 10px 0;
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 20px;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
 `
 const ErrorText = styled.p`
+  height: 0;
+  overflow: visible;
   margin: 0;
   color: red;
   font-size: 10px;
@@ -120,9 +130,7 @@ const Label = styled.h4`
   width: 100%;
   margin: 5px 0;
   color: #2d3235;
-  font-family: 'Quicksand', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   font-weight: 500;
   font-size: 14px;
 `
@@ -132,20 +140,21 @@ const Form = styled.form`
   background-color: #ffffff;
 `
 const Container = styled.div`
-  width: 50%;
-  padding: 40px;
+  width: 100%;
   background-color: #ffffff;
   border-radius: 3px 0 0 3px;
-  box-shadow: 3px 4px 12px -8px rgba(196,196,196,1);
 
   &.imageContainer {
+    width: 30%;
     border-radius: 0 3px 3px 0;
-    background-image: url(${visit});
-    opacity: 0.8;
-    background-position: center;
+    //border-right: 10px solid #ffffff;
+    //border-top: 10px solid #ffffff;
+    //border-bottom: 10px solid #ffffff;
+    // opacity: 0.7;
+    background-position: top;
     background-repeat: no-repeat;
-    background-size: cover;
-    // background-blend-mode: multiply;
+    background-size: 340px;
+    background-blend-mode: multiply;
   }
 
   &.ratingContainer {
@@ -153,10 +162,15 @@ const Container = styled.div`
     padding: 0;
     box-shadow: none;
   }
+
+  @media (min-width: 768px) {
+    width: 60%;
+    padding: 40px;
+    box-shadow: 3px 4px 12px -8px rgba(196,196,196,1);
+  }
 `
 const StyledLink = styled(Link)`
   text-decoration: none;
-  width: 100%;
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;

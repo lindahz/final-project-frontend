@@ -2,7 +2,15 @@ import React from 'react'
 
 import styled from 'styled-components/macro'
 
-export const RadioBtn = ({ name, value, id, disabled, checked, onChange, label }) => {
+export const RadioBtn = ({
+  name,
+  value,
+  id,
+  disabled,
+  checked,
+  onChange,
+  label
+}) => {
   return (
     <>
       <Input
@@ -30,8 +38,8 @@ const Input = styled.input`
 `
 const Label = styled.label`
   width: 45%;
-  padding: 5px 0;
   margin: 2px 4px 2px 0;
+  padding: 5px 0;
   display: block;
   position: relative;
   background-color: transparent;
@@ -42,51 +50,36 @@ const Label = styled.label`
   font-weight: 500;
   text-align: center;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.3s;
 
   ${Input}:focus + & {
     // border: #ef4f4f solid 1px;
   }
 
   ${Input}:checked + & {
-    background-color: #74c7b8;
-    border: 1px solid #2e7366;
+    background-color: #2d3235;
+    border: 1px solid #2d3235;
     color: #ffffff;
+    font-weight: bold;
   }
 
-  &:hover {
-    box-shadow: 10px 10px 14px -9px rgba(45,50,53,0.6);
+  @media screen and (max-width: 320px) {
+    width: 60%;
+  }
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    width: 200px;
+    margin: 5px 5px;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+
+  @media (min-width: 1025px) {
+    padding: 5px 0;
+    margin: 2px 4px 2px 0;
+
+    &:hover {
+      opacity: 0.6;
+    }
   }
 `
-
-/* styling for radio buttons */
-/*
-
-input[type="radio"] + .match-label {
-  width: 100%;
-  display: block;
-  position: relative;
-  color: #000000;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 1px solid #000000;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  padding: 8px 15px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-input[type="radio"] + .match-label:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-input[type="radio"]:checked + .match-label {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-input[type="radio"]:focus + .match-label {
-  outline: #dc20cc solid 1px;
-}
-*/

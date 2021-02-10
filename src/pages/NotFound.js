@@ -26,21 +26,22 @@ const Section = styled.section`
 `
 const Container = styled.div`
   padding: 100px 50px;
-  //background-image: url(${stairs});
-  background-color: #f9ffea;
-  //border: 1px solid #000000;
+  background-color: #2d3235;
+  border-radius: 3px;
 `
 const Title = styled.h2`
   font-size: 46px;
+  color: #ffffff;
 `
 const Subtitle = styled.h3`
   width: 70%;
   font-weight: 400;
+  color: #ffffff;
 `
 const StyledLink = styled(Link)`
   text-decoration: none;
   font-weight: 600;
-  color: #000000;
+  color: #ffffff;
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;

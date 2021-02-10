@@ -13,6 +13,7 @@ import { ToggleBtn } from '../lib/Buttons'
 import logo from '../assets/logo.png'
 import cross from '../assets/cross.svg'
 import hamburger from '../assets/hamburger.svg'
+import hamburgerMenu from '../assets/hamburgerMenu.svg'
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false)
@@ -36,7 +37,7 @@ export const Navbar = () => {
   }
   return (
     <Section>
-      <ToggleBtn type="submit" onClick={handleToggle} src={hamburger} width="100%" />
+      <ToggleBtn type="submit" onClick={handleToggle} src={hamburgerMenu} width="100%" />
       <CompanyLogo src={logo} />
       <HamburgerContainer visibility={toggle}>
         <ToggleBtn type="submit" title="Stäng" onClick={handleToggle} src={cross} />

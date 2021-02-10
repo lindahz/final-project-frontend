@@ -13,9 +13,9 @@ export const ClinicDetails = () => {
   const [reviews, setReviews] = useState('')
   const [updateReviews, setUpdateReviews] = useState('')
 
-  const generateUpdate = (update) => {
-    setUpdateReviews(update)
-  }
+  // const generateUpdate = (update) => {
+  //   setUpdateReviews(update)
+  // }
 
   const { id } = useParams()
 
@@ -55,35 +55,42 @@ export const ClinicDetails = () => {
 
   return (
     <Section>
-      <StyledLink to="/" className="back"><BackBtn title="Gå tillbaka" /></StyledLink>
+      <StyledLink to="/" className="back">
+        <BackBtn title="Gå tillbaka" />
+      </StyledLink>
       <Wrapper className="border">
         <TextContainer>
           <Subtitle className="clinicType">{clinic.clinic_type}</Subtitle>
-          <Ship><Span>★ </Span>{displayAverageRating(clinic.average_rating)}</Ship>
+          <Chip>
+            <Span>★ </Span>
+            {displayAverageRating(clinic.average_rating)}
+          </Chip>
         </TextContainer>
         <Title>{clinic.clinic_name}</Title>
         <Heading>Öppettider</Heading>
-        <p>{clinic.open_hours}</p>
+        <Text>{clinic.open_hours}</Text>
         <Heading>Adress</Heading>
-        <p>{clinic.address}</p>
+        <Text>{clinic.address}</Text>
         <Heading>Drop-in</Heading>
-        <p>{clinic.drop_in}</p>
+        <Text>{clinic.drop_in}</Text>
       </Wrapper>
-      <Wrapper className="reviews">
+      <Wrapper>
         <TextContainer className="reviews">
-          <Subtitle>Omdömen <SubtitleGray>({clinic.text_reviews_count})</SubtitleGray></Subtitle>
+          <Subtitle>Omdömen <Subtitle className="subtitleGray">({clinic.text_reviews_count})</Subtitle></Subtitle>
           <StyledLink to={`/kliniker/${id}/skriv-omdome`}>
-            <Subtitle>Skriv ett omdöme</Subtitle>
+            <Chip>Skriv ett omdöme</Chip>
           </StyledLink>
         </TextContainer>
-        {clinic.text_reviews_count === 0 && (<Heading className="empty">Det finns inga omdömen än...</Heading>)}
-        {reviews && reviews.map((review, index) => {
-          return (
-            <Reviews
-              key={index}
-              {...review} />
-          )
-        })}
+        <Container>
+          {clinic.text_reviews_count === 0 && (<Heading className="empty">Det finns inga omdömen än...</Heading>)}
+          {reviews && reviews.map((review, index) => {
+            return (
+              <Reviews
+                key={index}
+                {...review} />
+            )
+          })}
+        </Container>
         {/* <ReviewForm generateUpdate={generateUpdate} /> */}
       </Wrapper>
     </Section>
@@ -93,77 +100,110 @@ export const ClinicDetails = () => {
 const Section = styled.section`
   width: 100%;
   min-height: 100vh;
+  padding: 120px 20px 80px 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  background-color: #ffffff;//#f5f5f5;
+  background-color: #ffffff;
 
-  @media (min-width: 768px) {
-    padding: 120px 100px 80px 100px;
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    padding: 120px 50px 80px 50px;
+  }
+  
+  @media (min-width: 1025px) {
+    padding: 8% 5%;
   }
 `
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
+const Wrapper = styled.div`
+  width: 100%;
+  position: relative;
+  background-color: #ffffff;
+  
+  &.border {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #d6d6d6;
 
-  &.back {
-    width: 100%;
+    @media (min-width: 1025px) {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+      border-right: 2px solid #d6d6d6;
+    }
   }
 
-  &:focus, &:hover, &:visited, &:link, &:active {
-    text-decoration: none;
+  @media (min-width: 1025px) { 
+    width: 50%;
+    height: 500px;
+    padding: 40px;
+    font-size: 20px;
   }
 `
+
+const Container = styled.div`
+  height: 400px;
+  overflow: scroll;
+`
+
 const TextContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 
   &.reviews {
     border-bottom: 1px solid #d6d6d6;
   }
+`
 
-  @media (min-width: 768px) {
-    
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  transition: 0.3s ease;
+  display: flex;
+  justify-content: center;
+
+  &.back {
+    width: 100%;
+  }
+  &:hover {
+    opacity: 0.6;
+  }
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
   }
 `
+
 const Subtitle = styled.h3`
   margin: 10px 0;
   font-weight: 500;
   font-size: 16px;
 
   &.clinicType {
+    font-size: 14px;
     letter-spacing: 2px;
     text-transform: uppercase;
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
+  }
+  &.subtitleGray {
+    margin: 0;
+    display: inline-block;
+    color: #898989;
   }
 
   @media (min-width: 768px) {
     font-size: 20px;
   }
 `
-const SubtitleGray = styled(Subtitle)`
-  display: inline-block;
-  color: #898989;
-`
+
 const Span = styled.span`
   color: #FFCC66;
 `
-const Wrapper = styled.div`
-  position: relative;
-  width: 50%;
-  height: 500px;
-  padding: 20px 40px 40px 40px;
-  background-color: #ffffff;
-  
-  &.border {
-    border-right: 2px solid #d6d6d6;
-  }
 
-  &.reviews {
-    overflow: scroll;
-  }
-`
 const Title = styled.h2`
   font-size: 20px;
   margin: 10px 0;
@@ -174,9 +214,26 @@ const Title = styled.h2`
     font-size: 30px;
   }
 `
+
+const Text = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
+`
+
 const Heading = styled.h4`
-  font-size: 18px;
-  color: gray;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #898989;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 
   &.empty {
     position: absolute;
@@ -189,9 +246,15 @@ const Heading = styled.h4`
   }
 `
 
-const Ship = styled(Heading)`
+const Chip = styled(Subtitle)`
   padding: 5px 10px;
+  background-color: #2d3235;
   border-radius: 3px;
-  color: #2d3235;
-  background-color: #f6ecf0;
+  font-weight: 400;
+  font-size: 12px;
+  color: #ffffff;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 `

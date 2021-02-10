@@ -12,7 +12,7 @@ export const Footer = () => {
     <Section>
       <Container>
         <MainLogo src={logo} />
-        <Text>
+        <Text className="grayText">
           Vi hjälper dig att hitta och jämföra vårdgivare
           och få stöd med att få den vård du behöver.
         </Text>
@@ -122,6 +122,10 @@ const Text = styled.p`
   margin: 10px 0;
   font-size: 12px;
   font-weight: 400;
+
+  &.grayText {
+    color: #898989;
+  }
 
   @media (min-width: 768px) {
     display: block;

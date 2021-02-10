@@ -21,49 +21,59 @@ export const Reviews = ({ rating, review, review_date, name, title }) => {
   })(Rating);
 
   return (
-    <ReviewContainer>
+    <Container>
       <Wrapper>
         <StyledRating
           name="read-only"
           value={rating}
           readOnly />
-        <ReviewDate>{moment(review_date).fromNow()}</ReviewDate>
+        <Text className="dateText">{moment(review_date).fromNow()}</Text>
       </Wrapper>
-      <ReviewTitle>{title}</ReviewTitle>
-      <ReviewText>{review}</ReviewText>
-      <ReviewName>{name}</ReviewName>
-    </ReviewContainer>
+      <Heading>{title}</Heading>
+      <Text>{review}</Text>
+      <Text className="nameText">{name}</Text>
+    </Container>
   )
 }
 
-const ReviewContainer = styled.div`
-  display: block;
+const Container = styled.div`
   margin: 10px 0;
   padding: 10px;
   border-bottom: 1px solid #d6d6d6;
-  flex: 50%;
 `
-const ReviewTitle = styled.h3`
+const Heading = styled.h3`
   margin: 10px 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `
-const ReviewText = styled.h4`
+const Text = styled.p`
   margin: 10px 0;
   font-weight: 500;
+  font-size: 14px;
+
+  &.nameText {
+    color: #898989;
+  }
+
+  &.dateText {
+    margin: 0;
+    color: #898989;
+
+    @media screen and (max-width: 320px) {
+      font-size: 11px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
-const ReviewName = styled.h4`
-  margin: 10px 0;
-  font-weight: 500;
-  color: #898989;
-`
-const ReviewDate = styled.p`
-  margin: 0;
-  font-weight: 500;
-  color: #898989;
 `

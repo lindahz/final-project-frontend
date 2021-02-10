@@ -102,34 +102,35 @@ const CustomSearch = styled(Search)`
 
 export const ToggleBtn = ({ title, type, disabled, onClick, src, width, display }) => {
   return (
-    <Toggle
+    <ToggleButton
       type={type} 
       disabled={disabled}
       display={display}
       onClick={onClick}>
-      {title}
       <ToggleIcon
         src={src} 
         width={width} />
-    </Toggle>
+      {title}
+    </ToggleButton>
   )
 }
-const Toggle = styled.button`
+const ToggleButton = styled.button`
   padding: 5px;
   margin: 5px 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: transparent;
+  border: none;
   color: #2d3235;
   font-family: 'Quicksand', sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  border: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   transition: 0.3s ease;
   cursor: pointer;
 
   &:focus {
-    border: 1px solid #000000;
+    border: 2px solid #2d3235;
   }
 
   &:hover {
@@ -137,8 +138,7 @@ const Toggle = styled.button`
   }
 
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
-    width: 70px;
-    padding: 10px 10px;
+    width: 60px;
     font-size: 20px;
   }
 
@@ -181,10 +181,12 @@ const FormButton = styled.button`
 
   &:focus {
     border: 1px solid #000000;
+    font-weight: bold;
   }
 
   &:hover {
     opacity: 0.7;
+    font-weight: bold;
   }
 
   @media (min-width: 768px) {
@@ -204,18 +206,20 @@ export const BackBtn = ({ title }) => {
   )
 }
 const BackButton = styled.button`
+  padding: 10px 5px;
+  margin: 10px 0;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   background-color: transparent;
   text-align: center;
+  font-size: 14px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   color: #2d3235;
   transition: 0.3s ease;
   cursor: pointer;
   border: none;
-  border-radius: 3px;
   text-decoration: none;
 
   &:focus {
@@ -223,19 +227,14 @@ const BackButton = styled.button`
   }
 
   &:hover {
-    opacity: 0.5;
+    opacity: 0.6;
   }
 
   @media (min-width: 768px) {
-    padding: 20px 0;
     font-size: 20px;
   }
 `
 const ArrowIcon = styled.img`
   width: 20px;
   margin-right: 8px;
-
-  @media (min-width: 768px) {
-    
-  }
 `

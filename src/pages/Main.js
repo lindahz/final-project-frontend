@@ -12,6 +12,8 @@ import { Pages } from '../compontents/Pages'
 
 import { ToggleBtn } from '../lib/Buttons'
 import filterIcon from '../assets/filterIcon.svg'
+import cross from '../assets/cross.svg'
+import { Subtitles } from '@material-ui/icons'
 
 export const Main = () => {
   const [toggle, setToggle] = useState(false)
@@ -76,6 +78,8 @@ export const Main = () => {
     console.log(filteredClinics)
   }, [filters, clinicData]);
 
+  console.log(activeFilters)
+
   return (
     <Section>
       {!clinicData && (
@@ -86,20 +90,20 @@ export const Main = () => {
       )}
       {clinicData && /* clinicData.length > 0 && */ (
         <FilterControls visibility={toggle}>
-          <ToggleBtn display="block" type="submit" onClick={handleToggle} src={filterIcon} width="30px" />
+          <ToggleBtn display="flex" type="submit" onClick={handleToggle} src={filterIcon} width="25px" />
           <FilterContainer visibility={toggle}>
-            <h3>Filtrera</h3>
+            <Subtitle className="filterTitle">Filtrera</Subtitle>
             <Filter />
-            <h3>Sortera</h3>
+            <Subtitle className="filterTitle">Sortera</Subtitle>
             <Sort />
           </FilterContainer>
         </FilterControls>
       )}
       {clinicData && (
         <Container className="clinicListContainer">
-          <ToggleBtn display="block" type="submit" onClick={handleToggle} src={filterIcon} width="30px" />
-          <Text>Vi hittade <Span>{totalClinics}</Span> vårdgivare som matchade din sökning.</Text>
-          {clinicData && clinicData.length === 0 && <Text>Försök igen!</Text>}
+          <ToggleBtn type="submit" title="Filter" onClick={handleToggle} src={filterIcon} width="15px" />
+          <Subtitle>Vi hittade <Span>{totalClinics}</Span> vårdgivare som matchade din sökning.</Subtitle>
+          {clinicData && clinicData.length === 0 && <Subtitle>Försök igen!</Subtitle>}
           {clinicData && clinicData.length > 0 && clinicData.map((clinic, index) => { // filteredClinicData.map()
             return (
               <ClinicList
@@ -117,13 +121,14 @@ export const Main = () => {
 const Section = styled.main`
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 `
 
 const Container = styled.div`
   width: 100%;
 
   &.clinicListContainer {
+    padding-top: 80px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -139,16 +144,19 @@ const Container = styled.div`
 `
 
 const FilterControls = styled.div`
+  z-index: 2;
   width: 100%;
-  height: inherit;
-  padding-top: 120px;
-  position: absolute;
-  display: none;
+  height: 100vh;
+  padding: 40px 30px;
+  position: fixed;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: #ffffff;
   border-right: 1px solid #d6d6d6;
   width: ${props => props.visibility ? '100%': '0%'};
+  opacity: ${props => props.visibility ? '1': '0'};
   transition: all 0.2s ease-out; 
 
   @media screen and (max-width: 320px) {
@@ -159,36 +167,60 @@ const FilterControls = styled.div`
   }
 
   @media (min-width: 1025px) {
+    z-index: auto;
+    height: inherit;
+    padding-top: 120px;
     position: static;
-    display: flex;
+    justify-content: flex-start;
+    opacity: 1;
     width: ${props => props.visibility ? '100px': '500px'};
   }
 `
 
 const FilterContainer = styled.div`
   width: 100%;
-  padding: 0 20px;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: transparent;
   font-size: 14px;
   transition: all 0.2s ease-out; 
   visibility: ${props => props.visibility ? 'visible': 'hidden'};
   opacity: ${props => props.visibility ? '1': '0'};
 
-  @media (min-width: 768px) {
+  @media (min-width: 1025px) {
     width: 300px;
+    align-items: flex-start;
     visibility: ${props => props.visibility ? 'hidden': 'visible'};
     opacity: ${props => props.visibility ? '0': '1'};
   }
 `
 
-const Text = styled.h3`
+const Subtitle = styled.h3`
   width: inherit;
-  margin: 20px;
+  margin: 10px;
   display: inline-block;
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+    text-align: center;;
+  }
+
+  &.filterTitle {
+    width: auto;
+    margin: 20px 0 8px 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      align-self: center;
+      font-size: 18px;
+    }
+  }
 `
 const Span = styled.span`
   margin: 0;

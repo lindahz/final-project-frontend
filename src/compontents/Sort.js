@@ -20,7 +20,7 @@ export const Sort = () => {
   }
 
   return (
-    <Container>
+    <Form>
       <RadioBtn
         label="Kliniknamn: A - Z"
         role="radio"
@@ -35,10 +35,24 @@ export const Sort = () => {
         id="desc"
         value="desc"
         name="name" />
-    </Container>
+    </Form>
   )
 }
 
-const Container = styled.div`
+const Form = styled.div`
+  width: 100%;
+  margin-top: 12px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    width: 60%;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `

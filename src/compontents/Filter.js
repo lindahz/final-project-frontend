@@ -27,8 +27,7 @@ export const Filter = () => {
   }
 
   return (
-    <Section>
-      <Container>
+    <Form>
         <Subtitle>Ärende</Subtitle>
         <Checkbox
           label="Akut"
@@ -56,7 +55,6 @@ export const Filter = () => {
           value="wkn"
           id="wkn"
           onChange={(event) => handleCheckboxClick(event.target.value)} />
-      
         {/* <Subtitle>Omdöme</Subtitle>
         <StyledRating
           name="simple-controlled"
@@ -68,26 +66,42 @@ export const Filter = () => {
           value="dropin"
           id="dropin"
           onChange={(event) => handleCheckboxClick(event.target.value)} />
-      </Container>
-    </Section>
+    </Form>
   )
 }
 
-const Section = styled.section`
-`
-const Container = styled.div`
+const Form = styled.div`
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  //position: absolute;
-  //display: ${props => props.visibility ? 'block': 'none'};
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    width: 60%;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  } 
 `
 
 const Subtitle = styled.h3`
-  width: 100%;
-  // margin: 18px 0;
+  margin: 12px 0;
+  padding: 2px 0;
+  border-bottom: 1px solid #2d3235;
   font-size: 12px;
+  text-align: center;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    font-size: 14px;
+  }
+
+  @media (min-width: 768px) {
+    margin: 12px 100%;
+  } 
 `
