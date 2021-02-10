@@ -17,6 +17,7 @@ const Search = styled.input`
   width: 100%;
   height: 65px;
   padding: 8px 15px;
+  margin: 5px 0;
   background-color: #ffffff;
   color: #2d3235;
   font-size: 14px;
@@ -74,6 +75,7 @@ export const CustomSearchTextfield = ({ title, type, onChange, placeholder, requ
 const CustomSearch = styled(Search)`
   width: 100%;
   height: 50px;
+  margin: 0;
   background-color: transparent;
   border-radius: 0;
   border-bottom: 2px solid #2d3235;

@@ -58,9 +58,7 @@ export const Search = () => {
 
 const Section = styled.section`
   width: 100%;
-  height: 100vh;
-  // margin-top: 150px;
-  // padding: 25px;
+  min-height: 100vh;
 
   @media (min-width: 1025px) {
     height: initial;
@@ -76,7 +74,7 @@ const Container = styled.div`
 
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0 80px;
     display: flex;
@@ -132,7 +130,9 @@ const Subtitle = styled.h3`
 `
 
 const ErrorMessage = styled.p`
-  display: block;
+  height: 0;
+  margin: 0;
+  overflow: visible;
   font-size: 12px;
   color: #6ab0d2;
 

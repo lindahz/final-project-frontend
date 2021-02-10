@@ -14,8 +14,8 @@ export const ClinicList = ({
 }) => {
 
   return (
-    <Container>
-      <StyledLink to={`kliniker/${_id}`}>
+    <StyledLink to={`kliniker/${_id}`}>
+      <Container>
         <Title>{clinic_name}</Title>
         <Subtitle>{address}</Subtitle>
         <ChipContainer>
@@ -32,8 +32,8 @@ export const ClinicList = ({
             <Chip>{average_rating} <Span>★</Span></Chip>
           )}
         </ChipContainer>
-      </StyledLink>
-    </Container>
+      </Container>
+    </StyledLink>
   )
 }
 

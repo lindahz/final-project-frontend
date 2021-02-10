@@ -13,12 +13,41 @@ import { FormBtn, BackBtn } from '../lib/Buttons'
 
 export const ReviewForm = () => {
   const { id } = useParams()
+
   const [title, setTitle] = useState('')
   const [name, setName] = useState('')
   const [rating, setRating] = useState(0)
   const [review, setReview] = useState('')
-
   const [errorMessage, setErrorMessage] = useState(true)
+  const [errorMessageRating, setErrorMessageRating] = useState(false)
+  const [errorMessageTitle, setErrorMessageTitle] = useState(false)
+  const [errorMessageReview, setErrorMessageReview] = useState(false)
+  const [errorMessageName, setErrorMessageName] = useState(false)
+
+  const reviewValidation = () => {
+    if (rating < 1) {
+      setErrorMessageRating(true)
+    } else {
+      setErrorMessageRating(false)
+    }
+    if (title.length < 5 || title.length > 60) {
+      setErrorMessageTitle(true)
+    } else {
+      setErrorMessageTitle(false)
+    }
+    if (review.length < 5 || review.length > 300) {
+      setErrorMessageReview(true)
+    } else {
+      setErrorMessageReview(false)
+    }
+    if (name.length < 2 || name.length > 26) {
+      setErrorMessageName(true)
+    } else {
+      setErrorMessageName(false)
+    }
+  }
+
+  console.log(title.length)
 
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
 
@@ -27,8 +56,6 @@ export const ReviewForm = () => {
   const history = useHistory()
 
   const redirectPage = (value) => value && history.push(`/kliniker/${id}`)
-
-  // validation using classes?
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -45,9 +72,8 @@ export const ReviewForm = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json)
-        setErrorMessage(json.success)
         redirectPage(json.success)
+        reviewValidation()
       })
   }
 
@@ -64,22 +90,23 @@ export const ReviewForm = () => {
               value={rating}
               onChange={(event, value) => setRating(value)} />
           </Container>
-          {/* <ErrorText>Betyg saknas</ErrorText> */}
+          {errorMessageRating && <ValidationText>Välj ett betyg</ValidationText>}
           <FormTextfield
-            title="Din titel"
+            title="Omdömets titel"
             required
             type="text"
             placeholder="Ange titel..."
             value={title}
             onChange={(event) => setTitle(event.target.value)} />
-          {/* <ErrorText>Titeln måste vara mer än 4 tecken</ErrorText> */}
+          {errorMessageTitle && <ValidationText>Titeln måste vara mellan 5 och 60 tecken</ValidationText>}
           <FormTextarea
             required
             title="Ditt omdöme"
             placeholder="Ange omdöme..."
             value={review}
             onChange={(event) => setReview(event.target.value)} />
-          {/* <ErrorText>Omdömet måste vara mellan 5 och 150 tecken</ErrorText> */}
+          {errorMessageReview && <ValidationText>Omdömet måste vara mellan 5 och 300 tecken</ValidationText>}
+          <ValidationText className="counter">{review.length} / 300</ValidationText>
           <FormTextfield
             required
             title="Ditt namn"
@@ -87,15 +114,13 @@ export const ReviewForm = () => {
             placeholder="Ange namn..."
             value={name}
             onChange={(event) => setName(event.target.value)} />
-          {/* <ErrorText>Ditt namn måste vara mer än 4 tecken</ErrorText> */}
+          {errorMessageName && <ValidationText>Ditt namn måste vara mer än 4 tecken</ValidationText>}
           <FormBtn
             required
             title="Skicka omdöme"
             type="submit" />
-          {!errorMessage && <ErrorText>Vänligen fyll i de fält som saknas</ErrorText>}
         </Form>
       </Container>
-      {/* <Container className="imageContainer" /> */}
     </Section>
   )
 }
@@ -124,12 +149,17 @@ const Title = styled.h3`
     font-size: 24px;
   }
 `
-const ErrorText = styled.p`
+const ValidationText = styled.p`
   height: 0;
   overflow: visible;
-  margin: 0;
+  margin-top: -10px;
   color: red;
   font-size: 10px;
+
+  &.counter {
+    color: #2d3235;
+    align-self: flex-end;
+  }
 `
 
 const Label = styled.h4`
@@ -149,19 +179,6 @@ const Container = styled.div`
   width: 100%;
   background-color: #ffffff;
   border-radius: 3px 0 0 3px;
-
-  &.imageContainer {
-    width: 30%;
-    border-radius: 0 3px 3px 0;
-    //border-right: 10px solid #ffffff;
-    //border-top: 10px solid #ffffff;
-    //border-bottom: 10px solid #ffffff;
-    // opacity: 0.7;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: 340px;
-    background-blend-mode: multiply;
-  }
 
   &.ratingContainer {
     margin: 10px 0px;

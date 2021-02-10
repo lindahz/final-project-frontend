@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { Reviews } from '../compontents/Reviews'
@@ -8,36 +7,25 @@ import { Reviews } from '../compontents/Reviews'
 import { BackBtn } from '../lib/Buttons'
 
 export const ClinicDetails = () => {
-
   const [clinic, setClinic] = useState({})
   const [reviews, setReviews] = useState('')
-  const [updateReviews, setUpdateReviews] = useState('')
-
-  // const generateUpdate = (update) => {
-  //   setUpdateReviews(update)
-  // }
-
   const { id } = useParams()
-
-  console.log(id)
-
   const CLINIC_URL = `https://health-finder.herokuapp.com/clinic/${id}`
+  const REVIEW_URL = `https://health-finder.herokuapp.com/clinic/${id}/reviews`
 
-  // display clinic details
   useEffect(() => {
     fetch(CLINIC_URL)
       .then((response) => response.json())
       .then((json) => setClinic(json))
-  }, [updateReviews, CLINIC_URL])
+  }, [CLINIC_URL])
 
-  // display clinic reviews
   useEffect(() => {
-    fetch(`https://health-finder.herokuapp.com/clinic/${id}/reviews`)
+    fetch(REVIEW_URL)
       .then((response) => response.json())
       .then((json) => {
         setReviews(json)
       })
-  }, [updateReviews, id])
+  }, [REVIEW_URL])
 
   const displayAverageRating = (rating) => {
     if (rating > 0 && rating < 2) {
@@ -91,7 +79,6 @@ export const ClinicDetails = () => {
             )
           })}
         </Container>
-        {/* <ReviewForm generateUpdate={generateUpdate} /> */}
       </Wrapper>
     </Section>
   )
