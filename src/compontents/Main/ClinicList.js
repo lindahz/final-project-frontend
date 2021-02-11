@@ -16,20 +16,33 @@ export const ClinicList = ({
   return (
     <StyledLink to={`kliniker/${_id}`}>
       <Container>
-        <Title>{clinic_name}</Title>
-        <Subtitle>{address}</Subtitle>
+        <Title>
+          {clinic_name}
+        </Title>
+        <Subtitle>
+          {address}
+        </Subtitle>
         <ChipContainer>
           {clinic_operation.includes('Akutverksamhet') && (
-            <Chip className="customChip">Akuta ärenden</Chip>
+            <Chip className="customChip">
+              Akuta ärenden
+            </Chip>
           )}
           {drop_in !== 'Ej angivet/stängt' && (
-            <Chip>Drop-in</Chip>
+            <Chip>
+              Drop-in
+            </Chip>
           )}
           {open_hours === 'Dygnet runt' && (
-            <Chip>24/7</Chip>
+            <Chip>
+              24/7
+            </Chip>
           )}
           {average_rating !== 0 && (
-            <Chip>{average_rating} <Span>★</Span></Chip>
+            <Chip>
+              {average_rating}
+              <Span>★</Span>
+            </Chip>
           )}
         </ChipContainer>
       </Container>
@@ -38,9 +51,7 @@ export const ClinicList = ({
 }
 
 const Container = styled.div`
-  width: 90%;
   padding: 25px 20px 20px 20px;
-  margin: 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -59,22 +70,30 @@ const Container = styled.div`
   @media (min-width: 768px) {
     width: 420px;
     height: 200px;
-    margin: 20px;
     padding: 30px 40px 40px 40px;
   }
 `
+
 const StyledLink = styled(Link)`
+  width: 90%;
+  margin: 10px 10px;
   text-decoration: none;
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
   }
+
+  @media (min-width: 768px) {
+    width: 420px;
+    height: 200px;
+    margin: 20px;
+  }
 `
+
 const Title = styled.h2`
   margin: 5px 0;
-  color: #2d3235;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
 
   @media (min-width: 768px) {
     font-size: 18px;
@@ -82,11 +101,10 @@ const Title = styled.h2`
 `
 const Subtitle = styled.h4`
   margin: 0;
-  color: #2d3235;
-  font-size: 12px;
+  font-size: 14px;
 
   @media screen and (max-width: 320px) {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   @media (min-width: 768px) {
@@ -99,18 +117,17 @@ const ChipContainer = styled.div`
   justify-content: flex-start;
 `
 const Chip = styled.div`
-  background-color: transparent;
   margin: 10px 0;
   margin-right: 10px;
   padding: 5px;
   border-radius: 3px;
   border: 1px solid;
   color: #2d3235;
-  font-size: 8px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 500;
 
   @media (min-width: 768px) {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   &.customChip {

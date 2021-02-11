@@ -52,15 +52,11 @@ const Label = styled.label`
   cursor: pointer;
   transition: 0.3s;
 
-  ${Input}:focus + & {
-    // border: #ef4f4f solid 1px;
-  }
-
   ${Input}:checked + & {
-    background-color: #2d3235;
-    border: 1px solid #2d3235;
+    background-color: #394359;
+    border: 1px solid #303242;
     color: #ffffff;
-    font-weight: bold;
+    font-weight: 600;
   }
 
   @media screen and (max-width: 320px) {

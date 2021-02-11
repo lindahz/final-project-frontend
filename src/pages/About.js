@@ -33,64 +33,56 @@ export const About = () => {
 }
 
 const Section = styled.section`
-  width: 100%;
+  width: 80%;
+  margin: auto;
   padding: 80px 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #2d3235;
+  align-items: flex-start;
+  //background-color: #2d3235;
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    width: 70%;
+  }
+
+  @media (min-width: 1025px) {
+    width: 50%;
+  }
 `
 const Title = styled.h2`
-  width: 80%;
-  margin: 30px 0;
-  padding: 5px 0;
-  color: #ffffff;
+  margin: 30px 0 20px 0;
+  padding: 3px 0;
+  border-bottom: 2px solid red;
+  color: #2d3235;
   font-size: 36px;
   letter-spacing: 1px;
   font-weight: 800;
   text-align: left;
 
-  @media screen and (min-width: 667px) and (max-width: 1024px)  {
-    width: 70%;
+  @media screen and (min-width: 667px) {
     font-size: 52px;
-  }
-
-  @media (min-width: 1025px) {
-    width: 50%;
-    font-size: 62px;
+    border-bottom: 4px solid #ba6c65;
   }
 `
 const Heading = styled.h3`
-  width: 80%;
   margin: 5px 0 0 0;
-  color: #ffffff;
+  color: #2d3235;
   font-size: 16px;
 
-  @media screen and (min-width: 667px) and (max-width: 1024px)  {
-    width: 70%;
+  @media screen and (min-width: 667px) {
     font-size: 18px;
   }
 
-  @media (min-width: 1025px) {
-    width: 50%;
-    font-size: 18px;
-  }
 `
 const Text = styled.p`
-  width: 80%;
   margin: 8px 0;
-  color: #ffffff;
+  color: #2d3235;
   font-size: 14px;
   font-weight: 300;
   line-height: 1.6;
 
-  @media screen and (min-width: 667px) and (max-width: 1024px)  {
-    width: 70%;
+  @media screen and (min-width: 667px) {
     font-size: 16px;
   }
 
-  @media (min-width: 1025px) {
-    width: 50%;
-    font-size: 16px;
-  }
 `

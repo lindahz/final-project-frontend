@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-import { Reviews } from '../compontents/Reviews'
+import { Reviews } from '../compontents/ClinicDetails/Reviews'
 
 import { BackBtn } from '../lib/Buttons'
 
 export const ClinicDetails = () => {
   const [clinic, setClinic] = useState({})
   const [reviews, setReviews] = useState('')
+
   const { id } = useParams()
+
   const CLINIC_URL = `https://health-finder.herokuapp.com/clinic/${id}`
   const REVIEW_URL = `https://health-finder.herokuapp.com/clinic/${id}/reviews`
 
@@ -48,29 +50,56 @@ export const ClinicDetails = () => {
       </StyledLink>
       <Wrapper className="border">
         <TextContainer>
-          <Subtitle className="clinicType">{clinic.clinic_type}</Subtitle>
+          <Subtitle className="clinicType">
+            {clinic.clinic_type}
+          </Subtitle>
           <Chip>
             <Span>★ </Span>
             {displayAverageRating(clinic.average_rating)}
           </Chip>
         </TextContainer>
-        <Title>{clinic.clinic_name}</Title>
-        <Heading>Öppettider</Heading>
-        <Text>{clinic.open_hours}</Text>
-        <Heading>Adress</Heading>
-        <Text>{clinic.address}</Text>
-        <Heading>Drop-in</Heading>
-        <Text>{clinic.drop_in}</Text>
+        <Title>
+          {clinic.clinic_name}
+        </Title>
+        <Heading>
+          Öppettider
+        </Heading>
+        <Text>
+          {clinic.open_hours}
+        </Text>
+        <Heading>
+          Adress
+        </Heading>
+        <Text>
+          {clinic.address}
+        </Text>
+        <Heading>
+          Drop-in
+        </Heading>
+        <Text>
+          {clinic.drop_in}
+        </Text>
       </Wrapper>
       <Wrapper>
         <TextContainer className="reviews">
-          <Subtitle>Omdömen <Subtitle className="subtitleGray">({clinic.text_reviews_count})</Subtitle></Subtitle>
+          <Subtitle>
+            Omdömen
+            <Subtitle className="subtitleGray">
+              ({clinic.text_reviews_count})
+            </Subtitle>
+          </Subtitle>
           <StyledLink to={`/kliniker/${id}/skriv-omdome`}>
-            <Chip>Skriv ett omdöme</Chip>
+            <Chip>
+              Skriv ett omdöme
+            </Chip>
           </StyledLink>
         </TextContainer>
         <Container>
-          {clinic.text_reviews_count === 0 && (<Heading className="empty">Det finns inga omdömen än...</Heading>)}
+          {clinic.text_reviews_count === 0 && (
+            <Heading className="empty">
+              Det finns inga omdömen än...
+            </Heading>
+          )}
           {reviews && reviews.map((review, index) => {
             return (
               <Reviews
@@ -110,7 +139,6 @@ const Wrapper = styled.div`
   &.border {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #d6d6d6;
 
     @media (min-width: 1025px) {
       margin-bottom: 0;
@@ -129,8 +157,10 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
-  height: 400px;
-  overflow: scroll;
+  @media (min-width: 1025px) {
+    height: 400px;
+    overflow: scroll;
+  }
 `
 
 const TextContainer = styled.div`
@@ -162,13 +192,25 @@ const StyledLink = styled(Link)`
   }
 `
 
+const Title = styled.h2`
+  margin: 10px 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  @media (min-width: 768px) {
+    font-size: 30px;
+  }
+`
+
 const Subtitle = styled.h3`
   margin: 10px 0;
   font-weight: 500;
   font-size: 16px;
 
   &.clinicType {
-    font-size: 14px;
+    font-family: 'Lato', sans-serif;
     letter-spacing: 2px;
     text-transform: uppercase;
 
@@ -176,8 +218,9 @@ const Subtitle = styled.h3`
       font-size: 20px;
     }
   }
+
   &.subtitleGray {
-    margin: 0;
+    margin-left: 3px;
     display: inline-block;
     color: #898989;
   }
@@ -191,51 +234,46 @@ const Span = styled.span`
   color: #FFCC66;
 `
 
-const Title = styled.h2`
-  font-size: 20px;
-  margin: 10px 0;
-  font-weight: bold;
-  // color: #9b5151;
-
-  @media (min-width: 768px) {
-    font-size: 30px;
-  }
-`
-
 const Text = styled.p`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 
   @media (min-width: 768px) {
     font-size: 18px;
   }
 `
-
 const Heading = styled.h4`
-  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 2px;
   color: #898989;
 
   @media (min-width: 768px) {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   &.empty {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding: 20px 0;
+    text-align: center;
     font-size: 18px;
-    font-weight: lighter;
+    font-weight: 300;
     letter-spacing: 0.5px;
+    opacity: 0.5;
+
+    @media (min-width: 1025px) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
   }
+}
 `
 
 const Chip = styled(Subtitle)`
   padding: 5px 10px;
-  background-color: #2d3235;
+  background-color: #394359;
   border-radius: 3px;
   font-weight: 400;
   font-size: 12px;

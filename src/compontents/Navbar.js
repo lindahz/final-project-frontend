@@ -7,8 +7,7 @@ import styled from 'styled-components/macro'
 import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
 import { CustomSearchTextfield } from '../lib/Textfields'
-import { CustomSearchBtn } from '../lib/Buttons'
-import { ToggleBtn } from '../lib/Buttons'
+import { CustomSearchBtn, ToggleBtn } from '../lib/Buttons'
 
 import logo from '../assets/logo.png'
 import cross from '../assets/cross.svg'
@@ -28,7 +27,9 @@ export const Navbar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch(fetchClinics(search, sortOrder, pageNum))
+    if (search.replace(/\s/g, '').length !== 0) {
+      dispatch(fetchClinics(search, sortOrder, pageNum))
+    }
   }
 
   const onChangeEvent = (value) => {
@@ -164,9 +165,9 @@ const CategoryText = styled.a`
   margin: 5px 0;
   padding: 0;
   display: inline-block;
-  color: #2d3235;
   font-size: 20px;
   font-weight: 500;
+  color: #2d3235;
   transition: 0.3s ease;
 
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
@@ -180,7 +181,7 @@ const CategoryText = styled.a`
     font-size: 16px;
 
     &:hover {
-    border-bottom: 3px solid #949cdf;
+    border-bottom: 3px solid #ba6c65;
     font-weight: 500;
     color: #000000;
   }

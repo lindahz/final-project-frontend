@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { BackBtn } from '../lib/Buttons'
-import stairs from '../assets/stairs.jpg'
 
 export const NotFound = () => {
   return (

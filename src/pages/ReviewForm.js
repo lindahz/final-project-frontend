@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components/macro'
-import { useParams } from 'react-router-dom'
-import { Redirect } from "react-router-dom"
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+import { useParams, Link, useHistory } from 'react-router-dom'
 
+import styled from 'styled-components/macro'
 import Rating from '@material-ui/lab/Rating'
+import { withStyles } from '@material-ui/core/styles'
 
 import { FormTextfield, FormTextarea } from '../lib/Textfields'
 import { FormBtn, BackBtn } from '../lib/Buttons'
@@ -18,11 +16,29 @@ export const ReviewForm = () => {
   const [name, setName] = useState('')
   const [rating, setRating] = useState(0)
   const [review, setReview] = useState('')
-  const [errorMessage, setErrorMessage] = useState(true)
   const [errorMessageRating, setErrorMessageRating] = useState(false)
   const [errorMessageTitle, setErrorMessageTitle] = useState(false)
   const [errorMessageReview, setErrorMessageReview] = useState(false)
   const [errorMessageName, setErrorMessageName] = useState(false)
+
+  const clinicData = useSelector((store) => store.clinics.clinics.clinics)
+
+  const history = useHistory()
+
+  const clinic = clinicData && clinicData.find((item) => item._id === id)
+
+  const REVIEW_URL = `https://health-finder.herokuapp.com/clinics/${id}/review`
+
+  const redirectPage = (value) => value && history.push(`/kliniker/${id}`)
+
+  const StyledRating = withStyles({
+    iconFilled: {
+      color: '#FFCC66'
+    },
+    iconHover: {
+      color: '#FFCC66'
+    }
+  })(Rating);
 
   const reviewValidation = () => {
     if (rating < 1) {
@@ -47,19 +63,9 @@ export const ReviewForm = () => {
     }
   }
 
-  console.log(title.length)
-
-  const clinicData = useSelector((store) => store.clinics.clinics.clinics)
-
-  const clinic = clinicData && clinicData.find((item) => item._id === id)
-
-  const history = useHistory()
-
-  const redirectPage = (value) => value && history.push(`/kliniker/${id}`)
-
   const handleSubmit = (event) => {
     event.preventDefault()
-    fetch(`https://health-finder.herokuapp.com/clinics/${id}/review`, {
+    fetch(REVIEW_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -79,18 +85,28 @@ export const ReviewForm = () => {
 
   return (
     <Section>
-      <StyledLink to={`/kliniker/${id}/`}><BackBtn title="Gå tillbaka" /></StyledLink>
+      <StyledLink to={`/kliniker/${id}/`}>
+        <BackBtn title="Gå tillbaka" />
+      </StyledLink>
       <Container>
         <Form onSubmit={handleSubmit} noValidate>
-          <Title>Skriv ett omdöme om {clinicData && clinic.clinic_name}</Title>
+          <Title>
+            Skriv ett omdöme om {clinicData && clinic.clinic_name}
+          </Title>
           <Container className="ratingContainer">
-            <Label>Ditt betyg</Label>
-            <Rating
+            <Label>
+              Ditt betyg
+            </Label>
+            <StyledRating
               name="simple-controlled"
+              size="large"
               value={rating}
               onChange={(event, value) => setRating(value)} />
           </Container>
-          {errorMessageRating && <ValidationText>Välj ett betyg</ValidationText>}
+          {errorMessageRating &&
+          <ValidationText>
+            Välj ett betyg
+          </ValidationText>}
           <FormTextfield
             title="Omdömets titel"
             required
@@ -98,15 +114,23 @@ export const ReviewForm = () => {
             placeholder="Ange titel..."
             value={title}
             onChange={(event) => setTitle(event.target.value)} />
-          {errorMessageTitle && <ValidationText>Titeln måste vara mellan 5 och 60 tecken</ValidationText>}
+          {errorMessageTitle &&
+          <ValidationText>
+            Titeln måste vara mellan 5 och 60 tecken
+          </ValidationText>}
           <FormTextarea
             required
             title="Ditt omdöme"
             placeholder="Ange omdöme..."
             value={review}
             onChange={(event) => setReview(event.target.value)} />
-          {errorMessageReview && <ValidationText>Omdömet måste vara mellan 5 och 300 tecken</ValidationText>}
-          <ValidationText className="counter">{review.length} / 300</ValidationText>
+          {errorMessageReview &&
+          <ValidationText>
+            Omdömet måste vara mellan 5 och 300 tecken
+          </ValidationText>}
+          <ValidationText className="counter">
+            {review.length} / 300
+          </ValidationText>
           <FormTextfield
             required
             title="Ditt namn"
@@ -114,7 +138,10 @@ export const ReviewForm = () => {
             placeholder="Ange namn..."
             value={name}
             onChange={(event) => setName(event.target.value)} />
-          {errorMessageName && <ValidationText>Ditt namn måste vara mer än 4 tecken</ValidationText>}
+          {errorMessageName && 
+          <ValidationText>
+            Ditt namn måste vara mer än 4 tecken
+          </ValidationText>}
           <FormBtn
             required
             title="Skicka omdöme"
@@ -141,14 +168,42 @@ const Section = styled.section`
   }
 `
 
-const Title = styled.h3`
-  margin: 0 0 10px 0;
-  font-size: 20px;
+const Container = styled.div`
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 3px 0 0 3px;
+
+  &.ratingContainer {
+    margin: 10px 0px;
+    padding: 0;
+    box-shadow: none;
+  }
 
   @media (min-width: 768px) {
-    font-size: 24px;
+    width: 60%;
+    padding: 40px;
+    box-shadow: 3px 4px 12px -8px rgba(196,196,196,1);
   }
 `
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+`
+
+const Title = styled.h3`
+  margin: 0 0 10px 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+
+  @media (min-width: 768px) {
+    font-size: 26px;
+  }
+`
+
 const ValidationText = styled.p`
   height: 0;
   overflow: visible;
@@ -168,30 +223,9 @@ const Label = styled.h4`
   color: #2d3235;
   letter-spacing: 0.3px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
 `
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-`
-const Container = styled.div`
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 3px 0 0 3px;
 
-  &.ratingContainer {
-    margin: 10px 0px;
-    padding: 0;
-    box-shadow: none;
-  }
-
-  @media (min-width: 768px) {
-    width: 60%;
-    padding: 40px;
-    box-shadow: 3px 4px 12px -8px rgba(196,196,196,1);
-  }
-`
 const StyledLink = styled(Link)`
   text-decoration: none;
 

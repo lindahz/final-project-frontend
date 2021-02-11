@@ -16,23 +16,33 @@ export const Footer = () => {
           Vi hjälper dig att hitta och jämföra vårdgivare
           och få stöd med att få den vård du behöver.
         </Text>
-        <Text>© 2021 Health Finder</Text>
+        <Text>
+          © 2021 Health Finder
+        </Text>
       </Container>
       <Container>
         <Subtitle>
           Information
         </Subtitle>
         <StyledLink to="/">
-          <TextCategory>Hitta och jämför vård</TextCategory>
+          <TextCategory>
+            Hitta och jämför vård
+          </TextCategory>
         </StyledLink>
         <StyledLink to="/fakta-och-rad">
-          <TextCategory>Fakta och råd</TextCategory>
+          <TextCategory>
+            Fakta och råd
+          </TextCategory>
         </StyledLink>
         <StyledLink to="/om-oss">
-          <TextCategory>Om oss</TextCategory>
+          <TextCategory>
+            Om oss
+          </TextCategory>
         </StyledLink>
         <StyledLink to="/kontakt">
-          <TextCategory>Kontakt</TextCategory>
+          <TextCategory>
+            Kontakt
+          </TextCategory>
         </StyledLink>
         <LogoContainer>
           <Logo src={facebook} />
@@ -66,6 +76,7 @@ const Section = styled.section`
     font-size: 18px;
   }
 `
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,6 +85,7 @@ const Container = styled.div`
     align-items: flex-end;
   }
 `
+
 const LogoContainer = styled.div`
   margin: 10px 0;
 
@@ -81,6 +93,7 @@ const LogoContainer = styled.div`
     margin: 20px 0 0 0;
   }
 `
+
 const Logo = styled.img`
   width: 15px;
   margin-right: 20px;
@@ -103,6 +116,7 @@ const Subtitle = styled.h4`
     text-align: right;
   }
 `
+
 const TextCategory = styled.p`
   padding-bottom: 1px 0;
   margin: 4px 0;
@@ -116,6 +130,7 @@ const TextCategory = styled.p`
     opacity: 0.5;
   }
 `
+
 const Text = styled.p`
   display: block;
   width: 200px;

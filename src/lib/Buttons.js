@@ -22,7 +22,7 @@ const Search = styled.button`
   padding: 10px 10px;
   width: 100px;
   height: 65px;
-  background-color: #ffcda3; // #ffecda;
+  background-color: #ba6c65; // #ffecda;
   border: none;
   border-radius: 0 3px 3px 0;
   transition: 0.3s ease;
@@ -174,6 +174,8 @@ const FormButton = styled.button`
   border: 1px solid;
   border-radius: 3px;
   background-color: transparent;
+  font-size: 16px;
+  font-weight: 500;
   font-family: 'Quicksand', sans-serif;
   color: #2d3235;
   transition: 0.3s ease;
@@ -181,18 +183,15 @@ const FormButton = styled.button`
 
   &:focus {
     border: 1px solid #000000;
-    font-weight: bold;
   }
 
   &:hover {
     opacity: 0.7;
-    font-weight: bold;
   }
 
   @media (min-width: 768px) {
     min-width: 150px;
     padding: 10px 10px;
-    font-size: 14px;
   }
 `
 

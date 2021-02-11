@@ -3,21 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import styled from 'styled-components/macro'
 import { Pagination } from '@material-ui/lab'
-import { makeStyles } from '@material-ui/core/styles';
 
-import { clinics } from '../reducers/clinics'
-import { fetchClinics } from '../reducers/reusable'
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
+import { clinics } from '../../reducers/clinics'
+import { fetchClinics } from '../../reducers/reusable'
 
 export const Pages = () => {
-  const classes = useStyles();
   const clinicData = useSelector((store) => store.clinics.clinics)
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
@@ -55,5 +45,5 @@ const Section = styled.div`
   margin: 40px 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 `

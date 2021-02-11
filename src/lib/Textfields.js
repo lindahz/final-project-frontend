@@ -17,19 +17,18 @@ const Search = styled.input`
   width: 100%;
   height: 65px;
   padding: 8px 15px;
-  margin: 5px 0;
   background-color: #ffffff;
   color: #2d3235;
   font-size: 14px;
   font-family: 'Quicksand', sans-serif;
   border-radius: 3px 0 0 3px;
   border: none;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
   transition: 0.3s ease;
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid #2d3235;
+    border-bottom: 3px solid #ba6c65;
     &::-webkit-input-placeholder {
       color: #2d3235;
       opacity: 1;
@@ -75,10 +74,9 @@ export const CustomSearchTextfield = ({ title, type, onChange, placeholder, requ
 const CustomSearch = styled(Search)`
   width: 100%;
   height: 50px;
-  margin: 0;
   background-color: transparent;
   border-radius: 0;
-  border-bottom: 2px solid #2d3235;
+  border-bottom: 2px solid #394359;
 
   &:focus {
     border-bottom: 2px solid #ef4f4f;
@@ -121,7 +119,7 @@ const CustomSearch = styled(Search)`
 
 
     &:focus {
-      border-bottom: 3px solid #ef4f4f;
+      border-bottom: 3px solid #ba6c65;
     }
   }
 `
@@ -147,7 +145,7 @@ const FormText = styled.input`
   border: 1px solid #2d3235;
   border-radius: 3px;
   color: #2d3235;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'Quicksand', sans-serif;
   color: #2d3235;
   transition: 0.3s ease;
@@ -189,10 +187,9 @@ const FormLabel = styled.label`
   margin: 10px 0;
   color: #2d3235;
   font-family: 'Quicksand', sans-serif;
-  //text-transform: uppercase;
   letter-spacing: 0.3px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
 `
 
 export const FormTextarea = ({ title, type, onChange, placeholder, required }) => {
@@ -215,7 +212,7 @@ const Textarea = styled.textarea`
   padding: 8px 12px;
   display: block;
   resize: none;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'Quicksand', sans-serif;
   border: 1px solid #2d3235;
   color: #2d3235;

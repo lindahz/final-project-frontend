@@ -7,9 +7,13 @@ import 'moment/locale/sv'
 import Rating from '@material-ui/lab/Rating'
 import { withStyles } from '@material-ui/core/styles'
 
-// import { clinics } from 'reducers/clinics'
-
-export const Reviews = ({ rating, review, review_date, name, title }) => {
+export const Reviews = ({
+  rating,
+  review,
+  review_date,
+  name,
+  title
+}) => {
 
   const StyledRating = withStyles({
     iconFilled: {
@@ -27,11 +31,19 @@ export const Reviews = ({ rating, review, review_date, name, title }) => {
           name="read-only"
           value={rating}
           readOnly />
-        <Text className="dateText">{moment(review_date).fromNow()}</Text>
+        <Text className="dateText">
+          {moment(review_date).fromNow()}
+        </Text>
       </Wrapper>
-      <Heading>{title}</Heading>
-      <Text>{review}</Text>
-      <Text className="nameText">{name}</Text>
+      <Heading>
+        {title}
+      </Heading>
+      <Text>
+        {review}
+      </Text>
+      <Text className="nameText">
+        {name}
+      </Text>
     </Container>
   )
 }
