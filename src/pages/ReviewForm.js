@@ -94,7 +94,7 @@ export const ReviewForm = () => {
       <Container>
         <Form onSubmit={handleSubmit} noValidate>
           <Title>
-            Skriv ett omdöme om {clinicData && clinic.clinic_name}
+            Skriv ett omdöme {clinicData && `om ${clinic.clinic_name}`}
           </Title>
           <Container className="ratingContainer">
             <Label>

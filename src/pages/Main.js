@@ -26,31 +26,29 @@ export const Main = () => {
   const [filteredClinicData, setFilteredClinicData] = useState([])
 
   useEffect(() => {
-    let filteredClinics =
-      clinicData &&
-      clinicData.filter((clinic) => {
-        let includeClinic = true;
+    let filteredClinics = clinicData && clinicData
+      .filter((clinic) => {
+        let includeClinic = true
         activeFilters.forEach((filterItem) => {
           // eslint-disable-next-line default-case
           switch (filterItem.id) {
             case 'emg':
-              if (!clinic.clinic_operation.includes('Akutverksamhet')) {
+              if (clinic.clinic_operation.includes('Akutverksamhet')) {
                 includeClinic = false;
               }
               break;
             case 'reg':
-              if (!clinic.clinic_operation.includes('Vårdcentral')) {
+              if (clinic.clinic_operation.includes('Vårdcentral')) {
                 includeClinic = false;
               }
               break;
           }
-        });
+        })
         return includeClinic
-      });
+      })
 
-    filteredClinics =
-      clinicData &&
-      clinicData.filter((clinic) => {
+    filteredClinics = clinicData && clinicData
+      .filter((clinic) => {
         let includeClinic = true;
         activeFilters.forEach((filterItem) => {
           // eslint-disable-next-line default-case
@@ -79,9 +77,8 @@ export const Main = () => {
         return includeClinic
       });
 
-    filteredClinics =
-      clinicData &&
-      clinicData.filter((clinic) => {
+    filteredClinics = clinicData && clinicData
+      .filter((clinic) => {
         let includeClinic = true;
         activeFilters.forEach((filterItem) => {
           // eslint-disable-next-line default-case
@@ -96,8 +93,9 @@ export const Main = () => {
         return includeClinic
       });
     setFilteredClinicData(filteredClinics)
-    console.log(filteredClinics)
   }, [filters, clinicData]);
+
+  console.log(`state: ${filteredClinicData}`)
 
   return (
     <Section>
@@ -129,20 +127,25 @@ export const Main = () => {
       )}
       {clinicData && (
         <Container className="clinicListContainer">
-          <ToggleBtn type="submit" title="Filter" onClick={handleToggle} src={filterIcon} width="15px" />
+          <ToggleBtn
+            type="submit"
+            title="Filter"
+            onClick={handleToggle}
+            src={filterIcon}
+            width="15px" />
           <Heading>
             Vi hittade
             <Span>
               {totalClinics}
             </Span>
             vårdgivare som matchade din sökning.
+            {clinicData && clinicData.length === 0 &&
+              <Heading className="error">
+                Försök igen!
+              </Heading>
+            }
           </Heading>
-          {clinicData && clinicData.length === 0 &&
-            <Heading>
-              Försök igen!
-            </Heading>
-          }
-          {clinicData && clinicData.length > 0 && clinicData.map((clinic, index) => { // filteredClinicData.map()
+          {filteredClinicData && filteredClinicData.length > 0 && filteredClinicData.map((clinic, index) => { // filteredClinicData.map()
             return (
               <ClinicList
                 key={index}
@@ -231,18 +234,18 @@ const Heading = styled.h3`
   width: inherit;
   margin: 10px;
   display: inline-block;
+  font-family: 'Lato', sans-serif;
   text-align: center;
   font-size: 16px;
 
   @media (min-width: 768px) {
     font-size: 20px;
-    text-align: center;;
+    text-align: center;
   }
 
   &.filterTitle {
     width: auto;
     margin: 20px 0 8px 0;
-    font-family: 'Lato', sans-serif;
     font-size: 18px;
     font-weight: 600;
     text-align: center;

@@ -77,7 +77,7 @@ const CustomSearch = styled(Search)`
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid #ef4f4f;
+    border-bottom: 2px solid #ba6c65;
   }
 
   &:hover {

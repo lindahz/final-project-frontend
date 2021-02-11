@@ -14,7 +14,6 @@ export const Sort = () => {
 
   const onChangeEvent = (value) => {
     dispatch(clinics.actions.generateSortOrder(value))
-    console.log(pageNum)
     dispatch(fetchClinics(search, value, pageNum))
   }
 

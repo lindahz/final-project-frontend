@@ -76,10 +76,10 @@ const CustomSearch = styled(Search)`
   height: 50px;
   background-color: transparent;
   border-radius: 0;
-  border-bottom: 2px solid #394359;
+  border-bottom: 2px solid #2d3235;
 
   &:focus {
-    border-bottom: 2px solid #ef4f4f;
+    border-bottom: 2px solid #ba6c65;
     &::-webkit-input-placeholder {
       color: #2d3235;
       opacity: 1;
@@ -116,7 +116,6 @@ const CustomSearch = styled(Search)`
     padding: 10px 20px;
     border-bottom: 3px solid #ffffff;
     font-size: 16px;
-
 
     &:focus {
       border-bottom: 3px solid #ba6c65;
