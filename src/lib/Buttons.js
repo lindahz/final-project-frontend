@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import search from '../assets/search.svg'
-import backarrow from '../assets/backarrow.svg'
 
 export const SearchBtn = ({ type, disabled, onClick, width }) => {
   return (
@@ -115,31 +114,24 @@ export const ToggleBtn = ({ title, type, disabled, onClick, src, width, display 
   )
 }
 const ToggleButton = styled.button`
-  padding: 5px;
-  margin: 5px 0;
+  margin: 0;
+  padding: 10px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
   border: none;
   color: #2d3235;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
   letter-spacing: 0.5px;
   transition: 0.3s ease;
   cursor: pointer;
 
-  &:focus {
-    border: 2px solid #2d3235;
-  }
-
   &:hover {
     opacity: 0.6;
-  }
-
-  @media screen and (min-width: 667px) and (max-width: 1024px)  {
-    width: 60px;
-    font-size: 20px;
   }
 
   @media (min-width: 1025px) {
@@ -147,7 +139,7 @@ const ToggleButton = styled.button`
   }
 `
 const ToggleIcon = styled.img`
-  width: ${(props) => props.width || '15px'};
+  width: ${(props) => props.width || '20px'};
   margin: 0 5px;
 
   @media (min-width: 768px) {
@@ -195,27 +187,29 @@ const FormButton = styled.button`
   }
 `
 
-export const BackBtn = ({ title }) => {
+export const BackBtn = ({ title, color, src }) => {
   return (
-    <BackButton>
+    <BackButton
+      color={color}>
       <ArrowIcon
-        src={backarrow} />
+        src={src} />
       {title}
     </BackButton>
   )
 }
 const BackButton = styled.button`
   padding: 10px 5px;
-  margin: 10px 0;
+  margin: 20px 0;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   background-color: transparent;
   text-align: center;
-  font-size: 14px;
-  font-family: 'Quicksand', sans-serif;
+  letter-spacing: 0.3px;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
   font-weight: 600;
-  color: #2d3235;
+  color: ${(props) => props.color || '#2d3235'};
   transition: 0.3s ease;
   cursor: pointer;
   border: none;

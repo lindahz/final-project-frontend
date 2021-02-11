@@ -92,7 +92,9 @@ const StyledLink = styled(Link)`
 
 const Title = styled.h2`
   margin: 5px 0;
+  font-family: 'Lato', sans-serif;
   font-size: 16px;
+  letter-spacing: 0.3px;
   font-weight: 600;
 
   @media (min-width: 768px) {

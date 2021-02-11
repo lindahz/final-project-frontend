@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { Reviews } from '../compontents/ClinicDetails/Reviews'
-
 import { BackBtn } from '../lib/Buttons'
+import backarrow from '../assets/icons/backarrow.svg'
 
 export const ClinicDetails = () => {
   const [clinic, setClinic] = useState({})
@@ -46,7 +46,9 @@ export const ClinicDetails = () => {
   return (
     <Section>
       <StyledLink to="/" className="back">
-        <BackBtn title="Gå tillbaka" />
+        <BackBtn
+          title="Gå tillbaka"
+          src={backarrow} />
       </StyledLink>
       <Wrapper className="border">
         <TextContainer>
@@ -257,7 +259,7 @@ const Heading = styled.h4`
   &.empty {
     padding: 20px 0;
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 300;
     letter-spacing: 0.5px;
     opacity: 0.5;
@@ -267,6 +269,7 @@ const Heading = styled.h4`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      font-size: 18px;
   }
 }
 `

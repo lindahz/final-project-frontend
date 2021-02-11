@@ -11,7 +11,8 @@ import { CustomSearchBtn, ToggleBtn } from '../lib/Buttons'
 
 import logo from '../assets/logo.png'
 import cross from '../assets/cross.svg'
-import hamburgerMenu from '../assets/hamburgerMenu.svg'
+
+import hamburgerMenu from '../assets/icons/hamburgerMenu.svg'
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false)
@@ -37,10 +38,18 @@ export const Navbar = () => {
   }
   return (
     <Section>
-      <ToggleBtn type="submit" onClick={handleToggle} src={hamburgerMenu} width="100%" />
+      <ToggleBtn
+        type="submit"
+        src={hamburgerMenu}
+        onClick={handleToggle}
+        width="35px" />
       <CompanyLogo src={logo} />
       <HamburgerContainer visibility={toggle}>
-        <ToggleBtn type="submit" title="Stäng" onClick={handleToggle} src={cross} />
+        <ToggleBtn
+          type="submit"
+          title="Stäng"
+          onClick={handleToggle}
+          src={cross} />
         <Text>Sök efter vårdgivare i Sverige</Text>
         <HamburgerForm onSubmit={handleSubmit}>
           <CustomSearchBtn type="submit" />
@@ -76,9 +85,9 @@ export const Navbar = () => {
 }
 
 const Section = styled.div`
-  z-index: 1;
+  z-index: 999;
   width: 100%;
-  padding: 10px 20px;
+  padding: 0 20px;
   position: fixed;
   top: 0;
   display: flex;
@@ -88,7 +97,7 @@ const Section = styled.div`
   box-shadow: 10px 10px 29px -16px rgba(156,156,156,0.6);
   
   @media (min-width: 1025px) {
-    padding: 0;
+    padding: 0 20px;
     overflow: hidden;
   }
 `
@@ -101,7 +110,7 @@ const Container = styled.div`
   }
 `
 const HamburgerContainer = styled.div`
-  z-index: 2;
+  z-index: 999;
   height: 100vh;
   padding: 25px;
   position: fixed;
@@ -165,6 +174,8 @@ const CategoryText = styled.a`
   margin: 5px 0;
   padding: 0;
   display: inline-block;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.3px;
   font-size: 20px;
   font-weight: 500;
   color: #2d3235;
@@ -193,7 +204,7 @@ const CompanyLogo = styled.img`
 
   @media (min-width: 1025px) {
     width: 50px;
-    margin: 0 40px;
+    margin: 0 20px;
     justify-self: flex-start;
   }
 `

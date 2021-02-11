@@ -6,7 +6,7 @@ import styled from 'styled-components/macro'
 import { Search } from '../compontents/Main/Search'
 import { Info } from '../compontents/Main/Info'
 import { Filter } from '../compontents/Main/Filter'
-import { Sort } from '../compontents/Sort'
+import { Sort } from '../compontents/Main/Sort'
 import { ClinicList } from '../compontents/Main/ClinicList'
 import { Pages } from '../compontents/Main/Pages'
 
@@ -184,8 +184,8 @@ const Container = styled.div`
 const FilterControls = styled.div`
   z-index: 2;
   width: 100%;
-  height: 100vh;
-  padding: 40px 30px;
+  min-height: 100vh;
+  padding: 60px 30px;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -242,6 +242,7 @@ const Heading = styled.h3`
   &.filterTitle {
     width: auto;
     margin: 20px 0 8px 0;
+    font-family: 'Lato', sans-serif;
     font-size: 18px;
     font-weight: 600;
     text-align: center;

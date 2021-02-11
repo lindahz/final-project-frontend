@@ -79,9 +79,10 @@ const Heading = styled.h3`
   margin: 12px 0;
   padding: 2px 0;
   border-bottom: 1px solid #2d3235;
+  font-family: 'Lato', sans-serif;
   font-size: 14px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 

@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { FormTextfield, FormTextarea } from '../lib/Textfields'
 import { FormBtn, BackBtn } from '../lib/Buttons'
+import backarrow from '../assets/icons/backarrow.svg'
 
 export const ReviewForm = () => {
   const { id } = useParams()
@@ -86,7 +87,9 @@ export const ReviewForm = () => {
   return (
     <Section>
       <StyledLink to={`/kliniker/${id}/`}>
-        <BackBtn title="Gå tillbaka" />
+        <BackBtn 
+          title="Gå tillbaka"
+          src={backarrow} />
       </StyledLink>
       <Container>
         <Form onSubmit={handleSubmit} noValidate>

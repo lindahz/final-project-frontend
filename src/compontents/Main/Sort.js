@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
 
-import { clinics } from '../reducers/clinics'
-import { fetchClinics } from '../reducers/reusable'
-import { RadioBtn } from '../lib/Radiobuttons'
+import { clinics } from '../../reducers/clinics'
+import { fetchClinics } from '../../reducers/reusable'
+import { RadioBtn } from '../../lib/Radiobuttons'
 
 export const Sort = () => {
   const dispatch = useDispatch()

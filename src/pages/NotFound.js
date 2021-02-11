@@ -4,6 +4,8 @@ import styled from 'styled-components/macro'
 
 import { BackBtn } from '../lib/Buttons'
 
+import whiteBackarrow from '../assets/icons/whiteBackarrow.svg'
+
 export const NotFound = () => {
   return (
     <Section>
@@ -13,7 +15,12 @@ export const NotFound = () => {
           Sidan du letar efter finns inte. Kontrollera din URL för felstavning eller versaler. Om du har problem med att hitta din destination på Health Finder kan du prova att 
           <StyledLink to="/"> besöka Health Finders startsida.</StyledLink>
         </Subtitle>
-        <StyledLink to="/"><BackBtn title="Gå tillbaka" /></StyledLink>
+        <StyledLink to="/">
+          <BackBtn
+            title="Gå tillbaka"
+            color="#ffffff"
+            src={whiteBackarrow} />
+        </StyledLink>
       </Container>
     </Section>
   )
@@ -21,21 +28,33 @@ export const NotFound = () => {
 
 const Section = styled.section`
   width: 100%;
-  padding: 120px 100px;
+
+  @media (min-width: 768px) {
+    padding: 120px 100px;
+  }
 `
 const Container = styled.div`
   padding: 100px 50px;
-  background-color: #2d3235;
+  background-color: #394359;
   border-radius: 3px;
 `
 const Title = styled.h2`
-  font-size: 46px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
   color: #ffffff;
+
+  @media (min-width: 768px) {
+    font-size: 46px;
+  }
 `
 const Subtitle = styled.h3`
-  width: 70%;
   font-weight: 400;
   color: #ffffff;
+
+  @media (min-width: 768px) {
+    width: 70%;
+  }
 `
 const StyledLink = styled(Link)`
   text-decoration: none;
