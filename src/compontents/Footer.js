@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
 
-import logo from '../assets/logo.png'
+import companyLogo from '../assets/companyLogo.svg'
 import facebook from '../assets/facebook.svg'
 import instagram from '../assets/instagram.svg'
 import twitter from '../assets/twitter.svg'
@@ -11,7 +11,7 @@ export const Footer = () => {
   return (
     <Section>
       <Container>
-        <MainLogo src={logo} />
+        <MainLogo src={companyLogo} />
         <Text className="grayText">
           Vi hjälper dig att hitta och jämföra vårdgivare
           och få stöd med att få den vård du behöver.

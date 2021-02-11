@@ -9,7 +9,7 @@ import { fetchClinics } from '../reducers/reusable'
 import { CustomSearchTextfield } from '../lib/Textfields'
 import { CustomSearchBtn, ToggleBtn } from '../lib/Buttons'
 
-import logo from '../assets/logo.png'
+import companyLogo from '../assets/companyLogo.svg'
 import cross from '../assets/cross.svg'
 
 import hamburgerMenu from '../assets/icons/hamburgerMenu.svg'
@@ -43,7 +43,7 @@ export const Navbar = () => {
         src={hamburgerMenu}
         onClick={handleToggle}
         width="35px" />
-      <CompanyLogo src={logo} />
+      <CompanyLogo src={companyLogo} />
       <HamburgerContainer visibility={toggle}>
         <ToggleBtn
           type="submit"

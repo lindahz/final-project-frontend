@@ -17,7 +17,7 @@ export const NotFound = () => {
         </Subtitle>
         <StyledLink to="/">
           <BackBtn
-            title="Gå tillbaka"
+            title="Gå till startsidan"
             color="#ffffff"
             src={whiteBackarrow} />
         </StyledLink>

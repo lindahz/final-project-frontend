@@ -26,76 +26,93 @@ export const Main = () => {
   const [filteredClinicData, setFilteredClinicData] = useState([])
 
   useEffect(() => {
-    let filteredClinics = clinicData && clinicData
+    const filteredClinicsType = clinicData && clinicData
       .filter((clinic) => {
-        let includeClinic = true
-        activeFilters.forEach((filterItem) => {
-          // eslint-disable-next-line default-case
-          switch (filterItem.id) {
-            case 'emg':
+        if (activeFilters.length) {
+          const result = activeFilters.map((filterItem) => {
+            let includeClinic = true
+            // eslint-disable-next-line default-case
+            if (filterItem.id === 'emg') {
               if (clinic.clinic_operation.includes('Akutverksamhet')) {
-                includeClinic = false;
+                includeClinic = true
+              } else {
+                includeClinic = false
               }
-              break;
-            case 'reg':
+            } else if (filterItem.id === 'reg') {
               if (clinic.clinic_operation.includes('Vårdcentral')) {
-                includeClinic = false;
+                includeClinic = true
+              } else {
+                includeClinic = false
               }
-              break;
-          }
-        })
-        return includeClinic
+            }
+            return includeClinic
+          })
+          return result.includes(true)
+        } else {
+          return true
+        }
       })
 
-    filteredClinics = clinicData && clinicData
+    const filteredClinicsOpenHours = clinicData && clinicData
       .filter((clinic) => {
-        let includeClinic = true;
-        activeFilters.forEach((filterItem) => {
-          // eslint-disable-next-line default-case
-          switch (filterItem.id) {
-            case 'all':
-              if (!clinic.open_hours.includes('Dygnet runt')) {
-                includeClinic = false;
+        if (activeFilters.length) {
+          const result = activeFilters.map((filterItem) => {
+            let includeClinic = true
+            // eslint-disable-next-line default-case
+            if (filterItem.id === 'all') {
+              if (clinic.open_hours.includes('Dygnet runt')) {
+                includeClinic = true
+              } else {
+                includeClinic = false
               }
-              break;
-            case 'week':
-              if (!clinic.open_hours) {
-                includeClinic = false;
+            } else if (filterItem.id === 'week') {
+              if (clinic.open_hours) {
+                includeClinic = true
+              } else {
+                includeClinic = false
               }
-              break;
-            case 'wkn':
+            } else if (filterItem.id === 'wkn') {
               if (
-                !clinic.open_hours.includes('Lör') ||
-                !clinic.open_hours.includes('sön') ||
-                !clinic.open_hours.includes('Dygnet runt')
+                clinic.open_hours.includes('Lör') ||
+                clinic.open_hours.includes('sön') ||
+                clinic.open_hours.includes('Dygnet runt')
               ) {
-                includeClinic = false;
+                includeClinic = true
+              } else {
+                includeClinic = false
               }
-              break;
-          }
-        });
-        return includeClinic
-      });
+            }
+            return includeClinic
+          })
+          return result.includes(true)
+        } else {
+          return true
+        }
+      })
 
-    filteredClinics = clinicData && clinicData
+    const filteredClinicsDropIn = clinicData && clinicData
       .filter((clinic) => {
-        let includeClinic = true;
-        activeFilters.forEach((filterItem) => {
-          // eslint-disable-next-line default-case
-          switch (filterItem.id) {
-            case 'dropin':
+        if (activeFilters.length) {
+          const result = activeFilters.map((filterItem) => {
+            let includeClinic = true
+            // eslint-disable-next-line default-case
+            if (filterItem.id === 'dropin') {
               if (clinic.drop_in.includes('Ej angivet/stängt')) {
-                includeClinic = false;
+                includeClinic = false
+              } else {
+                includeClinic = true
               }
-              break;
-          }
-        });
-        return includeClinic
-      });
-    setFilteredClinicData(filteredClinics)
+            }
+            return includeClinic
+          })
+          return result.includes(true)
+        } else {
+          return true
+        }
+      })
+    console.log(filteredClinicsType, filteredClinicsOpenHours, filteredClinicsDropIn)
+    setFilteredClinicData(filteredClinicsType)
   }, [filters, clinicData]);
-
-  console.log(`state: ${filteredClinicData}`)
 
   return (
     <Section>
@@ -105,7 +122,7 @@ export const Main = () => {
           <Info />
         </Container>
       )}
-      {clinicData && /* clinicData.length > 0 && */ (
+      {clinicData && (
         <FilterControls visibility={toggle}>
           <ToggleBtn
             display="flex"
@@ -139,19 +156,20 @@ export const Main = () => {
               {totalClinics}
             </Span>
             vårdgivare som matchade din sökning.
-            {clinicData && clinicData.length === 0 &&
+            {clinicData && clinicData.length === 0 && (
               <Heading className="error">
                 Försök igen!
               </Heading>
-            }
+            )}
           </Heading>
-          {filteredClinicData && filteredClinicData.length > 0 && filteredClinicData.map((clinic, index) => { // filteredClinicData.map()
-            return (
-              <ClinicList
-                key={index}
-                {... clinic} />
-            )
-          })}
+          {filteredClinicData && filteredClinicData.length > 0 && filteredClinicData
+            .map((clinic, index) => {
+              return (
+                <ClinicList
+                  key={index}
+                  {... clinic} />
+              )
+            })}
           <Pages />
         </Container>
       )}
