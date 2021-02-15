@@ -11,7 +11,7 @@ import { ClinicList } from '../compontents/Main/ClinicList'
 import { Pages } from '../compontents/Main/Pages'
 
 import { ToggleBtn } from '../lib/Buttons'
-import filterIcon from '../assets/filterIcon.svg'
+import filterIcon from '../assets/icons/filterIcon.svg'
 
 export const Main = () => {
   const [toggle, setToggle] = useState(false)
@@ -31,7 +31,6 @@ export const Main = () => {
         if (activeFilters.length) {
           const result = activeFilters.map((filterItem) => {
             let includeClinic = true
-            // eslint-disable-next-line default-case
             if (filterItem.id === 'emg') {
               if (clinic.clinic_operation.includes('Akutverksamhet')) {
                 includeClinic = true
@@ -58,7 +57,6 @@ export const Main = () => {
         if (activeFilters.length) {
           const result = activeFilters.map((filterItem) => {
             let includeClinic = true
-            // eslint-disable-next-line default-case
             if (filterItem.id === 'all') {
               if (clinic.open_hours.includes('Dygnet runt')) {
                 includeClinic = true
@@ -73,9 +71,9 @@ export const Main = () => {
               }
             } else if (filterItem.id === 'wkn') {
               if (
-                clinic.open_hours.includes('Lör') ||
-                clinic.open_hours.includes('sön') ||
-                clinic.open_hours.includes('Dygnet runt')
+                clinic.open_hours.includes('Lör')
+                || clinic.open_hours.includes('sön')
+                || clinic.open_hours.includes('Dygnet runt')
               ) {
                 includeClinic = true
               } else {
@@ -95,7 +93,6 @@ export const Main = () => {
         if (activeFilters.length) {
           const result = activeFilters.map((filterItem) => {
             let includeClinic = true
-            // eslint-disable-next-line default-case
             if (filterItem.id === 'dropin') {
               if (clinic.drop_in.includes('Ej angivet/stängt')) {
                 includeClinic = false
@@ -110,8 +107,13 @@ export const Main = () => {
           return true
         }
       })
-    console.log(filteredClinicsType, filteredClinicsOpenHours, filteredClinicsDropIn)
+    console.log(
+      filteredClinicsType,
+      filteredClinicsOpenHours,
+      filteredClinicsDropIn
+    )
     setFilteredClinicData(filteredClinicsType)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, clinicData]);
 
   return (
@@ -162,7 +164,8 @@ export const Main = () => {
               </Heading>
             )}
           </Heading>
-          {filteredClinicData && filteredClinicData.length > 0 && filteredClinicData
+          {filteredClinicData && filteredClinicData
+            .length > 0 && filteredClinicData
             .map((clinic, index) => {
               return (
                 <ClinicList
@@ -196,7 +199,6 @@ const Container = styled.div`
 
     @media (min-width: 768px) {
       padding: 120px 40px 40px 60px;
-      //justify-content: flex-start;
       align-content: center;
     }
   }
@@ -214,8 +216,8 @@ const FilterControls = styled.div`
   align-items: center;
   background-color: #ffffff;
   border-right: 1px solid #d6d6d6;
-  width: ${props => props.visibility ? '100%': '0%'};
-  opacity: ${props => props.visibility ? '1': '0'};
+  width: ${(props) => (props.visibility ? '100%' : '0%')};
+  opacity: ${(props) => (props.visibility ? '1' : '0')};
   transition: all 0.2s ease-out; 
 
   @media (min-width: 1025px) {
@@ -225,7 +227,7 @@ const FilterControls = styled.div`
     position: static;
     justify-content: flex-start;
     opacity: 1;
-    width: ${props => props.visibility ? '100px': '500px'};
+    width: ${(props) => (props.visibility ? '100px' : '500px')};
   }
 `
 
@@ -237,14 +239,14 @@ const FilterContainer = styled.div`
   align-items: center;
   background-color: transparent;
   transition: all 0.2s ease-out; 
-  visibility: ${props => props.visibility ? 'visible': 'hidden'};
-  opacity: ${props => props.visibility ? '1': '0'};
+  visibility: ${(props) => (props.visibility ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.visibility ? '1' : '0')};
 
   @media (min-width: 1025px) {
     width: 300px;
     align-items: flex-start;
-    visibility: ${props => props.visibility ? 'hidden': 'visible'};
-    opacity: ${props => props.visibility ? '0': '1'};
+    visibility: ${(props) => (props.visibility ? 'hidden' : 'visible')};
+    opacity: ${(props) => (props.visibility ? '0' : '1')};
   }
 `
 

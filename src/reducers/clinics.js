@@ -13,7 +13,8 @@ const initialState = {
     { id: 'wkn', checked: false },
     { id: 'dropin', checked: false },
     { id: 'rating', checked: 0 }
-  ]
+  ],
+  isLoading: false
 }
 
 export const clinics = createSlice({
@@ -37,6 +38,9 @@ export const clinics = createSlice({
       if (foundItem) {
         foundItem.checked = !foundItem.checked
       }
+    },
+    setLoading: (state, action) => {
+      state.isLoading = action.payload
     }
   }
 })

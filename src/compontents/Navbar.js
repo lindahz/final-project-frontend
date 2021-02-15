@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components/macro'
+import Loader from 'react-loader-spinner'
 
 import { clinics } from '../reducers/clinics'
 import { fetchClinics } from '../reducers/reusable'
@@ -10,13 +11,14 @@ import { CustomSearchTextfield } from '../lib/Textfields'
 import { CustomSearchBtn, ToggleBtn } from '../lib/Buttons'
 
 import companyLogo from '../assets/companyLogo.svg'
-import cross from '../assets/cross.svg'
+import cross from '../assets/icons/cross.svg'
 
 import hamburgerMenu from '../assets/icons/hamburgerMenu.svg'
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false)
-  const handleToggle = () => {
+  const handleToggle = (event) => {
+    event.preventDefault()
     setToggle(!toggle)
   }
 
@@ -24,6 +26,8 @@ export const Navbar = () => {
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
   const pageNum = useSelector((store) => store.clinics.pageNum)
+  const setLoading = useSelector((state) => state.clinics.isLoading)
+
   const dispatch = useDispatch()
 
   const handleSubmit = (event) => {
@@ -41,6 +45,7 @@ export const Navbar = () => {
       <ToggleBtn
         type="submit"
         src={hamburgerMenu}
+        onTouchStart={handleToggle}
         onClick={handleToggle}
         width="35px" />
       <CompanyLogo src={companyLogo} />
@@ -48,9 +53,12 @@ export const Navbar = () => {
         <ToggleBtn
           type="submit"
           title="Stäng"
+          onTouchStart={handleToggle}
           onClick={handleToggle}
           src={cross} />
-        <Text>Sök efter vårdgivare i Sverige</Text>
+        <Text>
+          Sök efter vårdgivare i Sverige
+        </Text>
         <HamburgerForm onSubmit={handleSubmit}>
           <CustomSearchBtn type="submit" />
           <CustomSearchTextfield
@@ -58,17 +66,57 @@ export const Navbar = () => {
             type="text"
             placeholder="Ange region, ort eller adress...."
             required />
+          <LoaderContainer>
+            <Loader
+              type="TailSpin"
+              color="#ba6c65"
+              height={40}
+              width={40}
+              visible={setLoading} />
+          </LoaderContainer>
         </HamburgerForm>
-        <Link to="/"><CategoryText>Hitta och jämför vård</CategoryText></Link>
-        <Link to="/fakta-och-rad"><CategoryText>Fakta och råd</CategoryText></Link>
-        <Link to="/om-oss"><CategoryText>Om oss</CategoryText></Link>
-        <Link to="/kontakt"><CategoryText>Kontakt</CategoryText></Link>
+        <Link to="/">
+          <CategoryText>
+          Hitta och jämför vård
+          </CategoryText>
+        </Link>
+        <Link to="/fakta-och-rad">
+          <CategoryText>
+            Fakta och råd
+          </CategoryText>
+        </Link>
+        <Link to="/om-oss">
+          <CategoryText>
+            Om oss
+          </CategoryText>
+        </Link>
+        <Link to="/kontakt">
+          <CategoryText>
+            Kontakt
+          </CategoryText>
+        </Link>
       </HamburgerContainer>
       <Container>
-        <Link to="/"><CategoryText>Hitta och jämför vård</CategoryText></Link>
-        <Link to="/fakta-och-rad"><CategoryText>Fakta och råd</CategoryText></Link>
-        <Link to="/om-oss"><CategoryText>Om oss</CategoryText></Link>
-        <Link to="/kontakt"><CategoryText>Kontakt</CategoryText></Link>
+        <Link to="/">
+          <CategoryText>
+            Hitta och jämför vård
+          </CategoryText>
+        </Link>
+        <Link to="/fakta-och-rad">
+          <CategoryText>
+            Fakta och råd
+          </CategoryText>
+        </Link>
+        <Link to="/om-oss">
+          <CategoryText>
+            Om oss
+          </CategoryText>
+        </Link>
+        <Link to="/kontakt">
+          <CategoryText>
+            Kontakt
+          </CategoryText>
+        </Link>
       </Container>
       {clinicData && (
         <Form onSubmit={handleSubmit}>
@@ -78,6 +126,14 @@ export const Navbar = () => {
             type="text"
             placeholder="Ange region, ort eller adress...."
             required />
+          <LoaderContainer>
+            <Loader
+              type="TailSpin"
+              color="#ba6c65"
+              height={40}
+              width={40}
+              visible={setLoading} />
+          </LoaderContainer>
         </Form>
       )}
     </Section>
@@ -119,11 +175,11 @@ const HamburgerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;  
-  background-color: ${(props) => props.visibility ? '#ffffff': 'transparent'};
-  width: ${(props) => props.visibility ? '100%': '0%'};
-  opacity: ${(props) => props.visibility ? '1': '0'};
-  visibility: ${(props) => props.visibility ? 'visible': 'hidden'};
-  transition: all 0.1s ease-out;
+  background-color: ${(props) => (props.visibility ? '#ffffff' : 'transparent')};
+  width: ${(props) => (props.visibility ? '100%' : '0%')};
+  opacity: ${(props) => (props.visibility ? '1' : '0')};
+  visibility: ${(props) => (props.visibility ? 'visible' : 'hidden')};
+  transition: all 0.3s ease-out;
 
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
     padding: 50px 80px;
@@ -137,6 +193,7 @@ const Form = styled.form`
   width: 100%;
   display: none;
   margin-bottom: 50px;
+  position: relative;
 
   @media (min-width: 1025px) {
     width: initial;
@@ -144,6 +201,14 @@ const Form = styled.form`
     margin: 0;
   }
 `
+
+const LoaderContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: 20px;
+`
+
 const HamburgerForm = styled(Form)`
   display: flex;
 

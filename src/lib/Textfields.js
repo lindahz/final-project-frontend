@@ -2,7 +2,13 @@ import React from 'react'
 
 import styled from 'styled-components/macro'
 
-export const SearchTextfield = ({ title, type, onChange, placeholder, required }) => {
+export const SearchTextfield = ({
+  title,
+  type,
+  onChange,
+  placeholder,
+  required
+}) => {
   return (
     <Search
       type={type}
@@ -60,7 +66,13 @@ const Search = styled.input`
   }
   `
 
-export const CustomSearchTextfield = ({ title, type, onChange, placeholder, required }) => {
+export const CustomSearchTextfield = ({
+  title,
+  type,
+  onChange,
+  placeholder,
+  required
+}) => {
   return (
     <CustomSearch
       type={type}
@@ -122,7 +134,13 @@ const CustomSearch = styled(Search)`
     }
   }
 `
-export const FormTextfield = ({ title, type, onChange, placeholder, required }) => {
+export const FormTextfield = ({
+  title,
+  type,
+  onChange,
+  placeholder,
+  required
+}) => {
   return (
     <FormLabel>
       {title}
@@ -148,10 +166,6 @@ const FormText = styled.input`
   font-family: 'Quicksand', sans-serif;
   color: #2d3235;
   transition: 0.3s ease;
-
-  /* &:invalid {
-    border-bottom: 1px solid red;
-  } */
 
   &:focus {
     outline: none;
@@ -191,7 +205,13 @@ const FormLabel = styled.label`
   font-size: 16px;
 `
 
-export const FormTextarea = ({ title, type, onChange, placeholder, required }) => {
+export const FormTextarea = ({
+  title,
+  type,
+  onChange,
+  placeholder,
+  required
+}) => {
   return (
     <FormLabel>
       {title}

@@ -2,7 +2,14 @@ import React from 'react'
 
 import styled from 'styled-components/macro'
 
-export const Checkbox = ({ value, id, disabled, checked, onChange, label }) => {
+export const Checkbox = ({
+  value,
+  id,
+  disabled,
+  checked,
+  onChange,
+  label
+}) => {
   return (
     <>
       <Input
@@ -44,7 +51,6 @@ const Label = styled.label`
   transition: 0.3s;
 
   ${Input}:focus + & {
-    // box-shadow: 0 0 2px 1px #ef4f4f;
   }
 
   ${Input}:checked + & {

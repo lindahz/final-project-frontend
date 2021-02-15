@@ -2,9 +2,9 @@ import React from 'react'
 
 import styled from 'styled-components/macro'
 
-import lightbulb from '../../assets/lightbulb.svg'
-import stetoskop from '../../assets/stetoskop.svg'
-import document from '../../assets/document.svg'
+import lightbulb from '../../assets/icons/lightbulb.svg'
+import stetoskop from '../../assets/icons/stetoskop.svg'
+import document from '../../assets/icons/document.svg'
 
 export const Info = () => {
   return (

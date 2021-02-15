@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styled from 'styled-components/macro'
 
 import skeleton from '../assets/images/skeleton.jpg'
@@ -74,12 +75,12 @@ export const Facts = () => {
           </Heading>
           <Text>
             Som försäkrad i det svenska socialförsäkringssystemet har du rätt till
-            så kallad "nödvändig vård" inom EU-, ESS-länder och Schweiz. 
+            så kallad nödvändig vård inom EU-, ESS-länder och Schweiz.
             Detta gäller exempelvis om du blir akut sjuk på din semester och du har rätt till
             vård till samma kostnad som invånarna i det land du befinner dig.
           </Text>
           <Text>
-            Som svensk har du även rätt till så kallad "planerad vård" vilket innebär
+            Som svensk har du även rätt till så kallad planerad vård vilket innebär
             att du i många fall har rätt att tex genomgå en operation, eller få behandling
             för en speciell sjukdom. Innan du gör detta är det viktigt att du tar reda på dina
             rättigheter, villkoren och hur du ska gå till väga. Vi kan hjälpa dig med detta!

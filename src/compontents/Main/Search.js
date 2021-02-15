@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
+import Loader from 'react-loader-spinner'
 
 import { clinics } from '../../reducers/clinics'
 import { fetchClinics } from '../../reducers/reusable'
@@ -14,6 +15,7 @@ export const Search = () => {
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
   const pageNum = useSelector((store) => store.clinics.pageNum)
+  const setLoading = useSelector((state) => state.clinics.isLoading)
 
   const [errorMessage, setErrorMessage] = useState(false)
 
@@ -46,11 +48,17 @@ export const Search = () => {
             onChange={(event) => onChangeEvent(event.target.value)} />
           <SearchBtn
             type="submit" />
+          <LoaderContainer>
+            <Loader
+              type="TailSpin"
+              color="#ffffff"
+              height={40}
+              width={40}
+              visible={setLoading} />
+          </LoaderContainer>
         </Form>
-        {errorMessage &&
-        <ErrorText>
-          Du måste ange ett område
-        </ErrorText>}
+        {errorMessage
+        && <ErrorText>Du måste ange ett område</ErrorText>}
       </Container>
     </Section>
   )
@@ -88,6 +96,14 @@ const Container = styled.div`
 `
 const Form = styled.form`
   display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+  position: relative;
+`
+
+const LoaderContainer = styled.div`
+  position: absolute;
+  bottom: -50px;
 `
 
 const Title = styled.h1`
@@ -135,7 +151,8 @@ const Subtitle = styled.h3`
   }
 `
 const ErrorText = styled.p`
-  position: absolute;
+  height: 0;
+  margin: 0;
   font-size: 12px;
   color: #ba6c65;
 

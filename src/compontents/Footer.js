@@ -1,11 +1,12 @@
 import React from 'react'
-import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
 
+import styled from 'styled-components/macro'
+
 import companyLogo from '../assets/companyLogo.svg'
-import facebook from '../assets/facebook.svg'
-import instagram from '../assets/instagram.svg'
-import twitter from '../assets/twitter.svg'
+import facebook from '../assets/icons/facebook.svg'
+import instagram from '../assets/icons/instagram.svg'
+import twitter from '../assets/icons/twitter.svg'
 
 export const Footer = () => {
   return (

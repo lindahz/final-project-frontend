@@ -26,6 +26,7 @@ export const ReviewForm = () => {
 
   const history = useHistory()
 
+  // eslint-disable-next-line no-underscore-dangle
   const clinic = clinicData && clinicData.find((item) => item._id === id)
 
   const REVIEW_URL = `https://health-finder.herokuapp.com/clinics/${id}/review`
@@ -70,10 +71,10 @@ export const ReviewForm = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        review: review,
+        review,
         rating: +rating,
-        title: title,
-        name: name,
+        title,
+        name,
         clinic_id: id
       })
     })
@@ -87,7 +88,7 @@ export const ReviewForm = () => {
   return (
     <Section>
       <StyledLink to={`/kliniker/${id}/`}>
-        <BackBtn 
+        <BackBtn
           title="Gå tillbaka"
           src={backarrow} />
       </StyledLink>
@@ -106,10 +107,8 @@ export const ReviewForm = () => {
               value={rating}
               onChange={(event, value) => setRating(value)} />
           </Container>
-          {errorMessageRating &&
-          <ValidationText>
-            Välj ett betyg
-          </ValidationText>}
+          {errorMessageRating
+          && <ValidationText>Välj ett betyg</ValidationText>}
           <FormTextfield
             title="Omdömets titel"
             required
@@ -117,20 +116,16 @@ export const ReviewForm = () => {
             placeholder="Ange titel..."
             value={title}
             onChange={(event) => setTitle(event.target.value)} />
-          {errorMessageTitle &&
-          <ValidationText>
-            Titeln måste vara mellan 5 och 60 tecken
-          </ValidationText>}
+          {errorMessageTitle
+          && <ValidationText>Titeln måste vara mellan 5 och 60 tecken</ValidationText>}
           <FormTextarea
             required
             title="Ditt omdöme"
             placeholder="Ange omdöme..."
             value={review}
             onChange={(event) => setReview(event.target.value)} />
-          {errorMessageReview &&
-          <ValidationText>
-            Omdömet måste vara mellan 5 och 300 tecken
-          </ValidationText>}
+          {errorMessageReview
+          && <ValidationText>Omdömet måste vara mellan 5 och 300 tecken</ValidationText>}
           <ValidationText className="counter">
             {review.length} / 300
           </ValidationText>
@@ -141,10 +136,8 @@ export const ReviewForm = () => {
             placeholder="Ange namn..."
             value={name}
             onChange={(event) => setName(event.target.value)} />
-          {errorMessageName && 
-          <ValidationText>
-            Ditt namn måste vara mer än 4 tecken
-          </ValidationText>}
+          {errorMessageName
+          && <ValidationText>Ditt namn måste vara mer än 4 tecken</ValidationText>}
           <FormBtn
             required
             title="Skicka omdöme"

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -12,7 +13,6 @@ export const ClinicList = ({
   open_hours,
   clinic_operation
 }) => {
-
   return (
     <StyledLink to={`kliniker/${_id}`}>
       <Container>
@@ -137,5 +137,6 @@ const Chip = styled.div`
   }
 `
 const Span = styled.span`
+  margin-left: 2px;
   color: #FFCC66;
 `

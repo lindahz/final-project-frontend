@@ -1,18 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import styled from 'styled-components/macro'
 
 import { BackBtn } from '../lib/Buttons'
-
 import whiteBackarrow from '../assets/icons/whiteBackarrow.svg'
 
 export const NotFound = () => {
   return (
     <Section>
       <Container>
-        <Title>Error 404: Sidan hittades inte</Title>
+        <Title>
+          Error 404: Sidan hittades inte
+        </Title>
         <Subtitle>
-          Sidan du letar efter finns inte. Kontrollera din URL för felstavning eller versaler. Om du har problem med att hitta din destination på Health Finder kan du prova att 
+          Sidan du letar efter finns inte. Kontrollera din URL för felstavning eller versaler.
+          Om du har problem med att hitta din destination på Health Finder kan du prova att
           <StyledLink to="/"> besöka Health Finders startsida.</StyledLink>
         </Subtitle>
         <StyledLink to="/">

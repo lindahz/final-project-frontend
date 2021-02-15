@@ -2,9 +2,14 @@ import React from 'react'
 
 import styled from 'styled-components/macro'
 
-import search from '../assets/search.svg'
+import search from '../assets/icons/search.svg'
 
-export const SearchBtn = ({ type, disabled, onClick, width }) => {
+export const SearchBtn = ({
+  type,
+  disabled,
+  onClick,
+  width
+}) => {
   return (
     <Search
       type={type}
@@ -21,7 +26,7 @@ const Search = styled.button`
   padding: 10px 10px;
   width: 100px;
   height: 65px;
-  background-color: #ba6c65; // #ffecda;
+  background-color: #ba6c65;
   border: none;
   border-radius: 0 3px 3px 0;
   transition: 0.3s ease;
@@ -55,7 +60,11 @@ const SearchIcon = styled.img`
   }
 `
 
-export const CustomSearchBtn = ({ type, disabled, onClick }) => {
+export const CustomSearchBtn = ({
+  type,
+  disabled,
+  onClick
+}) => {
   return (
     <CustomSearch
       type={type}
@@ -99,15 +108,25 @@ const CustomSearch = styled(Search)`
   }
 `
 
-export const ToggleBtn = ({ title, type, disabled, onClick, src, width, display }) => {
+export const ToggleBtn = ({
+  title,
+  type,
+  disabled,
+  onClick,
+  onTouchStart,
+  src,
+  width,
+  display
+}) => {
   return (
     <ToggleButton
-      type={type} 
+      type={type}
       disabled={disabled}
       display={display}
-      onClick={onClick}>
+      onClick={onClick}
+      onTouchStart={onTouchStart}>
       <ToggleIcon
-        src={src} 
+        src={src}
         width={width} />
       {title}
     </ToggleButton>
@@ -147,7 +166,12 @@ const ToggleIcon = styled.img`
   }
 `
 
-export const FormBtn = ({ title, type, disabled, onClick }) => {
+export const FormBtn = ({
+  title,
+  type,
+  disabled,
+  onClick
+}) => {
   return (
     <FormButton
       type={type}
@@ -187,7 +211,11 @@ const FormButton = styled.button`
   }
 `
 
-export const BackBtn = ({ title, color, src }) => {
+export const BackBtn = ({
+  title,
+  color,
+  src
+}) => {
   return (
     <BackButton
       color={color}>

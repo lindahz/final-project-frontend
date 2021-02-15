@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+
 import styled from 'styled-components/macro'
 
 import { Reviews } from '../compontents/ClinicDetails/Reviews'
