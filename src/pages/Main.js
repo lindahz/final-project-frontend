@@ -15,7 +15,8 @@ import filterIcon from '../assets/icons/filterIcon.svg'
 
 export const Main = () => {
   const [toggle, setToggle] = useState(false)
-  const handleToggle = () => {
+  const handleToggle = (event) => {
+    event.preventDefault()
     setToggle(!toggle)
   }
   const clinicData = useSelector((store) => store.clinics.clinics.clinics)
@@ -129,7 +130,8 @@ export const Main = () => {
           <ToggleBtn
             display="flex"
             type="submit"
-            onClick={handleToggle}
+            onTouchEnd={handleToggle}
+            onMouseUp={handleToggle}
             src={filterIcon}
             width="25px" />
           <FilterContainer visibility={toggle}>
@@ -149,7 +151,8 @@ export const Main = () => {
           <ToggleBtn
             type="submit"
             title="Filter"
-            onClick={handleToggle}
+            onTouchEnd={handleToggle}
+            onMouseUp={handleToggle}
             src={filterIcon}
             width="15px" />
           <Heading>
