@@ -45,16 +45,16 @@ export const Navbar = () => {
       <ToggleBtn
         type="submit"
         src={hamburgerMenu}
-        onTouchStart={handleToggle}
-        onClick={handleToggle}
+        onTouchEnd={handleToggle}
+        onMouseUp={handleToggle}
         width="35px" />
       <CompanyLogo src={companyLogo} />
       <HamburgerContainer visibility={toggle}>
         <ToggleBtn
           type="submit"
           title="Stäng"
-          onTouchStart={handleToggle}
-          onClick={handleToggle}
+          onTouchEnd={handleToggle}
+          onMouseUp={handleToggle}
           src={cross} />
         <Text>
           Sök efter vårdgivare i Sverige

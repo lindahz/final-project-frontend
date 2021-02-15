@@ -113,7 +113,8 @@ export const ToggleBtn = ({
   type,
   disabled,
   onClick,
-  onTouchStart,
+  onTouchEnd,
+  onMouseUp,
   src,
   width,
   display
@@ -124,7 +125,8 @@ export const ToggleBtn = ({
       disabled={disabled}
       display={display}
       onClick={onClick}
-      onTouchStart={onTouchStart}>
+      onTouchEnd={onTouchEnd}
+      onMouseUp={onMouseUp}>
       <ToggleIcon
         src={src}
         width={width} />
