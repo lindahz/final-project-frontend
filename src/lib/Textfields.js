@@ -14,6 +14,7 @@ export const SearchTextfield = ({
       type={type}
       onChange={onChange}
       placeholder={placeholder}
+      title="Sök efter region, ort eller adress"
       required={required}>
       {title}
     </Search>
@@ -78,6 +79,7 @@ export const CustomSearchTextfield = ({
       type={type}
       onChange={onChange}
       placeholder={placeholder}
+      title="Sök efter region, ort eller adress"
       required={required}>
       {title}
     </CustomSearch>

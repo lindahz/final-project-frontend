@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react'
 
 import styled from 'styled-components/macro'
@@ -14,7 +15,6 @@ export const Reviews = ({
   name,
   title
 }) => {
-
   const StyledRating = withStyles({
     iconFilled: {
       color: '#FFCC66'

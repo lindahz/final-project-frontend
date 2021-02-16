@@ -18,7 +18,9 @@ export const Info = () => {
       <Container>
         <CardContainer>
           <IconContainer>
-            <Icon src={stetoskop} />
+            <Icon
+              src={stetoskop}
+              alt="Illustration av ett stetoskop" />
           </IconContainer>
           <Subtitle className="iconSubtitle">
             Hitta rätt vårdgivare
@@ -31,7 +33,9 @@ export const Info = () => {
         </CardContainer>
         <CardContainer>
           <IconContainer>
-            <Icon src={document} />
+            <Icon
+              src={document}
+              alt="Illustration av en journal" />
           </IconContainer>
           <Subtitle className="iconSubtitle">
             Samla in journaler
@@ -45,7 +49,9 @@ export const Info = () => {
         </CardContainer>
         <CardContainer>
           <IconContainer>
-            <Icon src={lightbulb} />
+            <Icon
+              src={lightbulb}
+              alt="Illustration av en glödlampa" />
           </IconContainer>
           <Subtitle className="iconSubtitle">
             Vård utomlands
@@ -74,7 +80,7 @@ const Section = styled.section`
     padding: 80px;
   }
 `
-const Title = styled.h1`
+const Title = styled.h2`
   margin: 40px 0 0 0;
   font-family: 'Lato', sans-serif;
   font-size: 30px;

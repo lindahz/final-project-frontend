@@ -40,7 +40,7 @@ export const Contact = () => {
   )
 }
 
-const Section = styled.section`
+const Section = styled.main`
   width: 100%;
   margin: auto;
   padding: 80px 5px;

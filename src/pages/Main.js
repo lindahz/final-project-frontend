@@ -133,6 +133,7 @@ export const Main = () => {
             onTouchEnd={handleToggle}
             onMouseUp={handleToggle}
             src={filterIcon}
+            alt="Växla filter"
             width="25px" />
           <FilterContainer visibility={toggle}>
             <Heading className="filterTitle">
@@ -154,6 +155,7 @@ export const Main = () => {
             onTouchEnd={handleToggle}
             onMouseUp={handleToggle}
             src={filterIcon}
+            alt="Växla filter"
             width="15px" />
           <Heading>
             Vi hittade

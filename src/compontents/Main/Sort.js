@@ -18,7 +18,7 @@ export const Sort = () => {
   }
 
   return (
-    <Form>
+    <Form role="radiogroup">
       <RadioBtn
         label="Kliniknamn: A - Z"
         role="radio"

@@ -148,7 +148,7 @@ export const ReviewForm = () => {
   )
 }
 
-const Section = styled.section`
+const Section = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;

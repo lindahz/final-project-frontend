@@ -116,7 +116,7 @@ export const ClinicDetails = () => {
   )
 }
 
-const Section = styled.section`
+const Section = styled.main`
   width: 100%;
   min-height: 100vh;
   padding: 120px 20px 80px 20px;

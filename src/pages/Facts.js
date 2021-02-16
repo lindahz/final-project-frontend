@@ -32,10 +32,14 @@ export const Facts = () => {
             Vi kan hjälpa till med att hitta rätt vårdgivare för dig och hjälpa till med kontakten.
           </Text>
         </Container>
-        <Image src={mask} />
+        <Image
+          src={mask}
+          alt="Närbild av ansiktsmasker" />
       </Container>
       <Container>
-        <Image src={stairs} />
+        <Image
+          src={stairs}
+          alt="Trapphus med vita väggar" />
         <Container className="textContainer">
           <Heading>
             Hur vet jag vilket sjukhus/vårdgivare som är bäst?
@@ -65,10 +69,14 @@ export const Facts = () => {
             Vi kan hjälpa till med insamling och översättning av journaler
           </Text>
         </Container>
-        <Image src={journal} />
+        <Image
+          src={journal}
+          alt="Närbild av stetoskop och journal" />
       </Container>
       <Container>
-        <Image src={crutchet} />
+        <Image
+          src={crutchet}
+          alt="Kryckor som lutar mot vit vägg" />
         <Container className="textContainer">
           <Heading>
             Vilken vård har jag rätt till utomlands?
@@ -118,10 +126,14 @@ export const Facts = () => {
             Vi kan hjälpa dig att uppskatta hur mycket ersättning du bör kunna få.
           </Text>
         </Container>
-        <Image src={emergency} />
+        <Image
+          src={emergency}
+          alt="Närbild av akutskylt" />
       </Container>
       <Container>
-        <Image src={heartrate} />
+        <Image
+          src={heartrate}
+          alt="Närbild av hjärtfrekvens" />
         <Container className="textContainer">
           <Heading>
             Vad kan man få ersättning för?
@@ -148,13 +160,15 @@ export const Facts = () => {
             få för ersättning för din vård utomlands
           </Text>
         </Container>
-        <Image src={skeleton} />
+        <Image
+          src={skeleton}
+          alt="Skelett som tänker" />
       </Container>
     </Section>
   )
 }
 
-const Section = styled.section`
+const Section = styled.main`
   width: 100%;
   padding: 80px 5px;
   background-color: #ffffff;
@@ -239,7 +253,7 @@ const Title = styled.h2`
     color: #2d3235;
   }
 `
-const Heading = styled.h4`
+const Heading = styled.h3`
   margin: 0;
   padding: 2px 0;
   font-family: 'Lato', sans-serif;

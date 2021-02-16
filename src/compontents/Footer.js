@@ -12,7 +12,9 @@ export const Footer = () => {
   return (
     <Section>
       <Container>
-        <MainLogo src={companyLogo} />
+        <MainLogo
+          src={companyLogo}
+          alt="Health Finders logotyp" />
         <Text className="grayText">
           Vi hjälper dig att hitta och jämföra vårdgivare
           och få stöd med att få den vård du behöver.
@@ -46,9 +48,15 @@ export const Footer = () => {
           </TextCategory>
         </StyledLink>
         <LogoContainer>
-          <Logo src={facebook} />
-          <Logo src={instagram} />
-          <Logo src={twitter} />
+          <Logo
+            src={facebook}
+            alt="Facebook logotyp" />
+          <Logo
+            src={instagram}
+            alt="Instagram logotyp" />
+          <Logo
+            src={twitter}
+            alt="Twitter logotyp" />
         </LogoContainer>
       </Container>
     </Section>

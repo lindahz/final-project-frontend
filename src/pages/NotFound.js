@@ -29,7 +29,7 @@ export const NotFound = () => {
   )
 }
 
-const Section = styled.section`
+const Section = styled.main`
   width: 100%;
 
   @media (min-width: 768px) {

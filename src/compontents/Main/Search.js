@@ -129,7 +129,7 @@ const Title = styled.h1`
   }
 `
 
-const Subtitle = styled.h3`
+const Subtitle = styled.h2`
   font-size: 18px;
   font-weight: 500;
   color: #ffffff;

@@ -17,7 +17,8 @@ export const SearchBtn = ({
       onClick={onClick}
       width={width}>
       <SearchIcon
-        src={search} />
+        src={search}
+        alt="Illustration av ett förstoringsglas" />
     </Search>
   )
 }
@@ -71,7 +72,8 @@ export const CustomSearchBtn = ({
       disabled={disabled}
       onClick={onClick}>
       <SearchIcon
-        src={search} />
+        src={search}
+        alt="Illustration av ett förstoringsglas" />
     </CustomSearch>
   )
 }
@@ -111,17 +113,20 @@ const CustomSearch = styled(Search)`
 export const ToggleBtn = ({
   title,
   type,
+  value,
   disabled,
   onClick,
   onTouchEnd,
   onMouseUp,
   src,
+  alt,
   width,
   display
 }) => {
   return (
     <ToggleButton
       type={type}
+      value={value}
       disabled={disabled}
       display={display}
       onClick={onClick}
@@ -129,6 +134,7 @@ export const ToggleBtn = ({
       onMouseUp={onMouseUp}>
       <ToggleIcon
         src={src}
+        alt={alt}
         width={width} />
       {title}
     </ToggleButton>
@@ -222,7 +228,8 @@ export const BackBtn = ({
     <BackButton
       color={color}>
       <ArrowIcon
-        src={src} />
+        src={src}
+        alt="Pil som pekar åt vänster" />
       {title}
     </BackButton>
   )
