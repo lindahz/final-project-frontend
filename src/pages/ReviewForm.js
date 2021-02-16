@@ -48,17 +48,17 @@ export const ReviewForm = () => {
     } else {
       setErrorMessageRating(false)
     }
-    if (title.length < 5 || title.length > 60) {
+    if (title.replace(/\s/g, '').length < 5 || title.length > 60) {
       setErrorMessageTitle(true)
     } else {
       setErrorMessageTitle(false)
     }
-    if (review.length < 5 || review.length > 300) {
+    if (review.replace(/\s/g, '').length < 5 || review.length > 300) {
       setErrorMessageReview(true)
     } else {
       setErrorMessageReview(false)
     }
-    if (name.length < 2 || name.length > 26) {
+    if (name.replace(/\s/g, '').length < 2 || name.length > 26) {
       setErrorMessageName(true)
     } else {
       setErrorMessageName(false)
