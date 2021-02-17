@@ -36,7 +36,10 @@ const Search = styled.button`
 
   &:focus {
     outline: 1px solid #2d3235;
-    border: none;
+  }
+
+  &:active {
+    background-color: #9f544e;
   }
 
   &:hover {
@@ -88,7 +91,11 @@ const CustomSearch = styled(Search)`
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid #ba6c65;
+    border-bottom: 3px solid #ba6c65;
+  }
+
+  &:active {
+    background-color: transparent;
   }
 
   &:hover {
@@ -161,6 +168,10 @@ const ToggleButton = styled.button`
     opacity: 0.6;
   }
 
+  &:active {
+    opacity: 0.6;
+  }
+  
   @media (min-width: 1025px) {
     display: ${(props) => props.display || 'none'};
   }
@@ -206,11 +217,16 @@ const FormButton = styled.button`
   cursor: pointer;
 
   &:focus {
-    border: 1px solid #000000;
+    outline-width: 1px;
+    outline-color: #ba6c65;
   }
 
   &:hover {
-    opacity: 0.7;
+    opacity: 0.6;
+  }
+
+  &:active {
+    background-color: #d8d9da;
   }
 
   @media (min-width: 768px) {

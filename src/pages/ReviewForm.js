@@ -204,11 +204,11 @@ const ValidationText = styled.p`
   height: 0;
   overflow: visible;
   margin-top: -10px;
-  color: red;
+  color: #ba6c65;
   font-size: 10px;
 
   &.counter {
-    color: #2d3235;
+    color: #2d3235; 
     align-self: flex-end;
   }
 `

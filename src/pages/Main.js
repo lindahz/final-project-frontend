@@ -189,6 +189,7 @@ const Section = styled.main`
   min-height: 100vh;
   display: flex;
   justify-content: flex-start;
+  position: relative;
 `
 
 const Container = styled.div`
@@ -211,13 +212,12 @@ const Container = styled.div`
 
 const FilterControls = styled.div`
   z-index: 2;
-  width: 100%;
-  min-height: 100vh;
-  padding: 60px 30px;
-  position: fixed;
+  height: 100%;
+  padding: 100px 30px;
+  position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: #ffffff;
   border-right: 1px solid #d6d6d6;

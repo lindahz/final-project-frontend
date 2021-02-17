@@ -63,7 +63,9 @@ export const Navbar = () => {
         <Text>
           Sök efter vårdgivare i Sverige
         </Text>
-        <HamburgerForm onSubmit={handleSubmit}>
+        <HamburgerForm
+          onSubmit={handleSubmit}
+          visibility={toggle}>
           <CustomSearchBtn type="submit" />
           <CustomSearchTextfield
             onChange={(event) => onChangeEvent(event.target.value)}
@@ -171,19 +173,19 @@ const Container = styled.div`
 `
 const HamburgerContainer = styled.div`
   z-index: 999;
-  height: 100vh;
+  min-height: 100vh;
   padding: 25px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;  
-  background-color: ${(props) => (props.visibility ? '#ffffff' : 'transparent')};
+  align-items: flex-start;
+  background-color: #ffffff;
   width: ${(props) => (props.visibility ? '100%' : '0%')};
   opacity: ${(props) => (props.visibility ? '1' : '0')};
   visibility: ${(props) => (props.visibility ? 'visible' : 'hidden')};
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
 
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
     padding: 50px 80px;

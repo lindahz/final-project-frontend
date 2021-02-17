@@ -171,7 +171,7 @@ const FormText = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid #ef4f4f;
+    border: 1px solid #ba6c65;
     &::-webkit-input-placeholder {
       color: #2d3235;
       opacity: 1;
@@ -242,7 +242,7 @@ const Textarea = styled.textarea`
 
   &:focus {
     outline: none;
-    border: 1px solid #ef4f4f;
+    border: 1px solid #ba6c65;
     &::-webkit-input-placeholder {
       color: #2d3235;
       opacity: 1;
