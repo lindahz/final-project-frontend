@@ -230,7 +230,6 @@ const FilterControls = styled.div`
     height: inherit;
     padding-top: 160px;
     position: static;
-    justify-content: flex-start;
     opacity: 1;
     width: ${(props) => (props.visibility ? '100px' : '500px')};
   }

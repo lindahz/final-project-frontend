@@ -13,8 +13,8 @@ export const ClinicDetails = () => {
 
   const { id } = useParams()
 
-  const CLINIC_URL = `https://health-finder.herokuapp.com/clinic/${id}`
-  const REVIEW_URL = `https://health-finder.herokuapp.com/clinic/${id}/reviews`
+  const CLINIC_URL = `https://health-finder.herokuapp.com/clinics/${id}`
+  const REVIEW_URL = `https://health-finder.herokuapp.com/clinics/${id}/reviews`
 
   useEffect(() => {
     fetch(CLINIC_URL)

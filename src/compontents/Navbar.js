@@ -172,7 +172,7 @@ const Container = styled.div`
   }
 `
 const HamburgerContainer = styled.div`
-  z-index: 999;
+  z-index: 2;
   min-height: 100vh;
   padding: 25px;
   position: absolute;
@@ -187,6 +187,12 @@ const HamburgerContainer = styled.div`
   visibility: ${(props) => (props.visibility ? 'visible' : 'hidden')};
   transition: all 0.2s ease-out;
 
+  @media only screen and (max-width: 1000px) and (orientation: landscape) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
     padding: 50px 80px;
   }
@@ -200,6 +206,10 @@ const Form = styled.form`
   display: none;
   margin-bottom: 50px;
   position: relative;
+
+  @media only screen and (max-width: 1000px) and (orientation: landscape) {
+    width: 70%;
+  }
 
   @media (min-width: 1025px) {
     width: initial;
@@ -226,8 +236,14 @@ const HamburgerForm = styled(Form)`
 const Text = styled.h3`
   margin-top: 50px;
   display: block;
+  font-family: 'Lato', sans-serif;
   font-size: 22px;
   font-weight: 800;
+
+  @media only screen and (max-width: 1000px) and (orientation: landscape) {
+    width: 100%;
+    margin-top: 20px;
+  }
 
   @media (max-width: 320px) {
     font-size: 20px;
