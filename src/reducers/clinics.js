@@ -11,9 +11,11 @@ const initialState = {
     { id: 'all', checked: false },
     { id: 'week', checked: false },
     { id: 'wkn', checked: false },
-    { id: 'dropin', checked: false },
-    { id: 'rating', checked: 0 }
+    { id: 'dropin', checked: false }
   ],
+  clinicType: '',
+  openHours: '',
+  dropin: '',
   isLoading: false
 }
 
@@ -32,6 +34,15 @@ export const clinics = createSlice({
     },
     generatePageNum: (state, action) => {
       state.pageNum = action.payload
+    },
+    clinicTypeFilter: (state, action) => {
+      state.clinicType = action.payload
+    },
+    openHoursFilter: (state, action) => {
+      state.openHours = action.payload
+    },
+    dropinFilter: (state, action) => {
+      state.dropin = action.payload
     },
     toggleFilter: (state, action) => {
       const foundItem = state.filter.find((item) => item.id === action.payload)

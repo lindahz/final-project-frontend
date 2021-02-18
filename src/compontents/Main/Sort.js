@@ -11,10 +11,13 @@ export const Sort = () => {
   const dispatch = useDispatch()
   const search = useSelector((store) => store.clinics.search)
   const pageNum = useSelector((store) => store.clinics.pageNum)
+  const openHours = useSelector((store) => store.clinics.openHours)
+  const dropin = useSelector((store) => store.clinics.dropin)
+  const clinicType = useSelector((store) => store.clinics.clinicType)
 
   const onChangeEvent = (value) => {
     dispatch(clinics.actions.generateSortOrder(value))
-    dispatch(fetchClinics(search, value, pageNum))
+    dispatch(fetchClinics(search, value, pageNum, clinicType, openHours, dropin))
   }
 
   return (

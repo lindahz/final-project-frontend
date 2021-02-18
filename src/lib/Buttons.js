@@ -235,6 +235,62 @@ const FormButton = styled.button`
   }
 `
 
+export const CustomFormBtn = ({
+  title,
+  type,
+  disabled,
+  onClick
+}) => {
+  return (
+    <CustomFormButton
+      type={type}
+      disabled={disabled}
+      onClick={onClick}>
+      {title}
+    </CustomFormButton>
+  )
+}
+
+const CustomFormButton = styled(FormButton)`
+  width: auto;
+  margin: 0;
+  margin-top: 20px;
+  padding: 5px 5px;
+  align-self: center;
+  color: #898989;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  border: none;
+  border-bottom: 1px solid #898989;
+  border-radius: 0;
+  
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:active {
+    background-color: transparent;
+    border-bottom: 1px solid #ffffff;
+  }
+
+  @media screen and (min-width: 667px) and (max-width: 1024px)  {
+    width: auto;
+    font-size: 16px;
+  }
+
+  @media (min-width: 1025px) {
+    width: auto;
+    font-size: 14px;
+  }
+`
+
 export const BackBtn = ({
   title,
   color,

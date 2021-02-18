@@ -26,6 +26,9 @@ export const Main = () => {
 
   const [filteredClinicData, setFilteredClinicData] = useState([])
 
+  console.log(clinicData)
+
+/*
   useEffect(() => {
     const filteredClinicsType = clinicData && clinicData
       .filter((clinic) => {
@@ -116,6 +119,7 @@ export const Main = () => {
     setFilteredClinicData(filteredClinicsType)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, clinicData]);
+*/
 
   return (
     <Section>
@@ -158,9 +162,9 @@ export const Main = () => {
             alt="Växla filter"
             width="15px" />
           <Heading>
-            Vi hittade
+            Visar
             <Span>
-              {totalClinics}
+              {clinicData.length} av {totalClinics}
             </Span>
             vårdgivare som matchade din sökning.
             {clinicData && clinicData.length === 0 && (
@@ -169,8 +173,8 @@ export const Main = () => {
               </Heading>
             )}
           </Heading>
-          {filteredClinicData && filteredClinicData
-            .length > 0 && filteredClinicData
+          {clinicData && clinicData
+            .length > 0 && clinicData
             .map((clinic, index) => {
               return (
                 <ClinicList

@@ -11,6 +11,9 @@ export const Pages = () => {
   const clinicData = useSelector((store) => store.clinics.clinics)
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
+  const openHours = useSelector((store) => store.clinics.openHours)
+  const dropin = useSelector((store) => store.clinics.dropin)
+  const clinicType = useSelector((store) => store.clinics.clinicType)
 
   const dispatch = useDispatch()
 
@@ -19,7 +22,7 @@ export const Pages = () => {
   const handleChange = (event, value) => {
     setPage(value)
     dispatch(clinics.actions.generatePageNum(value))
-    dispatch(fetchClinics(search, sortOrder, value))
+    dispatch(fetchClinics(search, sortOrder, value, clinicType, openHours, dropin))
   }
 
   const pageCount = () => clinicData.total_results / 6

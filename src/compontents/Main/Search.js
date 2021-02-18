@@ -15,6 +15,9 @@ export const Search = () => {
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
   const pageNum = useSelector((store) => store.clinics.pageNum)
+  const openHours = useSelector((store) => store.clinics.openHours)
+  const dropin = useSelector((store) => store.clinics.dropin)
+  const clinicType = useSelector((store) => store.clinics.clinicType)
   const setLoading = useSelector((state) => state.clinics.isLoading)
 
   const [errorMessage, setErrorMessage] = useState(false)
@@ -24,7 +27,7 @@ export const Search = () => {
     if (search.replace(/\s/g, '').length === 0) {
       setErrorMessage(true)
     } else {
-      return dispatch(fetchClinics(search, sortOrder, pageNum))
+      return dispatch(fetchClinics(search, sortOrder, pageNum, clinicType, openHours, dropin))
     }
   }
 
