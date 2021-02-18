@@ -196,6 +196,7 @@ const Container = styled.div`
   width: 100%;
 
   &.clinicListContainer {
+    min-height: 100vh;
     padding-top: 80px;
     display: flex;
     flex-wrap: wrap;
@@ -204,6 +205,7 @@ const Container = styled.div`
     background-color: #f5f5f5;
 
     @media (min-width: 768px) {
+      height: auto;
       padding: 120px 40px 40px 60px;
       align-content: center;
     }
@@ -241,7 +243,7 @@ const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: transparent;
+  background-color: #ffffff;
   transition: all 0.2s ease-out; 
   visibility: ${(props) => (props.visibility ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.visibility ? '1' : '0')};

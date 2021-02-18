@@ -7,6 +7,7 @@ import companyLogo from '../assets/companyLogo.svg'
 import facebook from '../assets/icons/facebook.svg'
 import instagram from '../assets/icons/instagram.svg'
 import twitter from '../assets/icons/twitter.svg'
+import linkedin from '../assets/icons/linkedin.svg'
 
 export const Footer = () => {
   return (
@@ -48,6 +49,9 @@ export const Footer = () => {
           </TextCategory>
         </StyledLink>
         <LogoContainer>
+          <Logo
+            src={linkedin}
+            alt="LinkedIn logotyp" />
           <Logo
             src={facebook}
             alt="Facebook logotyp" />

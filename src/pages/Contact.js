@@ -49,13 +49,13 @@ const Section = styled.main`
   align-items: center;
 
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
-    width: 70%;
-    padding: 80px 40px;
+    width: 90%;
+    padding: 80px 0;
   }
 
   @media (min-width: 1025px) {
-    width: 50%;
-    padding: 80px 40px;
+    width: 70%;
+    padding: 80px 0;
   }
 `
 const Container = styled.div`
@@ -65,6 +65,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 40px;
+
+  @media (min-width: 667px) {
+    width: 100%;
+  }
 
   &.imageContainer {
     width: 100%;

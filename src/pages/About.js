@@ -59,12 +59,12 @@ const Section = styled.main`
   align-items: center;
 
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
-    width: 70%;
+    width: 90%;
     align-items: flex-start;
   }
 
   @media (min-width: 1025px) {
-    width: 50%;
+    width: 70%;
     align-items: flex-start;
   }
 `
