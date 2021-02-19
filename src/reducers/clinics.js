@@ -5,17 +5,12 @@ const initialState = {
   sortOrder: 'asc',
   pageNum: 1,
   clinics: [],
-  filter: [
-    { id: 'emg', checked: false },
-    { id: 'reg', checked: false },
-    { id: 'all', checked: false },
-    { id: 'week', checked: false },
-    { id: 'wkn', checked: false },
-    { id: 'dropin', checked: false }
-  ],
-  clinicType: '',
-  openHours: '',
-  dropin: '',
+  filter: {
+    clinicType: '',
+    openHours: '',
+    dropin: '',
+    avgRating: 0
+  },
   isLoading: false
 }
 
@@ -36,19 +31,16 @@ export const clinics = createSlice({
       state.pageNum = action.payload
     },
     clinicTypeFilter: (state, action) => {
-      state.clinicType = action.payload
+      state.filter.clinicType = action.payload
     },
     openHoursFilter: (state, action) => {
-      state.openHours = action.payload
+      state.filter.openHours = action.payload
     },
     dropinFilter: (state, action) => {
-      state.dropin = action.payload
+      state.filter.dropin = action.payload
     },
-    toggleFilter: (state, action) => {
-      const foundItem = state.filter.find((item) => item.id === action.payload)
-      if (foundItem) {
-        foundItem.checked = !foundItem.checked
-      }
+    avgRatingFilter: (state, action) => {
+      state.filter.avgRating = action.payload
     },
     setLoading: (state, action) => {
       state.isLoading = action.payload

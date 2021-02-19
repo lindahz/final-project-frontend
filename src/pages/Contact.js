@@ -40,6 +40,7 @@ export const Contact = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.main`
   width: 100%;
   margin: auto;
@@ -58,6 +59,7 @@ const Section = styled.main`
     padding: 80px 0;
   }
 `
+
 const Container = styled.div`
   width: 90%;
   margin: 0;
@@ -84,6 +86,7 @@ const Container = styled.div`
     } 
   }
 `
+
 const Title = styled.h2`
   width: 100%;
   margin: 80px 0;
@@ -100,6 +103,7 @@ const Title = styled.h2`
     color: #2d3235;
   }
 `
+
 const Heading = styled.h3`
   margin: 0;
   padding: 2px 0;

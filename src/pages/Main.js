@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
@@ -14,112 +14,16 @@ import { ToggleBtn } from '../lib/Buttons'
 import filterIcon from '../assets/icons/filterIcon.svg'
 
 export const Main = () => {
+  const clinicData = useSelector((store) => store.clinics.clinics.clinics)
+  const totalClinics = useSelector((store) => store.clinics.clinics.total_results)
+  const search = useSelector((store) => store.clinics.search)
+
+  // Function to toggle filter menu for mobile and tablet
   const [toggle, setToggle] = useState(false)
   const handleToggle = (event) => {
     event.preventDefault()
     setToggle(!toggle)
   }
-  const clinicData = useSelector((store) => store.clinics.clinics.clinics)
-  const totalClinics = useSelector((store) => store.clinics.clinics.total_results)
-  const filters = useSelector((store) => store.clinics.filter)
-  const activeFilters = filters.filter((filter) => filter.checked)
-
-  const [filteredClinicData, setFilteredClinicData] = useState([])
-
-  console.log(clinicData)
-
-/*
-  useEffect(() => {
-    const filteredClinicsType = clinicData && clinicData
-      .filter((clinic) => {
-        if (activeFilters.length) {
-          const result = activeFilters.map((filterItem) => {
-            let includeClinic = true
-            if (filterItem.id === 'emg') {
-              if (clinic.clinic_operation.includes('Akutverksamhet')) {
-                includeClinic = true
-              } else {
-                includeClinic = false
-              }
-            } else if (filterItem.id === 'reg') {
-              if (clinic.clinic_operation.includes('Vårdcentral')) {
-                includeClinic = true
-              } else {
-                includeClinic = false
-              }
-            }
-            return includeClinic
-          })
-          return result.includes(true)
-        } else {
-          return true
-        }
-      })
-
-    const filteredClinicsOpenHours = clinicData && clinicData
-      .filter((clinic) => {
-        if (activeFilters.length) {
-          const result = activeFilters.map((filterItem) => {
-            let includeClinic = true
-            if (filterItem.id === 'all') {
-              if (clinic.open_hours.includes('Dygnet runt')) {
-                includeClinic = true
-              } else {
-                includeClinic = false
-              }
-            } else if (filterItem.id === 'week') {
-              if (clinic.open_hours) {
-                includeClinic = true
-              } else {
-                includeClinic = false
-              }
-            } else if (filterItem.id === 'wkn') {
-              if (
-                clinic.open_hours.includes('Lör')
-                || clinic.open_hours.includes('sön')
-                || clinic.open_hours.includes('Dygnet runt')
-              ) {
-                includeClinic = true
-              } else {
-                includeClinic = false
-              }
-            }
-            return includeClinic
-          })
-          return result.includes(true)
-        } else {
-          return true
-        }
-      })
-
-    const filteredClinicsDropIn = clinicData && clinicData
-      .filter((clinic) => {
-        if (activeFilters.length) {
-          const result = activeFilters.map((filterItem) => {
-            let includeClinic = true
-            if (filterItem.id === 'dropin') {
-              if (clinic.drop_in.includes('Ej angivet/stängt')) {
-                includeClinic = false
-              } else {
-                includeClinic = true
-              }
-            }
-            return includeClinic
-          })
-          return result.includes(true)
-        } else {
-          return true
-        }
-      })
-    console.log(
-      filteredClinicsType,
-      filteredClinicsOpenHours,
-      filteredClinicsDropIn
-    )
-    setFilteredClinicData(filteredClinicsType)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, clinicData]);
-*/
 
   return (
     <Section>
@@ -161,18 +65,20 @@ export const Main = () => {
             src={filterIcon}
             alt="Växla filter"
             width="15px" />
-          <Heading>
-            Visar
-            <Span>
-              {clinicData.length} av {totalClinics}
-            </Span>
-            vårdgivare som matchade din sökning.
-            {clinicData && clinicData.length === 0 && (
-              <Heading className="error">
-                Försök igen!
-              </Heading>
-            )}
-          </Heading>
+          {clinicData && totalClinics !== 0 && (
+            <Heading>
+              Visar
+              <Span>
+                {clinicData.length} av {totalClinics}
+              </Span>
+              vårdgivare som matchade din sökning.
+            </Heading>
+          )}
+          {clinicData && totalClinics === 0 && (
+            <Heading>
+              Inga kliniker matchade din sökning <Span>{search}.</Span> Försök gärna igen.
+            </Heading>
+          )}
           {clinicData && clinicData
             .length > 0 && clinicData
             .map((clinic, index) => {
@@ -189,6 +95,7 @@ export const Main = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.main`
   min-height: 100vh;
   display: flex;
@@ -218,7 +125,7 @@ const Container = styled.div`
 
 const FilterControls = styled.div`
   z-index: 2;
-  height: 100%;
+  min-height: 100%;
   padding: 100px 30px;
   position: absolute;
   display: flex;
@@ -285,9 +192,9 @@ const Heading = styled.h3`
     }
   }
 `
+
 const Span = styled.span`
   margin: 0 4px;
   display: inline-block;
-  color: #ef4f4f;
   font-weight: 700;
 `

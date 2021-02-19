@@ -30,6 +30,7 @@ export const ClinicDetails = () => {
       })
   }, [REVIEW_URL])
 
+  // Changes the avg rating description depending on rating value
   const displayAverageRating = (rating) => {
     if (rating > 0 && rating < 2) {
       return (`${clinic.average_rating} Dålig`)
@@ -116,6 +117,7 @@ export const ClinicDetails = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.main`
   width: 100%;
   min-height: 100vh;

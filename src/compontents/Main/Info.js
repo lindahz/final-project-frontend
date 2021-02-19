@@ -68,6 +68,7 @@ export const Info = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.section`
   width: 100%;
   padding: 50px 25px;

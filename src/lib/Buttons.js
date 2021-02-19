@@ -156,10 +156,10 @@ const ToggleButton = styled.button`
   background-color: transparent;
   border: none;
   color: #2d3235;
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Lato', sans-serif;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 300;
   letter-spacing: 0.5px;
   transition: 0.3s ease;
   cursor: pointer;
@@ -269,15 +269,20 @@ const CustomFormButton = styled(FormButton)`
   
   &:focus {
     outline: none;
+    border-bottom: 1px solid #2d3235;
+    color: #2d3235;
   }
 
   &:hover {
-    opacity: 0.6;
+    opacity: 1;
+    border-bottom: 1px solid #2d3235;
+    color: #2d3235;
   }
 
   &:active {
     background-color: transparent;
     border-bottom: 1px solid #ffffff;
+    color: #2d3235;
   }
 
   @media screen and (min-width: 667px) and (max-width: 1024px)  {
@@ -306,6 +311,7 @@ export const BackBtn = ({
     </BackButton>
   )
 }
+
 const BackButton = styled.button`
   padding: 10px 5px;
   margin: 20px 0;

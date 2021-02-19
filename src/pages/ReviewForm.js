@@ -42,6 +42,7 @@ export const ReviewForm = () => {
     }
   })(Rating);
 
+  // Function to add validation message to each input
   const reviewValidation = () => {
     if (rating < 1) {
       setErrorMessageRating(true)
@@ -148,6 +149,7 @@ export const ReviewForm = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.main`
   display: flex;
   flex-direction: column;
@@ -228,4 +230,4 @@ const StyledLink = styled(Link)`
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
   }
-  `
+`

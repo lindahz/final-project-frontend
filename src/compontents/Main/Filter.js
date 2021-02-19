@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
+import Rating from '@material-ui/lab/Rating'
+import { withStyles } from '@material-ui/core/styles'
 
 import { clinics } from '../../reducers/clinics'
 import { fetchClinics } from '../../reducers/reusable'
@@ -9,47 +11,85 @@ import { CustomFormBtn } from '../../lib/Buttons'
 import { RadioBtn } from '../../lib/Radiobuttons'
 
 export const Filter = () => {
+  const StyledRating = withStyles({
+    iconFilled: {
+      color: '#FFCC66'
+    },
+    iconHover: {
+      color: '#FFCC66'
+    }
+  })(Rating);
+
   const dispatch = useDispatch()
 
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
   const pageNum = useSelector((store) => store.clinics.pageNum)
-  const openHours = useSelector((store) => store.clinics.openHours)
-  const dropin = useSelector((store) => store.clinics.dropin)
-  const clinicType = useSelector((store) => store.clinics.clinicType)
-
-  // Controls when radio buttons are checked using local state
-  const [typeChecked, setTypeChecked] = useState(false)
-  const [openChecked, setOpenChecked] = useState(false)
-  const [dropinChecked, setDropinChecked] = useState(false)
+  const openHours = useSelector((store) => store.clinics.filter.openHours)
+  const dropin = useSelector((store) => store.clinics.filter.dropin)
+  const clinicType = useSelector((store) => store.clinics.filter.clinicType)
+  const avgRating = useSelector((store) => store.clinics.filter.avgRating)
 
   // Saving query param filter values in redux global state & passing values to thunk
   const filterClinicType = (value) => {
-    setTypeChecked(value)
     dispatch(clinics.actions.clinicTypeFilter(value))
-    dispatch(fetchClinics(search, sortOrder, pageNum, value, openHours, dropin))
+    dispatch(fetchClinics(
+      search,
+      sortOrder,
+      pageNum,
+      value,
+      openHours,
+      dropin,
+      avgRating
+    ))
   }
 
   const filterOpenHours = (value) => {
-    setOpenChecked(value)
     dispatch(clinics.actions.openHoursFilter(value))
-    dispatch(fetchClinics(search, sortOrder, pageNum, clinicType, value, dropin))
+    dispatch(fetchClinics(
+      search,
+      sortOrder,
+      pageNum,
+      clinicType,
+      value,
+      dropin,
+      avgRating
+    ))
   }
 
   const filterDropin = (value) => {
-    setDropinChecked(value)
     dispatch(clinics.actions.dropinFilter(value))
-    dispatch(fetchClinics(search, sortOrder, pageNum, clinicType, openHours, value))
+    dispatch(fetchClinics(
+      search,
+      sortOrder,
+      pageNum,
+      clinicType,
+      openHours,
+      value,
+      avgRating
+    ))
   }
 
-  // Clears all filters -> uncheck radio buttons & clear query param filter values
+  const filterAvgRating = (value) => {
+    dispatch(clinics.actions.avgRatingFilter(value))
+    dispatch(fetchClinics(
+      search,
+      sortOrder,
+      pageNum,
+      clinicType,
+      openHours,
+      dropin,
+      value,
+      avgRating
+    ))
+  }
+
+  // Uncheck inputs & clear query param filter values
   const clearFilters = () => {
-    setTypeChecked(false)
-    setOpenChecked(false)
-    setDropinChecked(false)
     dispatch(clinics.actions.openHoursFilter(''))
     dispatch(clinics.actions.clinicTypeFilter(''))
     dispatch(clinics.actions.dropinFilter(''))
+    dispatch(clinics.actions.avgRatingFilter(0))
     dispatch(fetchClinics(search, sortOrder, pageNum, '', '', ''))
   }
 
@@ -65,14 +105,14 @@ export const Filter = () => {
           value="emg"
           id="emg"
           name="clinicType"
-          checked={typeChecked === 'emg'}
+          checked={clinicType === 'emg'}
           onChange={(event) => filterClinicType(event.target.value)} />
         <RadioBtn
           label="Vårdbesök"
           value="reg"
           id="reg"
           name="clinicType"
-          checked={typeChecked === 'reg'}
+          checked={clinicType === 'reg'}
           onChange={(event) => filterClinicType(event.target.value)} />
         <Heading>
           Öppettider
@@ -82,15 +122,23 @@ export const Filter = () => {
           value="all"
           id="all"
           name="openHours"
-          checked={openChecked === 'all'}
+          checked={openHours === 'all'}
           onChange={(event) => filterOpenHours(event.target.value)} />
         <RadioBtn
           label="Alla tider"
           value="week"
           id="week"
           name="openHours"
-          checked={openChecked === 'week'}
+          checked={openHours === 'week'}
           onChange={(event) => filterOpenHours(event.target.value)} />
+        <Heading>
+          Betyg
+        </Heading>
+        <StyledRating
+          name="simple-controlled"
+          size="large"
+          value={+avgRating}
+          onChange={(event) => filterAvgRating(event.target.value)} />
         <Heading>
           Övrigt
         </Heading>
@@ -99,7 +147,7 @@ export const Filter = () => {
           value="dropin"
           id="dropin"
           name="dropin"
-          checked={dropinChecked === 'dropin'}
+          checked={dropin === 'dropin'}
           onChange={(event) => filterDropin(event.target.value)} />
       </Form>
       <CustomFormBtn
@@ -110,6 +158,7 @@ export const Filter = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Form = styled.div`
   width: 100%;
   display: flex;

@@ -67,6 +67,7 @@ export const Footer = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.section`
   z-index: 1;
   bottom: 0;
@@ -159,11 +160,13 @@ const Text = styled.p`
     display: block;
   }
 `
+
 const MainLogo = styled.img`
   width: 70px;
   margin: 10px 0;
   align-self: flex-start;
 `
+
 const StyledLink = styled(Link)`
   text-decoration: none;
 

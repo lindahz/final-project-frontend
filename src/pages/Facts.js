@@ -181,6 +181,7 @@ const Section = styled.main`
     padding: 80px 80px;
   }
 `
+
 const Container = styled.div`
   width: 90%;
   margin: 0 20px 40px 20px;
@@ -253,6 +254,7 @@ const Title = styled.h2`
     color: #2d3235;
   }
 `
+
 const Heading = styled.h3`
   margin: 0;
   padding: 2px 0;
@@ -268,6 +270,7 @@ const Heading = styled.h3`
     font-size: 22px;
   }
 `
+
 const Text = styled.p`
   margin: 8px 0;
   color: #303242;

@@ -50,6 +50,7 @@ export const About = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.main`
   width: 100%;
   margin: auto;

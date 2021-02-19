@@ -4,7 +4,6 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import moment from 'moment'
 import 'moment/locale/sv'
-
 import Rating from '@material-ui/lab/Rating'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -18,9 +17,6 @@ export const Reviews = ({
   const StyledRating = withStyles({
     iconFilled: {
       color: '#FFCC66'
-    },
-    iconHover: {
-      color: '#ff3d47'
     }
   })(Rating);
 
@@ -48,6 +44,7 @@ export const Reviews = ({
   )
 }
 
+// STYLING ------------------------------------
 const Container = styled.div`
   margin: 10px 0;
   padding: 10px;

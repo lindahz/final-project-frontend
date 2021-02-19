@@ -15,9 +15,10 @@ export const Search = () => {
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
   const pageNum = useSelector((store) => store.clinics.pageNum)
-  const openHours = useSelector((store) => store.clinics.openHours)
-  const dropin = useSelector((store) => store.clinics.dropin)
-  const clinicType = useSelector((store) => store.clinics.clinicType)
+  const openHours = useSelector((store) => store.clinics.filter.openHours)
+  const dropin = useSelector((store) => store.clinics.filter.dropin)
+  const clinicType = useSelector((store) => store.clinics.filter.clinicType)
+  const avgRating = useSelector((store) => store.clinics.filter.avgRating)
   const setLoading = useSelector((state) => state.clinics.isLoading)
 
   const [errorMessage, setErrorMessage] = useState(false)
@@ -27,7 +28,15 @@ export const Search = () => {
     if (search.replace(/\s/g, '').length === 0) {
       setErrorMessage(true)
     } else {
-      return dispatch(fetchClinics(search, sortOrder, pageNum, clinicType, openHours, dropin))
+      return dispatch(fetchClinics(
+        search,
+        sortOrder,
+        pageNum,
+        clinicType,
+        openHours,
+        dropin,
+        avgRating
+      ))
     }
   }
 
@@ -67,6 +76,7 @@ export const Search = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.section`
   width: 100%;
   min-height: 100vh;
@@ -97,6 +107,7 @@ const Container = styled.div`
     padding: 120px 150px 130px 150px;
   }
 `
+
 const Form = styled.form`
   display: flex;
   align-items: center;
@@ -153,6 +164,7 @@ const Subtitle = styled.h2`
     font-size: 22px;
   }
 `
+
 const ErrorText = styled.p`
   height: 0;
   margin: 0;

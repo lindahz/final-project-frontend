@@ -15,6 +15,7 @@ import cross from '../assets/icons/cross.svg'
 
 import hamburgerMenu from '../assets/icons/hamburgerMenu.svg'
 
+// Function to toggle hamburger menu for mobile and tablet
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false)
   const handleToggle = (event) => {
@@ -27,13 +28,25 @@ export const Navbar = () => {
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
   const pageNum = useSelector((store) => store.clinics.pageNum)
   const setLoading = useSelector((state) => state.clinics.isLoading)
+  const openHours = useSelector((store) => store.clinics.filter.openHours)
+  const dropin = useSelector((store) => store.clinics.filter.dropin)
+  const clinicType = useSelector((store) => store.clinics.filter.clinicType)
+  const avgRating = useSelector((store) => store.clinics.filter.avgRating)
 
   const dispatch = useDispatch()
 
   const handleSubmit = (event) => {
     event.preventDefault()
     if (search.replace(/\s/g, '').length !== 0) {
-      dispatch(fetchClinics(search, sortOrder, pageNum))
+      dispatch(fetchClinics(
+        search,
+        sortOrder,
+        pageNum,
+        clinicType,
+        openHours,
+        dropin,
+        avgRating
+      ))
     }
   }
 
@@ -56,6 +69,7 @@ export const Navbar = () => {
         <ToggleBtn
           type="submit"
           title="Stäng"
+          width="18px"
           onTouchEnd={handleToggle}
           onMouseUp={handleToggle}
           src={cross}
@@ -146,6 +160,7 @@ export const Navbar = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.div`
   z-index: 999;
   width: 100%;
@@ -163,6 +178,7 @@ const Section = styled.div`
     overflow: hidden;
   }
 `
+
 const Container = styled.div`
   display: none;
 
@@ -171,6 +187,7 @@ const Container = styled.div`
     font-size: 16px;
   }
 `
+
 const HamburgerContainer = styled.div`
   z-index: 2;
   min-height: 100vh;
@@ -201,6 +218,7 @@ const HamburgerContainer = styled.div`
     display: none;
   }
 `
+
 const Form = styled.form`
   width: 100%;
   display: none;
@@ -208,7 +226,7 @@ const Form = styled.form`
   position: relative;
 
   @media only screen and (max-width: 1000px) and (orientation: landscape) {
-    width: 70%;
+    width: 80%;
   }
 
   @media (min-width: 1025px) {
@@ -257,6 +275,7 @@ const Text = styled.h3`
     display: none;
   }
 `
+
 const CategoryText = styled.a`
   margin: 5px 0;
   padding: 0;
@@ -282,9 +301,10 @@ const CategoryText = styled.a`
     border-bottom: 3px solid #ba6c65;
     font-weight: 500;
     color: #000000;
-  }
+    }
   }
 `
+
 const CompanyLogo = styled.img`
   width: 45px;
   height: inherit;

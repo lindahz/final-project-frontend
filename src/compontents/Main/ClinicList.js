@@ -50,6 +50,7 @@ export const ClinicList = ({
   )
 }
 
+// STYLING ------------------------------------
 const Container = styled.div`
   padding: 25px 20px 20px 20px;
   display: flex;
@@ -101,6 +102,7 @@ const Title = styled.h2`
     font-size: 18px;
   }
 `
+
 const Subtitle = styled.h4`
   margin: 0;
   font-size: 14px;
@@ -113,11 +115,13 @@ const Subtitle = styled.h4`
     font-size: 14px;
   }
 `
+
 const ChipContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
 `
+
 const Chip = styled.div`
   margin: 10px 0;
   margin-right: 10px;
@@ -136,6 +140,7 @@ const Chip = styled.div`
     color: #ef4f4f;
   }
 `
+
 const Span = styled.span`
   margin-left: 2px;
   color: #FFCC66;

@@ -29,6 +29,7 @@ export const NotFound = () => {
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.main`
   width: 100%;
 
@@ -36,11 +37,13 @@ const Section = styled.main`
     padding: 120px 100px;
   }
 `
+
 const Container = styled.div`
   padding: 100px 50px;
   background-color: #394359;
   border-radius: 3px;
 `
+
 const Title = styled.h2`
   font-family: 'Lato', sans-serif;
   font-weight: 600;
@@ -51,6 +54,7 @@ const Title = styled.h2`
     font-size: 46px;
   }
 `
+
 const Subtitle = styled.h3`
   font-weight: 400;
   color: #ffffff;
@@ -59,6 +63,7 @@ const Subtitle = styled.h3`
     width: 70%;
   }
 `
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   font-weight: 600;

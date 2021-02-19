@@ -11,20 +11,33 @@ export const Pages = () => {
   const clinicData = useSelector((store) => store.clinics.clinics)
   const search = useSelector((store) => store.clinics.search)
   const sortOrder = useSelector((store) => store.clinics.sortOrder)
-  const openHours = useSelector((store) => store.clinics.openHours)
-  const dropin = useSelector((store) => store.clinics.dropin)
-  const clinicType = useSelector((store) => store.clinics.clinicType)
+  const openHours = useSelector((store) => store.clinics.filter.openHours)
+  const dropin = useSelector((store) => store.clinics.filter.dropin)
+  const clinicType = useSelector((store) => store.clinics.filter.clinicType)
+  const avgRating = useSelector((store) => store.clinics.filter.avgRating)
 
   const dispatch = useDispatch()
 
   const [page, setPage] = useState(1)
 
-  const handleChange = (event, value) => {
+  // Saving query param page num value in redux global state & passing to thunk
+  const handlePagination = (event, value) => {
     setPage(value)
     dispatch(clinics.actions.generatePageNum(value))
-    dispatch(fetchClinics(search, sortOrder, value, clinicType, openHours, dropin))
+    dispatch(fetchClinics(
+      search,
+      sortOrder,
+      value,
+      clinicType,
+      openHours,
+      dropin,
+      avgRating
+    ))
   }
 
+  // Calculates number of pages needed based on the total results of clinics
+  // ---> This logic is not working correctly, I need filtredResults instead of totalResults
+  // ---> Check comments in backend repo for more information
   const pageCount = () => clinicData.total_results / 6
 
   return (
@@ -34,15 +47,15 @@ export const Pages = () => {
           <Pagination
             count={Math.ceil(pageCount())}
             page={page}
-            onChange={handleChange}
-            shape="rounded"
-            color="" />
+            onChange={handlePagination}
+            shape="rounded" />
         </Section>
       )}
     </>
   )
 }
 
+// STYLING ------------------------------------
 const Section = styled.div`
   width: inherit;
   margin: 40px 0;
